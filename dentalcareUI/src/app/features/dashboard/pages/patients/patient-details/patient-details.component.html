@@ -1,0 +1,84 @@
+<section class="p-6 md:p-10 bg-white min-h-screen rounded-2xl shadow-sm">
+
+  <!-- 🔄 Chargement -->
+  <div *ngIf="isLoading" class="text-center text-blue-600 font-semibold py-10">
+    Chargement des informations du patient...
+  </div>
+
+  <!-- ❌ Erreur -->
+  <div *ngIf="hasError" class="text-red-600 font-medium py-4 text-center">
+    ❌ Impossible de charger les informations du patient.
+  </div>
+
+  <!-- 🐞 Debug JSON -->
+  <pre *ngIf="!isLoading && patient" class="bg-gray-100 text-xs p-2 rounded">
+    JSON debug : {{ patient | json }}
+  </pre>
+
+  <!-- ✅ Détails affichés -->
+  <div *ngIf="!isLoading && patient" class="space-y-6">
+
+    <!-- 👤 En-tête patient -->
+    <div class="flex justify-between items-center border-b pb-4">
+      <div>
+        <h1 class="text-3xl font-bold text-blue-900 flex items-center gap-2">
+          <lucide-icon name="user-check" class="w-6 h-6 text-blue-600"></lucide-icon>
+          {{ patient.nom }} {{ patient.prenom }}
+        </h1>
+        <p class="text-sm text-gray-500 italic">Dossier patient #{{ patient.id }}</p>
+      </div>
+
+      <div class="flex gap-3">
+        <button (click)="onEdit(patient.id)"
+                class="px-4 py-2 rounded-xl bg-yellow-500 text-white hover:bg-yellow-600 transition">
+          <lucide-icon name="edit" class="w-4 h-4 mr-2 inline"></lucide-icon> Modifier
+        </button>
+        <button (click)="goBack()"
+                class="px-4 py-2 rounded-xl bg-gray-300 hover:bg-gray-400 text-gray-800 transition">
+          <lucide-icon name="arrow-left" class="w-4 h-4 mr-2 inline"></lucide-icon> Retour
+        </button>
+      </div>
+    </div>
+
+    <!-- 📝 Informations principales -->
+    <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-700">
+      <div>
+        <p><strong>CIN :</strong> {{ patient.cin || '—' }}</p>
+      </div>
+      <div>
+        <p><strong>Email :</strong> {{ patient.email || '—' }}</p>
+      </div>
+      <div>
+        <p><strong>Genre :</strong> {{ patient.genre || '—' }}</p>
+      </div>
+      <div>
+        <p><strong>Date de naissance :</strong> {{ patient.dateNaissance || '—' }}</p>
+      </div>
+      <div class="md:col-span-2">
+        <p><strong>Adresse :</strong> {{ patient.adresse || '—' }}</p>
+      </div>
+    </div>
+
+    <!-- 🔖 Statuts -->
+    <div class="flex items-center gap-4 mt-6">
+      <span
+        class="px-3 py-1 rounded-full text-sm font-medium"
+        [ngClass]="{
+          'bg-green-100 text-green-700': patient.enabled,
+          'bg-red-100 text-red-700': !patient.enabled
+        }">
+        {{ patient.enabled ? 'Activé' : 'Désactivé' }}
+      </span>
+
+      <span
+        class="px-3 py-1 rounded-full text-sm font-medium"
+        [ngClass]="{
+          'bg-blue-100 text-blue-700': patient.createdByAdmin,
+          'bg-gray-200 text-gray-700': !patient.createdByAdmin
+        }">
+        Créé par : {{ patient.createdByAdmin ? 'Admin' : 'Utilisateur' }}
+      </span>
+    </div>
+
+  </div>
+</section>

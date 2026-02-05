@@ -1,0 +1,29 @@
+<div class="p-6 max-w-3xl mx-auto text-gray-800">
+  <!-- Title -->
+  <h2 class="text-2xl font-bold text-blue-700 mb-4">
+    Good morning {{ patient?.prenom?.toLowerCase() }} 👋
+  </h2>
+  <p class="mb-6">Here are your upcoming appointments <strong class="text-blue-600">confirmed</strong> :</p>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="isLoading" class="flex items-center gap-3 text-blue-600">
+    <lucide-icon name="loader-circle" class="animate-spin w-5 h-5"></lucide-icon>
+    <span>Loading...</span>
+  </div>
+
+  <!-- No appointment -->
+  <div *ngIf="!isLoading && confirmedRDVs.length === 0" class="text-gray-500 italic">
+    You have no confirmed appointments coming up.
+  </div>
+
+  <!-- List of confirmed appointments -->
+  <div *ngIf="!isLoading && confirmedRDVs.length > 0" class="space-y-4">
+    <div *ngFor="let rdv of confirmedRDVs" class="bg-white shadow p-4 rounded-lg border border-gray-200">
+      <div class="text-blue-600 font-semibold mb-1">
+        📅 {{ rdv.date }} à {{ rdv.heureDebut }}
+      </div>
+      <div><strong>Pattern :</strong> {{ rdv.motif }}</div>
+      <div class="text-sm text-gray-500"><strong>Type :</strong> {{ rdv.type }}</div>
+    </div>
+  </div>
+</div>

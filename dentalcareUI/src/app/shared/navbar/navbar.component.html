@@ -1,0 +1,111 @@
+<div class="navbar-area" [class.scrolled]="isScrolled">
+  <div class="container mx-auto px-4">
+    <nav class="flex justify-between items-center h-20">
+
+      <!-- Logo -->
+      <a routerLink="/home" class="navbar-brand">
+        <span>Dental</span><span class="text-teal-600">Care</span>
+        <span class="tooth-icon">🦷</span>
+      </a>
+
+      <!-- Desktop Menu -->
+      <ul class="nav-menu hidden lg:flex">
+        <li>
+          <a routerLink="/"
+             routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact: true}"
+             class="nav-link">
+            Welcome
+          </a>
+        </li>
+        <li>
+          <a routerLink="/about"
+             routerLinkActive="active"
+             class="nav-link">
+            About
+          </a>
+        </li>
+        <li>
+          <a routerLink="/services"
+             routerLinkActive="active"
+             class="nav-link">
+            Services
+          </a>
+        </li>
+        <li>
+          <a routerLink="/calendar"
+             routerLinkActive="active"
+             class="nav-link">
+            Calendar
+          </a>
+        </li>
+        <li>
+          <a routerLink="/contact"
+             routerLinkActive="active"
+             class="nav-link">
+            Contact
+          </a>
+        </li>
+      </ul>
+
+      <!-- Desktop CTA -->
+      <div class="hidden lg:block">
+        <a routerLink="/login" class="cta-button">
+          LOGIN
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button class="mobile-menu-button lg:hidden" (click)="toggleMenu()" aria-label="Toggle menu">
+        <svg *ngIf="!menuOpen" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg *ngIf="menuOpen" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div *ngIf="menuOpen" class="mobile-menu lg:hidden">
+      <div class="flex flex-col space-y-2">
+        <a routerLink="/"
+           routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}"
+           class="mobile-nav-link"
+           (click)="closeMenu()">
+          Welcome
+        </a>
+        <a routerLink="/about"
+           routerLinkActive="active"
+           class="mobile-nav-link"
+           (click)="closeMenu()">
+          About
+        </a>
+        <a routerLink="/services"
+           routerLinkActive="active"
+           class="mobile-nav-link"
+           (click)="closeMenu()">
+          Services
+        </a>
+        <a routerLink="/calendar"
+           routerLinkActive="active"
+           class="mobile-nav-link"
+           (click)="closeMenu()">
+          Calendar
+        </a>
+        <a routerLink="/contact"
+           routerLinkActive="active"
+           class="mobile-nav-link"
+           (click)="closeMenu()">
+          Contact
+        </a>
+        <a routerLink="/login"
+           class="mobile-cta-button"
+           (click)="closeMenu()">
+          LOGIN
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

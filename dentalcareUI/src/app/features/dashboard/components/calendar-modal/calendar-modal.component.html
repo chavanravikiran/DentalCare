@@ -1,0 +1,74 @@
+<!-- ✅ ADVANCED ADMIN MODAL FOR ADDING APPOINTMENTS -->
+<div class="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex items-center justify-center z-50">
+
+  <div class="bg-white rounded-xl shadow-xl w-full max-w-2xl p-6 animate-fade-in">
+    <!-- Title -->
+    <h3 class="text-2xl font-semibold text-gray-800 mb-6 text-center">
+      Add a patient appointment
+    </h3>
+
+    <!-- Form -->
+    <form (ngSubmit)="submit()"  class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- Patient Name-->
+      <div class="col-span-1">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Patient Name</label>
+        <input type="text" [(ngModel)]="patientName" (ngModelChange)="patientNameChange.emit($event)" name="patientName" required
+               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <!-- Type of appointment -->
+      <div class="col-span-1">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Type of appointment</label>
+        <select [(ngModel)]="type" name="typeRdv" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
+          <option value="CONSULTATION">Consultation</option>
+          <option value="DETARTRAGE">Descaling</option>
+          <option value="SUIVI">Follow up</option>
+          <option value="AUTRE">Other</option>
+        </select>
+      </div>
+
+      <!-- Pattern -->
+      <div class="col-span-2">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Reason for the appointment</label>
+        <textarea [(ngModel)]="motif" name="motif" rows="2"
+                  class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Ex: douleur, contrôle annuel, soins..."></textarea>
+      </div>
+
+      <!-- Start time -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">Start time</label>
+        <input type="datetime-local" [(ngModel)]="startTime" (ngModelChange)="startTimeChange.emit($event)" name="startTime" required
+               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <!-- End time -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700 mb-1">End time</label>
+        <input type="datetime-local" [(ngModel)]="endTime" (ngModelChange)="endTimeChange.emit($event)" name="endTime" required
+               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <!-- Practitioner (free or pre-defined) -->
+      <div class="col-span-1">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Practitioner</label>
+        <input type="text" [(ngModel)]="praticien" name="praticien"
+       Cancel        class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+               placeholder="Dr Zahra">
+      </div>
+
+      <!-- Buttons -->
+      <div class="col-span-2 flex justify-end pt-2 space-x-4">
+        <button type="button" (click)="close()"
+                class="text-gray-500 hover:text-gray-700 text-sm">Cancel</button>
+
+        <button type="submit"
+                class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg">
+          Add the appointment
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

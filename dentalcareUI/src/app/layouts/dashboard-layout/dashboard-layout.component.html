@@ -1,0 +1,42 @@
+<!-- 💻 Main wrapper -->
+<div class="flex h-screen bg-gray-50 relative overflow-hidden">
+
+  <!-- 🧭 Sidebar -->
+  <app-sidebar
+    [isOpen]="isSidebarOpen"
+    (toggleSidebar)="toggleSidebar()"
+    class="bg-white z-40 shadow-md border-r w-64 h-full
+           fixed top-0 left-0 transform transition-transform duration-300
+           md:relative md:translate-x-0 md:block"
+    [ngClass]="{
+      'translate-x-0': isSidebarOpen,
+      '-translate-x-full': !isSidebarOpen && isMobile()
+    }"
+  ></app-sidebar>
+
+  <!-- 🌑 Overlay (mobile only) -->
+  <div
+    *ngIf="isSidebarOpen && isMobile()"
+    (click)="toggleSidebar()"
+    class="fixed inset-0 bg-black/30 backdrop-blur-sm z-30 md:hidden">
+  </div>
+
+  <!-- 📦 Main content -->
+  <div class="flex-1 flex flex-col overflow-hidden">
+
+    <!-- 🧢 Header -->
+    <app-header
+      [fullName]="fullName"
+      [notifications]="3"
+      (logout)="logout()"
+      (toggleSidebar)="toggleSidebar()"
+    ></app-header>
+
+    <!-- 🧩 Children's pages -->
+    <main
+      class="flex-1 overflow-y-auto p-4 md:p-6"
+      [@fadeInDashboard]>
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

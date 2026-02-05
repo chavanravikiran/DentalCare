@@ -1,0 +1,26 @@
+<!-- src/app/features/user-account/components/layout/header/header.component.html -->
+
+<header class="bg-white shadow-sm w-full z-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16 items-center">
+
+      <!-- 👤 User name -->
+      <div class="flex items-center space-x-3">
+        <lucide-icon name="user" class="w-5 h-5 text-blue-600"></lucide-icon>
+        <span class="text-gray-700 font-semibold text-sm sm:text-base">
+          Good morning, {{ fullName  || 'Utilisateur' }}
+        </span>
+      </div>
+
+      <!-- 🔘 Disconnect -->
+      <button
+        (click)="logout.emit()"
+        class="flex items-center space-x-2 text-red-600 hover:text-red-800 text-sm sm:text-base font-medium transition"
+      >
+        <lucide-icon name="log-out" class="w-5 h-5"></lucide-icon>
+        <span>Disconnect</span>
+      </button>
+
+    </div>
+  </div>
+</header>

@@ -1,0 +1,117 @@
+/* Enhanced Header Styles - Matching Hero Section Aesthetic */
+
+.top-header {
+  background: linear-gradient(135deg, #0f766e 0%, #0d9488 100%);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.top-header a:hover {
+  color: #a7f3d0;
+  text-decoration: none;
+  transform: translateY(-1px);
+  transition: all 0.3s ease;
+}
+
+.top-header i {
+  color: #a7f3d0;
+  margin-right: 8px;
+  font-size: 1.1rem;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.social-links a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px) scale(1.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.middle-header-area {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(15, 118, 110, 0.1);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+}
+
+.middle-header-area h1 {
+  background: linear-gradient(135deg, #0f766e 0%, #0d9488 50%, #14b8a6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info {
+  background: rgba(15, 118, 110, 0.05);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid rgba(15, 118, 110, 0.1);
+  transition: all 0.3s ease;
+}
+
+.contact-info:hover {
+  background: rgba(15, 118, 110, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(15, 118, 110, 0.15);
+}
+
+.contact-info i {
+  color: #0f766e;
+  font-size: 1.5rem;
+  padding: 8px;
+  background: rgba(15, 118, 110, 0.1);
+  border-radius: 8px;
+}
+
+.contact-info-text {
+  font-size: 0.875rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.contact-info-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f766e;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-info-value:hover {
+  color: #0d9488;
+}
+
+/* Responsive Enhancements */
+@media screen and (max-width: 768px) {
+  .middle-header-area h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .contact-info {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .top-header .container {
+    text-align: center;
+  }
+
+  .top-header ul {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}

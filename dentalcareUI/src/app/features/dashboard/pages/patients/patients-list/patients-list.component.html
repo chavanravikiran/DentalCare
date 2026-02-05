@@ -1,0 +1,97 @@
+<div *ngIf="isLoading" class="text-center text-blue-600 font-semibold py-10">
+  Chargement des patients...
+</div>
+
+<div *ngIf="!isLoading && patients.length === 0" class="text-gray-500 italic">
+  Aucun patient trouvé.
+</div>
+
+<!-- ⚠️ Message d'erreur si la récupération échoue -->
+<div *ngIf="hasError" class="text-red-600 font-medium mb-4 text-center">
+  Une erreur est survenue lors du chargement des patients.
+</div>
+<!-- 🔍 Barre de recherche -->
+<div class="flex items-center justify-between mb-6">
+  <div class="relative w-full max-w-md">
+    <lucide-icon name="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5"></lucide-icon>
+    <input
+      type="text"
+      [(ngModel)]="filters.nom"
+      (input)="onSearchChange()"
+      placeholder="Rechercher par nom..."
+      class="pl-10 pr-4 py-2 w-full rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+    />
+  </div>
+</div>
+
+
+<div *ngIf="!isLoading && patients.length > 0" class="overflow-x-auto">
+  <table class="w-full table-auto border-collapse">
+    <thead>
+    <tr class="bg-blue-100 text-blue-900">
+      <th class="px-4 py-2 text-left">Nom</th>
+      <th class="px-4 py-2 text-center">CIN</th>
+      <th class="px-4 py-2 text-center">Email</th>
+      <th class="px-4 py-2 text-center">Statut</th>
+      <th class="px-4 py-2 text-center">Créé par</th>
+      <th class="px-4 py-2 text-center">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let patient of patients; trackBy: trackById" class="hover:bg-blue-50">
+      <td class="px-4 py-2">
+        {{ patient.nom || '—' }} {{ patient.prenom || '—' }}
+      </td>
+      <td class="px-4 py-2 text-center">{{ patient.cin || '—' }}</td>
+      <td class="px-4 py-2 text-center">{{ patient.email || '—' }}</td>
+      <td class="px-4 py-2 text-center">
+          <span
+            class="px-2 py-1 rounded-full text-xs font-medium"
+            [ngClass]="{
+              'bg-green-100 text-green-700': patient.enabled,
+              'bg-red-100 text-red-700': !patient.enabled
+            }"
+          >
+            {{ patient.enabled ? 'Activé' : 'Désactivé' }}
+          </span>
+      </td>
+      <td class="px-4 py-2 text-center">
+          <span
+            class="text-xs px-2 py-1 rounded-full"
+            [ngClass]="{
+              'bg-blue-100 text-blue-700': patient.createdByAdmin,
+              'bg-gray-100 text-gray-600': !patient.createdByAdmin
+            }"
+          >
+            {{ patient.createdByAdmin ? 'Admin' : 'Utilisateur' }}
+          </span>
+      </td>
+      <td class="px-4 py-2 text-center">
+        <div class="flex items-center justify-center gap-2">
+          <button
+            (click)="onView(patient.id)"
+            class="p-2 rounded-full hover:bg-blue-100"
+            [title]="'Voir ' + patient.nom + ' ' + patient.prenom"
+          >
+            <lucide-icon name="eye" class="w-5 h-5 text-blue-700 hover:text-blue-900" aria-hidden="true"></lucide-icon>
+          </button>
+          <button
+            (click)="onEdit(patient.id)"
+            class="p-2 rounded-full hover:bg-yellow-100"
+            [title]="'Modifier ' + patient.nom + ' ' + patient.prenom"
+          >
+            <lucide-icon name="edit" class="w-5 h-5 text-yellow-600 hover:text-yellow-800" aria-hidden="true"></lucide-icon>
+          </button>
+          <button
+            (click)="onDelete(patient.id)"
+            class="p-2 rounded-full hover:bg-red-100"
+            [title]="'Supprimer ' + patient.nom + ' ' + patient.prenom"
+          >
+            <lucide-icon name="trash-2" class="w-5 h-5 text-red-600 hover:text-red-800" aria-hidden="true"></lucide-icon>
+          </button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

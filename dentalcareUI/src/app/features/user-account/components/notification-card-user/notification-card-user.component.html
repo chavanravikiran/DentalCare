@@ -1,0 +1,24 @@
+<div class="flex flex-col p-4 bg-white rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300">
+
+  <!-- Status with Icon -->
+  <div class="flex items-center gap-2 mb-3">
+    <lucide-icon [name]="getStatusIcon()" class="w-6 h-6" [ngClass]="getStatusClasses()"></lucide-icon>
+    <span class="font-semibold text-gray-700">
+      Appointment of {{ formatDate(notification.attemptedAt) }}
+    </span>
+  </div>
+
+  <!-- Appointment time -->
+  <div class="text-sm text-gray-500 mb-2">
+    Hour : {{ formatTime(notification.attemptedAt) }}
+  </div>
+
+  <!-- Final status (Received, Failed) -->
+  <div class="mt-4 self-start">
+    <span class="px-3 py-1 text-xs rounded-full font-semibold" [ngClass]="getStatusClasses()">
+      {{ notification.status === 'SUCCESS' ? 'Reminder sent' : 'Shipping problem' }}
+    </span>
+  </div>
+
+</div>
+

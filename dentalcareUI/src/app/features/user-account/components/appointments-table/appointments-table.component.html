@@ -1,0 +1,18 @@
+<table class="min-w-full table-auto border-collapse border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+  <thead class="bg-blue-100 text-blue-800 text-sm font-semibold uppercase">
+  <tr>
+    <th class="px-4 py-3 text-left">Date</th>
+    <th class="px-4 py-3 text-left">Hour</th>
+    <th class="px-4 py-3 text-left">Type</th>
+    <th class="px-4 py-3 text-left">Pattern</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let rdv of appointments" class="hover:bg-blue-50 transition">
+    <td class="px-4 py-2">{{ rdv.date | date: 'dd/MM/yyyy' }}</td>
+    <td class="px-4 py-2">{{ rdv.heureDebut }} - {{ rdv.heureFin }}</td>
+    <td class="px-4 py-2">{{ rdv.type }}</td>
+    <td class="px-4 py-2">{{ rdv?.motif || '-' }}</td>
+  </tr>
+  </tbody>
+</table>

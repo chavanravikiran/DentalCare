@@ -1,0 +1,5 @@
+<div class="flex items-center gap-4 mb-4">
+  <label for="monthPicker" class="text-sm font-medium">Choose month :</label>
+  <input id="monthPicker" type="month" [value]="selectedMonth" (change)="onChange($event)"
+         class="border rounded p-2 text-sm" />
+</div>

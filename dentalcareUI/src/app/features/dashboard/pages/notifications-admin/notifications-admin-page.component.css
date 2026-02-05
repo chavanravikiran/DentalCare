@@ -1,0 +1,17 @@
+.highlighted {
+  animation: pulse-ring 1.5s ease-in-out;
+  border: 2px solid #4ade80; /* green-400 */
+  border-radius: 1rem;
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(74, 222, 128, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+  }
+}

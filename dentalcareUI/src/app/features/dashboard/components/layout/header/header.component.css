@@ -1,0 +1,12 @@
+:host {
+  display: block;
+  position: relative;
+  z-index: 30; /* makes sure it goes over the sidebar if needed*/
+}
+
+/* Optional: soft shadow on mobile */
+@media (max-width: 640px) {
+  header {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  }
+}

@@ -1,0 +1,126 @@
+<!-- Enhanced Services Banner -->
+<section class="services-banner py-24">
+  <div class="banner-content max-w-4xl mx-auto px-6">
+    <h1 class="banner-title">Our Dental Services</h1>
+    <p class="banner-subtitle">
+      Superior dental care for all your needs
+    </p>
+    <nav class="breadcrumb justify-center">
+      <a routerLink="/home" class="text-white/80 hover:text-white transition-colors">Welcome</a>
+      <span class="text-white/60 mx-2">/</span>
+      <span class="text-white">Services</span>
+    </nav>
+  </div>
+</section>
+
+<!-- Service Categories Overview -->
+<section class="services-section py-16">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="service-categories">
+      <h2 class="categories-title">Our Specialties</h2>
+      <div class="categories-grid">
+        <div class="category-card" *ngFor="let category of serviceCategories">
+          <div class="category-icon">
+            <i class="bx" [ngClass]="category.icon"></i>
+          </div>
+          <h3 class="category-title">{{ category.name }}</h3>
+          <p class="category-count">{{ category.count }} services</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Main Services Grid -->
+<section class="services-section py-20">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-gray-900 mb-4">
+        Excellence in Dental Care
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Discover our full range of dental services,
+        combining traditional expertise and cutting-edge technologies.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <div *ngFor="let service of services; let i = index"
+           class="service-card"
+           [style.animation-delay]="(i * 0.1) + 's'">
+
+        <div class="service-image-container">
+          <img [src]="service.image"
+               [alt]="service.title"
+               class="service-image" />
+          <div class="service-overlay">
+            <i class="service-icon bx" [ngClass]="service.icon"></i>
+          </div>
+        </div>
+
+        <div class="service-content">
+          <h3 class="service-title">{{ service.title }}</h3>
+          <p class="service-description">{{ service.description }}</p>
+
+          <ul class="service-features">
+            <li *ngFor="let feature of service.features" class="service-feature">
+              <i class="service-feature-icon bx bx-check"></i>
+              <span>{{ feature }}</span>
+            </li>
+          </ul>
+
+          <a routerLink="/service-details" class="service-link">
+            <span>Learn more</span>
+            <i class="service-link-icon bx bx-right-arrow-alt"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enhanced Pagination -->
+    <div class="pagination-section">
+      <div class="pagination">
+        <button class="pagination-button"
+                [disabled]="currentPage === 1"
+                (click)="changePage(currentPage - 1)">
+          <i class="bx bx-chevron-left"></i>
+        </button>
+
+        <button *ngFor="let page of getPageNumbers()"
+                class="pagination-button"
+                [class.active]="page === currentPage"
+                (click)="changePage(page)">
+          {{ page }}
+        </button>
+
+        <button class="pagination-button"
+                [disabled]="currentPage === totalPages"
+                (click)="changePage(currentPage + 1)">
+          <i class="bx bx-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-20 bg-gradient-to-br from-teal-50 to-white">
+  <div class="max-w-4xl mx-auto text-center px-6">
+    <h2 class="text-3xl font-bold text-gray-900 mb-6">
+      Ready to start your treatment?
+    </h2>
+    <p class="text-xl text-gray-600 mb-8">
+      Book an appointment today and discover the difference a healthy smile can make.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a routerLink="/calendar"
+         class="bg-teal-600 hover:bg-teal-700 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 shadow-lg">
+        Make an appointment
+      </a>
+      <a routerLink="/contact"
+         class="bg-white hover:bg-gray-50 text-teal-600 border-2 border-teal-600 font-semibold px-8 py-4 rounded-full transition-all duration-300 hover:scale-105">
+        Contact us
+      </a>
+    </div>
+  </div>
+</section>

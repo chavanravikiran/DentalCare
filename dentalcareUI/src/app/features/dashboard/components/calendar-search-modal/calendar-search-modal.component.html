@@ -1,0 +1,42 @@
+<div class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50">
+  <div class="bg-white rounded-xl shadow-xl w-full max-w-lg p-6 animate-fade-in space-y-6">
+
+    <!-- 🔘 Choice of mode -->
+    <div class="flex justify-center gap-6">
+      <label class="flex items-center gap-2 text-sm font-medium text-gray-700">
+        <input type="radio" [(ngModel)]="mode" value="name" name="mode" />
+        By patient name
+      </label>
+      <label class="flex items-center gap-2 text-sm font-medium text-gray-700">
+        <input type="radio" [(ngModel)]="mode" value="date" name="mode" />
+        By date
+      </label>
+    </div>
+
+    <!-- 🔍 Dynamic search -->
+    <form (ngSubmit)="submit()" class="space-y-4">
+      <!-- Name -->
+      <div *ngIf="mode === 'name'">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Patient's name or email</label>
+        <input type="text" [(ngModel)]="nameQuery" name="nameQuery"
+               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-500"
+               placeholder="Ex: Fatima El Amrani">
+      </div>
+
+      <!-- Date -->
+      <div *ngIf="mode === 'date'">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Appointment date</label>
+        <input type="date" [(ngModel)]="dateQuery" name="dateQuery"
+               class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-blue-500">
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex justify-end gap-4 pt-2">
+        <button type="button" (click)="close()" class="text-sm text-gray-600 hover:text-red-600">Cancel</button>
+        <button type="submit" (click)="submit()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm">
+          To research
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

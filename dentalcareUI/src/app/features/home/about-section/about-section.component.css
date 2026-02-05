@@ -1,0 +1,75 @@
+/* About Section */
+.section-wrapper {
+  position: relative;
+  background-color: white;
+  padding: 6rem 1.5rem; /* py-24 px-6 */
+  padding-left: 4rem;   /* md:px-16 */
+  padding-right: 4rem;
+  overflow-x: hidden;
+  z-index: 1;
+}
+
+/* Global animation when visible */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  transition: all 0.8s ease-out;
+}
+
+.fade-in-up.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Artistic stacking */
+.screen-stack {
+  position: relative;
+  width: 100%;
+  max-width: 450px; /* Limit the width so as not to exceed*/
+  margin: auto;
+  min-height: 400px; /* ✅ New minimum height added for Desktop */
+  overflow: hidden; /* ✅ Contain absolute images without unwanted scrolling */
+}
+
+.screen-stack img {
+  position: absolute;
+  width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+  max-height: 400px;
+}
+
+.screen-stack img:nth-child(1) {
+  z-index: 1;
+  transform: rotate(-6deg) translateY(-20px);
+}
+
+.screen-stack img:nth-child(2) {
+  z-index: 2;
+  transform: rotate(0deg);
+}
+
+.screen-stack img:nth-child(3) {
+  z-index: 3;
+  transform: rotate(6deg) translateY(20px);
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+  .screen-stack {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-height: auto; /* ✅ We remove min-height in mobile mode to avoid straining it. */
+  }
+
+  .screen-stack img {
+    position: static;
+    transform: none;
+    width: 100%;
+    max-height: none;
+    margin-bottom: 1rem;
+  }
+}

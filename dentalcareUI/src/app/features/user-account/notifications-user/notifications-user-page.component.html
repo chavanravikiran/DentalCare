@@ -1,0 +1,21 @@
+<div class="flex flex-col gap-6">
+
+  <!-- Skeleton Loader during loading -->
+  <div *ngIf="isLoading" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 animate-pulse">
+    <div *ngFor="let i of [1,2,3,4,5,6]" class="h-32 bg-gray-100 rounded-2xl"></div>
+  </div>
+
+  <!-- User notification list -->
+  <div *ngIf="!isLoading && notifications.length > 0" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+    <app-notification-card-user
+      *ngFor="let notification of notifications"
+      [notification]="notification"
+    ></app-notification-card-user>
+  </div>
+
+  <!-- Empty message if no notification -->
+  <div *ngIf="!isLoading && notifications.length === 0" class="text-center text-gray-500">
+    You have not received any reminders yet.
+  </div>
+
+</div>

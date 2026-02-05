@@ -1,0 +1,9 @@
+/* header.component.css */
+
+header {
+  @apply bg-white shadow-md w-full z-20;
+}
+
+button:hover {
+  @apply underline;
+}

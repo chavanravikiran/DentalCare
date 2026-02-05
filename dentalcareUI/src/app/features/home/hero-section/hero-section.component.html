@@ -1,0 +1,94 @@
+<!-- Enhanced Hero Section with modern design -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Background with gradient overlay -->
+  <div class="absolute inset-0 z-0">
+    <!-- Video for desktop -->
+    <video
+      autoplay
+      muted
+      loop
+      playsinline
+      class="hidden md:block absolute inset-0 w-full h-full object-cover"
+    >
+      <source src="assets/videos/hero-video.mp4" type="video/mp4" />
+    </video>
+
+    <!-- Image for mobile -->
+    <img
+      src="assets/images/hero-mobile.jpg"
+      alt="Cabinet dentaire moderne"
+      class="block md:hidden absolute inset-0 w-full h-full object-cover"
+    />
+
+    <!-- Gradient overlay -->
+    <div class="absolute inset-0 bg-gradient-to-br from-cyan-900/80 via-cyan-800/60 to-transparent"></div>
+  </div>
+
+  <!-- Hero Content -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="space-y-8">
+      <!-- Main headline -->
+      <h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight">
+        Your smile,
+        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-300">
+          our expertise
+        </span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="text-xl sm:text-2xl text-cyan-100 max-w-3xl mx-auto leading-relaxed">
+        Discover excellence in dental care in a modern and welcoming environment.
+        Your oral health deserves the best.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+        <button class="group relative overflow-hidden bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl">
+          <span class="relative z-10">Make an appointment</span>
+          <div class="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </button>
+
+        <button class="group bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-white/20 hover:scale-105">
+          <span class="flex items-center gap-2">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            See our services
+          </span>
+        </button>
+      </div>
+
+      <!-- Trust indicators -->
+      <div class="pt-12">
+        <p class="text-cyan-200 text-sm uppercase tracking-wider mb-4">They trust us</p>
+        <div class="flex justify-center items-center space-x-8 opacity-70">
+          <div class="text-white text-center">
+            <div class="text-2xl font-bold">500+</div>
+            <div class="text-xs">Satisfied patients</div>
+          </div>
+          <div class="text-white text-center">
+            <div class="text-2xl font-bold">15+</div>
+            <div class="text-xs">Years of experience</div>
+          </div>
+          <div class="text-white text-center">
+            <div class="text-2xl font-bold">100%</div>
+            <div class="text-xs">Modern equipment</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+    <div class="animate-bounce">
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Floating elements for visual interest -->
+  <div class="absolute top-20 right-20 w-32 h-32 bg-cyan-300/10 rounded-full blur-xl animate-pulse hidden lg:block"></div>
+  <div class="absolute bottom-40 left-20 w-24 h-24 bg-blue-300/10 rounded-full blur-xl animate-pulse hidden lg:block"></div>
+</section>

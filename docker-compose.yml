@@ -1,0 +1,31 @@
+services:
+  postgres:
+    container_name: postgres-sql-dental
+    image: postgres
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      PGDATA: /var/lib/postgresql/data
+      POSTGRES_DB: dental_app
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5433:5432"
+    networks:
+      - spring-demo
+    restart: unless-stopped
+  mail-dev:
+    container_name: mail-dev-dental
+    image: maildev/maildev
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+
+
+volumes:
+  postgres:
+    driver: local
+
+networks:
+  spring-demo:
+    driver: bridge

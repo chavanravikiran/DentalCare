@@ -1,0 +1,78 @@
+<!-- ✅ Toolbar -->
+<div class="flex justify-between items-center mb-6">
+  <h2 class="text-2xl font-bold text-blue-700 flex items-center gap-2">
+    <lucide-icon name="Calendar" class="w-6 h-6 text-blue-500" />
+    Gestion des rendez-vous
+  </h2>
+
+  <div class="flex gap-3">
+    <!-- ✅ Bouton pour ouvrir la modale de recherche -->
+    <button
+      class="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500 text-white rounded-lg shadow hover:bg-yellow-600 transition-all"
+      (click)="onOpenSearchModal()"
+    >
+      <lucide-icon name="search" class="w-5 h-5" />
+      Rechercher RDV
+    </button>
+
+    <!-- ✅ Modale de recherche -->
+    <app-calendar-search-modal
+      *ngIf="showSearchModal"
+      (closeModal)="onCloseSearchModal()"
+      (search)="onSearch($event)"
+    ></app-calendar-search-modal>
+
+
+    <button
+      class="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition-all"
+      (click)="onOpenModal()"
+    >
+      <lucide-icon name="plus" class="w-5 h-5" />
+      Ajouter
+    </button>
+    <button
+      class="inline-flex items-center gap-2 px-4 py-2 bg-gray-200 text-gray-800 rounded-lg shadow hover:bg-gray-300 transition-all"
+      (click)="onRefresh()"
+    >
+      <lucide-icon name="RefreshCw" class="w-5 h-5" />
+      Rafraîchir
+    </button>
+  </div>
+</div>
+
+<!-- ✅ Filtres -->
+<app-filters-bar (monthChanged)="onMonthChanged($event)"></app-filters-bar>
+
+<!-- ✅ Calendrier -->
+<app-full-calendar
+  #calendarRef
+  [selectedMonth]="selectedMonth"
+  [refreshTrigger]="refreshTrigger"
+  (rdvClicked)="onRdvClicked($event)"
+></app-full-calendar>
+
+<!-- ✅ Modale de création -->
+<app-calendar-modal
+  *ngIf="showModal"
+  [patientName]="patientName"
+  [startTime]="startTime"
+  [endTime]="endTime"
+  [motif]="motif"
+  [type]="type"
+  [praticien]="praticien"
+  (createAppointment)="onAppointmentCreated($event)"
+  (closeModal)="onCloseModal()"
+></app-calendar-modal>
+<app-calendar-modal-edit
+  *ngIf="showEditModal && rdvToEdit"
+  [rendezVousToEdit]="rdvToEdit"
+  (closeModal)="onCloseEditModal()"
+  (updateAppointment)="onAppointmentUpdated($event)"
+  (requestDelete)="onRequestDelete($event)"
+></app-calendar-modal-edit>
+<!-- ✅ Modale de confirmation suppression -->
+<!-- HACK pour forcer Angular à reconnaître le composant -->
+<ng-template>
+  <app-confirmation-dialog></app-confirmation-dialog>
+</ng-template>
+

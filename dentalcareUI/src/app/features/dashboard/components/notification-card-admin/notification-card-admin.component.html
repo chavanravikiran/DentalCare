@@ -1,0 +1,34 @@
+<div
+  class="flex flex-col p-4 bg-white rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300 cursor-pointer"
+  (click)="showFullMessage()"
+  [ngClass]="{ 'ring-2 ring-green-400': notification.justReceived }"
+>
+
+  <!-- Top line: status + email -->
+  <div class="flex items-center justify-between mb-3">
+    <div class="flex items-center gap-2">
+      <lucide-icon [name]="getStatusIcon()" class="w-6 h-6" [ngClass]="getStatusClasses()"></lucide-icon>
+      <span class="font-semibold text-gray-700">{{ notification.email }}</span>
+    </div>
+    <span class="text-xs text-gray-400">{{ formatDateTime(notification.attemptedAt) }}</span>
+  </div>
+
+  <!-- Notification type -->
+  <div class="mb-2">
+    <span class="px-2 py-1 text-xs rounded-full font-medium" [ngClass]="getTypeBadgeClasses()">
+      {{ formatType(notification.type) }}
+    </span>
+  </div>
+
+  <!-- Message (truncated, but fully visible on hover) -->
+  <div class="text-sm text-gray-600 line-clamp-2 hover:line-clamp-none transition-all" [title]="notification.message">
+    📝 {{ notification.message }}
+  </div>
+
+  <!-- Status badge -->
+  <div class="mt-4 self-end">
+    <span class="px-3 py-1 text-xs rounded-full font-semibold" [ngClass]="getStatusClasses()">
+      {{ notification.status === 'SUCCESS' ? 'Success' : 'Failure' }}
+    </span>
+  </div>
+</div>

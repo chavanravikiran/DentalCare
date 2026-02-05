@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.snackbar-success {
+  background-color: #16a34a;
+  color: white;
+}
+.snackbar-error {
+  background-color: #dc2626;
+  color: white;
+}
+
+.success-snackbar {
+     background-color: #4CAF50;
+     color: white;
+   }
+
+.error-snackbar {
+  background-color: #F44336;
+  color: white;
+}
+
+.warning-snackbar {
+  background-color: #FF9800;
+  color: white;
+}
+
+.info-snackbar {
+  background-color: #2196F3;
+  color: white;
+}
+
+/*Styles pour les tooltips des événements du calendrier */
+   .event-tooltip {
+     position: absolute;
+     background: rgba(0, 0, 0, 0.8);
+     color: white;
+     padding: 5px 10px;
+     border-radius: 4px;
+     font-size: 12px;
+     z-index: 1000;
+     pointer-events: none;
+     max-width: 200px;
+     word-wrap: break-word;
+   }

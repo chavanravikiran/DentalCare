@@ -1,0 +1,53 @@
+<!-- appointment-form.component.html -->
+<div class="bg-white border border-gray-300 rounded-lg p-6 shadow-md space-y-4">
+  <h3 class="text-lg font-semibold text-blue-700">
+    Make an appointment for the {{ selectedDate }}
+  </h3>
+
+  <!-- Time slot -->
+  <div>
+    <label for="horaire" class="block text-sm font-medium text-gray-700 mb-1">Available slot</label>
+    <select
+      id="horaire"
+      class="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      [(ngModel)]="selectedSlot"
+      name="selectedSlot"
+    >
+      <option disabled selected value="">-- Choose a niche --</option>
+      <option *ngFor="let slot of availableSlots" [value]="slot">{{ slot }}</option>
+    </select>
+  </div>
+
+  <!-- Type of consultation -->
+  <div>
+    <label for="type" class="block text-sm font-medium text-gray-700 mb-1">Type of consultation</label>
+    <select
+      id="type"
+      [(ngModel)]="selectedType"
+      name="selectedType"
+      class="w-full border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      required
+    >
+      <option disabled selected value="">-- Choose a type --</option>
+      <option *ngFor="let type of typeOptions" [value]="type">{{ type }}</option>
+    </select>
+  </div>
+
+  <!-- Button -->
+  <div class="flex justify-end gap-4">
+    <button
+      class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-5 py-2 rounded shadow"
+      (click)="onSubmit()"
+      [disabled]="!selectedSlot || !selectedType"
+    >
+      ✅ To validate
+    </button>
+
+    <button
+      class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium px-5 py-2 rounded shadow"
+      (click)="onCancel()"
+    >
+      ❌ Annuler
+    </button>
+  </div>
+</div>

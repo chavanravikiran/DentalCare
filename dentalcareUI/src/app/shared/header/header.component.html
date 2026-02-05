@@ -1,0 +1,64 @@
+<!-- Enhanced Top Header -->
+<div class="top-header text-white text-sm py-3">
+  <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+    <ul class="flex flex-wrap gap-6 mb-2 md:mb-0 items-center">
+      <li class="flex items-center">
+        <i class="bx bxs-map mr-2"></i>
+        <span>153 Marrakech Doha</span>
+      </li>
+      <li class="flex items-center">
+        <i class="bx bx-envelope mr-2"></i>
+        <a href="mailto:anasl9ray&#64;gmail.com" class="hover:text-cyan-200 transition-all duration-300">
+          xyz&#64;gmail.com
+        </a>
+      </li>
+    </ul>
+
+    <div class="social-links flex items-center gap-3">
+      <a href="https://www.facebook.com" class="hover:scale-110 transition-all duration-300" aria-label="Facebook">
+        <i class='bx bxl-facebook text-lg'></i>
+      </a>
+      <a href="https://www.twitter.com" class="hover:scale-110 transition-all duration-300" aria-label="Twitter">
+        <i class='bx bxl-twitter text-lg'></i>
+      </a>
+      <a href="https://www.linkedin.com" class="hover:scale-110 transition-all duration-300" aria-label="LinkedIn">
+        <i class='bx bxl-linkedin text-lg'></i>
+      </a>
+      <a href="https://www.instagram.com" class="hover:scale-110 transition-all duration-300" aria-label="Instagram">
+        <i class='bx bxl-instagram text-lg'></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Enhanced Middle Header -->
+<div class="middle-header-area py-6">
+  <div class="container mx-auto px-4 flex flex-col lg:flex-row justify-between items-center">
+    <h1 class="text-4xl lg:text-5xl font-bold mb-4 lg:mb-0">
+      <a routerLink="/" class="hover:opacity-80 transition-opacity duration-300">
+        <!-- {{webisteName}} -->
+        {{websiteDetails?.websiteName}}
+      </a>
+    </h1>
+
+    <div class="flex flex-col md:flex-row gap-6">
+      <div class="contact-info flex items-center gap-4">
+        <i class="bx bx-phone-call"></i>
+        <div>
+          <div class="contact-info-text">Call us today</div>
+          <a href="tel:+212600000000" class="contact-info-value">
+            +212 6 00 00 00 00
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-info flex items-center gap-4">
+        <i class="bx bx-time-five"></i>
+        <div>
+          <div class="contact-info-text">Opening Hours</div>
+          <div class="contact-info-value">09:00 - 18:00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

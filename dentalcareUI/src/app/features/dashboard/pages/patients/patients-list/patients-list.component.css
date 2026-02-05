@@ -1,0 +1,4 @@
+/* Optionnel : tu peux ajouter du style ici, sinon tout est géré avec Tailwind */
+table th, table td {
+  border-bottom: 1px solid #e5e7eb; /* gray-200 */
+}

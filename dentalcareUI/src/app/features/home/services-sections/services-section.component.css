@@ -1,0 +1,31 @@
+.service-card {
+  @apply bg-white p-8 rounded-2xl shadow-lg transition-transform transform hover:-translate-y-3 hover:shadow-2xl hover:bg-cyan-100/30;
+}
+
+.icon-wrapper {
+  @apply flex items-center justify-center w-20 h-20 mx-auto bg-cyan-100 rounded-full shadow-md;
+}
+
+/* Animation fade-in-up */
+.animate-fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.animate-fade-in-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-100 {
+  transition-delay: 0.1s;
+}
+
+.delay-200 {
+  transition-delay: 0.2s;
+}
+
+.delay-300 {
+  transition-delay: 0.3s;
+}

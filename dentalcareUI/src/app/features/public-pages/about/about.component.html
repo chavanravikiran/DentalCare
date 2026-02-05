@@ -1,0 +1,136 @@
+<!-- Enhanced Page Banner -->
+<section class="page-banner py-24 text-white text-center">
+  <div class="page-banner-content max-w-4xl mx-auto px-6">
+    <h1 class="page-title">Our History</h1>
+    <nav class="breadcrumb justify-center">
+      <a routerLink="/home">Welcome</a>
+      <span class="breadcrumb-separator">›</span>
+      <span>About</span>
+    </nav>
+  </div>
+</section>
+
+<!-- Enhanced Story Section -->
+<section class="content-section py-24">
+  <div class="content-wrapper max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div>
+        <h2 class="section-title">
+          A story built on<br />
+          trust and technology
+        </h2>
+        <p class="section-description">
+          At DentalCare, we offer a unique blend of advanced technology and warm Moroccan hospitality.
+          Every smile matters to us, and
+          every patient receives personalized attention in a refined environment.
+        </p>
+        <ul class="feature-list">
+          <li class="feature-item">
+            <span class="feature-icon">✓</span>
+            <span class="feature-text">State-of-the-art dental equipment</span>
+          </li>
+          <li class="feature-item">
+            <span class="feature-icon">✓</span>
+            <span class="feature-text">A team of passionate and certified dentists</span>
+          </li>
+          <li class="feature-item">
+            <span class="feature-icon">✓</span>
+            <span class="feature-text">Human, artistic and professional care</span>
+          </li>
+          <li class="feature-item">
+            <span class="feature-icon">✓</span>
+            <span class="feature-text">Modern and welcoming environment</span>
+          </li>
+        </ul>
+      </div>
+      <div class="image-container h-[500px]">
+        <img src="assets/images/clinic-1.jpg"
+             alt="Notre clinique moderne"
+             class="w-full h-full object-cover" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Enhanced Fun Facts Section -->
+<section class="facts-section py-24 text-white">
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold mb-4">Our Results in Figures</h2>
+      <p class="text-xl opacity-90">Our patients' trust can be measured</p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div *ngFor="let fact of facts" class="fact-card">
+        <div class="fact-number">{{ fact.value }}</div>
+        <div class="fact-label">{{ fact.label }}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Enhanced Testimonials Section -->
+<section class="content-section py-24">
+  <div class="content-wrapper max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <p class="text-teal-600 uppercase text-sm font-semibold tracking-wide mb-2">Testimonials</p>
+      <h2 class="section-title">What our patients say</h2>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "The atmosphere is so calm and modern. The staff were incredibly friendly and the care was excellent!"
+        </p>
+        <div class="testimonial-author">— Ravikiran Chavan.</div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "I felt truly taken care of from the moment I arrived. Everything was clean, clear, and professional."
+        </p>
+        <div class="testimonial-author">— Atul Chavan.</div>
+      </div>
+      <div class="testimonial-card">
+        <p class="testimonial-text">
+          "An attentive team, modern equipment. I've finally found a practice I trust."
+        </p>
+        <div class="testimonial-author">— Kishor Sanu.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Enhanced Features Section -->
+<section class="content-section py-24 bg-gradient-to-br from-teal-50 to-white">
+  <div class="content-wrapper max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <p class="text-teal-600 uppercase text-sm font-semibold tracking-wide mb-2">Our strengths</p>
+      <h2 class="section-title">
+        A clinic of excellence<br />
+        for a radiant smile
+      </h2>
+    </div>
+
+    <div class="features-grid">
+      <div *ngFor="let feature of features" class="feature-card">
+        <div class="feature-icon-wrapper">
+          <i class="bx text-2xl text-teal-600" [ngClass]="getIconClass(feature.icon)"></i>
+        </div>
+        <h3 class="feature-title">{{ feature.title }}</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Enhanced CTA Section -->
+<section class="cta-section py-20 mx-6 md:mx-16 mb-16">
+  <div class="max-w-4xl mx-auto text-center px-6">
+    <h2 class="section-title mb-6">Need an appointment?</h2>
+    <p class="section-description mb-8">
+      Contact our team today to schedule your visit and begin your journey to a perfect smile.
+    </p>
+    <a routerLink="/contact" class="cta-button">
+      Contact us
+    </a>
+  </div>
+</section>

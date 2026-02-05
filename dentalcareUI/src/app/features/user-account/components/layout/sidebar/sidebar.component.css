@@ -1,0 +1,34 @@
+/* ✅ sidebar.component.css */
+
+.sidebar {
+  @apply h-full flex flex-col bg-white shadow-lg border-r border-gray-200 transition-all duration-300 ease-in-out;
+}
+
+/* Opening/closing transition */
+.sidebar.collapsed {
+  @apply w-20;
+}
+
+/* Active link or on hover */
+.nav-link {
+  @apply flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-blue-50 hover:text-blue-700 rounded-lg transition;
+}
+
+.nav-link-active {
+  @apply bg-blue-100 text-blue-700 font-semibold;
+}
+
+/* Stylish icon */
+.icon {
+  @apply w-5 h-5;
+}
+
+/* Text hidden when sidebar is minimized */
+.collapsed .nav-label {
+  display: none;
+}
+
+/* Bottom button */
+.logout-button {
+  @apply flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 hover:text-red-800 rounded-lg transition;
+}

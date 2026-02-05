@@ -1,0 +1,203 @@
+<section class="calendar-page py-12">
+  <div class="calendar-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Enhanced Header -->
+    <div class="calendar-header">
+      <h1 class="calendar-title">
+        <i class="header-icon bx bx-calendar-heart"></i>
+        Availability Calendar
+      </h1>
+      <p class="calendar-subtitle">
+        Discover our available time slots and book your appointment in just a few clicks.
+      </p>
+    </div>
+
+    <!-- Authentication Notice -->
+    <div *ngIf="!isAuthenticated" class="auth-notice">
+      <p class="auth-notice-text">
+        <i class="auth-notice-icon bx bx-user-plus"></i>
+        Log in or create an account to book a time slot
+      </p>
+      <button
+        routerLink="/login"
+        class="auth-cta-button">
+        <i class="bx bx-log-in"></i>
+        <span>log in</span>
+        <i class="bx bx-chevron-right"></i>
+      </button>
+    </div>
+
+    <!-- Enhanced Filters -->
+    <div class="filters-section">
+      <form class="filters-grid" (ngSubmit)="applyFilters()" autocomplete="off">
+        <div class="filter-group">
+          <label class="filter-label">
+            <i class="bx bx-category text-teal-600"></i>
+           Type of appointment
+          </label>
+          <select
+            [(ngModel)]="appointmentType"
+            name="appointmentType"
+            (change)="applyFilters()"
+            class="filter-input">
+            <option>Show all</option>
+            <option>CONSULTATION</option>
+            <option>DESCALING</option>
+            <option>EMERGENCY</option>
+            <option>AESTHETIC</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label">
+            <i class="bx bx-calendar text-teal-600"></i>
+            Period
+          </label>
+          <input
+            type="month"
+            [(ngModel)]="selectedMonth"
+            (change)="onMonthInputChange($event)"
+            name="selectedMonth"
+            class="filter-input"
+          />
+        </div>
+
+        <div class="filter-group">
+          <label class="filter-label">
+            <i class="bx bx-user-voice text-teal-600"></i>
+            Practitioner
+          </label>
+          <select
+            [(ngModel)]="selectedPractitioner"
+            name="selectedPractitioner"
+            (change)="applyFilters()"
+            class="filter-input">
+            <option value="">All practitioners</option>
+            <option value="dr-anas">Dr. Anas</option>
+            <option value="dr-zahra">Dr. Zahra</option>
+            <option value="dr-ahmed">Dr. Ahmed</option>
+          </select>
+        </div>
+      </form>
+    </div>
+
+    <!-- Enhanced Legend -->
+    <div class="calendar-legend">
+      <div class="legend-item">
+        <span class="legend-dot available"></span>
+        <span>Available slots</span>
+      </div>
+      <div class="legend-item">
+        <span class="legend-dot reserved"></span>
+        <span>Reserved time slots</span>
+      </div>
+      <div class="legend-item">
+        <i class="bx bx-info-circle text-teal-600"></i>
+        <span>Click on a date to book</span>
+      </div>
+    </div>
+
+    <!-- Enhanced Calendar Container -->
+    <div class="calendar-container">
+      <full-calendar [options]="calendarOptions" #calendarRef></full-calendar>
+    </div>
+
+    <!-- Information Cards -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+      <div class="info-card">
+        <div class="info-icon">
+          <i class="bx bx-time text-teal-600"></i>
+        </div>
+        <h3 class="info-title">Hours of operation</h3>
+        <p class="info-text">
+          Monday - Friday: 09:00 - 18:00<br>
+          Saturday: 09:00 - 14:00<br>
+          Sunday: Closed
+        </p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">
+          <i class="bx bx-phone text-teal-600"></i>
+        </div>
+        <h3 class="info-title">Emergency contact</h3>
+        <p class="info-text">
+          For dental emergencies:<br>
+          <strong>+212 6 00 00 00 00</strong><br>
+          Available 24/7
+        </p>
+      </div>
+
+      <div class="info-card">
+        <div class="info-icon">
+          <i class="bx bx-map text-teal-600"></i>
+        </div>
+        <h3 class="info-title">Our address</h3>
+        <p class="info-text">
+          Vandev Nagar,<br>
+          Thergaon, Pune<br>
+          <a href="#" class="text-teal-600 hover:text-teal-700">See on map</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Enhanced FAB for Authenticated Users -->
+    <div *ngIf="isAuthenticated" class="fab-container">
+      <button class="fab-button" (click)="onStartReservation()">
+        <span class="fab-text">Reserve a slot</span>
+        <i class="fab-icon bx bx-calendar-plus"></i>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- Additional Styles for Info Cards -->
+<style>
+  .info-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(15, 118, 110, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(15, 118, 110, 0.08);
+  }
+
+  .info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(15, 118, 110, 0.15);
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  .info-icon {
+    width: 4rem;
+    height: 4rem;
+    margin: 0 auto 1.5rem;
+    background: rgba(15, 118, 110, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    transition: all 0.3s ease;
+  }
+
+  .info-card:hover .info-icon {
+    background: rgba(15, 118, 110, 0.15);
+    transform: scale(1.1);
+  }
+
+  .info-title {
+    color: #1f2937;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .info-text {
+    color: #6b7280;
+    line-height: 1.6;
+  }
+</style>

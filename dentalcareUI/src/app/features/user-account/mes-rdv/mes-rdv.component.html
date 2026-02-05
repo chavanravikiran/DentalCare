@@ -1,0 +1,41 @@
+<section class="px-6 py-8 max-w-5xl mx-auto text-gray-800">
+  <h2 class="text-2xl font-bold text-blue-700 mb-6 flex items-center gap-2">
+    <lucide-icon name="calendar" class="text-blue-600 w-6 h-6"></lucide-icon>
+   My Appointments
+  </h2>
+
+  <div *ngIf="rdvs.length > 0; else emptyState" class="overflow-x-auto rounded-lg shadow">
+    <table class="min-w-full table-auto text-sm text-left bg-white border border-gray-200">
+      <thead class="bg-blue-100 text-blue-700 font-semibold">
+      <tr>
+        <th class="px-4 py-2">Date</th>
+        <th class="px-4 py-2">Hour</th>
+        <th class="px-4 py-2">Type</th>
+        <th class="px-4 py-2">Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let rdv of rdvs" class="hover:bg-blue-50 transition">
+        <td class="px-4 py-2">{{ rdv.date }}</td>
+        <td class="px-4 py-2">{{ rdv.heureDebut }} - {{ rdv.heureFin }}</td>
+        <td class="px-4 py-2">{{ rdv.type }}</td>
+        <td class="px-4 py-2">
+            <span [ngClass]="{
+              'text-green-600': rdv.status === 'CONFIRME',
+              'text-yellow-600': rdv.status === 'EN_ATTENTE',
+              'text-red-600': rdv.status === 'ANNULE',
+            }">
+            <!-- 'text-yellow-600': rdv.status === 'CANCELED',
+              'text-red-600': rdv.status === 'ON HOLD' -->
+              {{ rdv.status }}
+            </span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #emptyState>
+    <p class="text-gray-600 mt-6">No appointments found at this time.</p>
+  </ng-template>
+</section>

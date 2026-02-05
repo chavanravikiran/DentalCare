@@ -1,0 +1,43 @@
+spring:
+  datasource:
+#    url: jdbc:postgresql://dentalcare-db-anasrami1845-3ed8.b.aivencloud.com:22819/defaultdb?sslmode=require
+#    username: avnadmin
+#    password: AVNS_GQisG85VHveH1f2bb6j
+    url: jdbc:postgresql://localhost:5432/dentalcare_db
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  mail:
+      host: smtp.gmail.com
+      port: 587  # Port pour TLS
+      username: ravikiranchavan9450@gmail.com
+      password: "xhzl nvei mmda lkyi"
+      properties:
+        mail:
+          smtp:
+            auth: true
+            starttls:
+              enable: true  # Activation de TLS
+            ssl:
+              trust: "smtp.gmail.com"
+
+application:
+  security:
+    jwt:
+      secret-key: 7k2wF71Dj3oOW01VnTb06HH8cI88Ls3JEDd9A9ivKYc=
+      expiration: 86400000 # 1 jour
+  mailing:
+    frontend:
+      activation-url: http://localhost:4200/activate-account
+    from: ravikiranchavan9450@gmail.com
+server:
+  port: 8088

@@ -1,0 +1,42 @@
+<aside
+  class="bg-white h-full z-40 shadow-md border-r
+         w-64 md:relative md:translate-x-0 md:block
+         fixed top-0 left-0 transform transition-transform duration-300"
+  [ngClass]="{
+    'translate-x-0': isOpen,
+    '-translate-x-full': !isOpen
+  }"
+>
+
+  <!-- 🔷 Header -->
+  <div class="flex items-center justify-between px-6 py-4 border-b border-gray-200">
+    <h2 class="text-lg font-semibold text-emerald-600">DentalCare</h2>
+    <button (click)="onToggleSidebar()" class="md:hidden">
+      <lucide-icon name="x" class="w-5 h-5 text-gray-600" />
+    </button>
+  </div>
+
+  <!-- 📚 Navigation -->
+  <nav class="mt-4 px-4">
+    <ul class="space-y-1">
+      <li *ngFor="let item of navItems">
+        <a [routerLink]="item.route"
+           routerLinkActive="bg-emerald-100 text-emerald-700"
+           class="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-emerald-50 transition-all text-sm font-medium text-gray-700"
+           (click)="onToggleSidebar()">
+          <lucide-icon [name]="item.icon" class="w-5 h-5 text-gray-500" />
+          <span>{{ item.label }}</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- 🔻 Disconnect -->
+  <div class="absolute bottom-0 w-full px-4 py-4 border-t border-gray-200">
+    <button (click)="onLogout()"
+            class="flex items-center gap-3 text-red-600 hover:text-red-700 text-sm font-medium transition-all">
+      <lucide-icon name="logOut" class="w-5 h-5" />
+      <span>Disconnect</span>
+    </button>
+  </div>
+</aside>

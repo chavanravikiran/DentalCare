@@ -1,0 +1,59 @@
+<section class="p-6 space-y-10">
+  <!-- Titre -->
+  <h2 class="text-2xl font-bold text-gray-800 flex items-center gap-2">
+    <lucide-icon name="barChart2" class="w-6 h-6 text-blue-600" />
+    Statistiques du cabinet
+  </h2>
+
+  <!-- Indicateurs principaux -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+    <div class="bg-white p-6 rounded-xl shadow-md flex flex-col gap-1">
+      <span class="text-sm text-gray-500">Patients actifs</span>
+      <span class="text-3xl font-extrabold text-blue-700">{{ totalPatients }}</span>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-md flex flex-col gap-1">
+      <span class="text-sm text-gray-500">RDV ce mois</span>
+      <span class="text-3xl font-extrabold text-yellow-600">{{ rdvThisMonth }}</span>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-md flex flex-col gap-1">
+      <span class="text-sm text-gray-500">Taux de confirmation</span>
+      <span class="text-3xl font-extrabold text-green-600">{{ confirmationRate }}%</span>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-md flex flex-col gap-1">
+      <span class="text-sm text-gray-500">Revenus estimés</span>
+      <span class="text-3xl font-extrabold text-emerald-600">{{ revenue }} MAD</span>
+    </div>
+  </div>
+
+  <!-- Graphiques -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="bg-white p-6 rounded-xl shadow-md">
+      <h3 class="text-lg font-semibold text-gray-700 mb-4">Évolution des RDV (6 derniers mois)</h3>
+      <canvas #lineChart class="w-full h-48"></canvas>
+    </div>
+
+    <div class="bg-white p-6 rounded-xl shadow-md">
+      <h3 class="text-lg font-semibold text-gray-700 mb-4">Répartition par type de RDV</h3>
+      <canvas #pieChart class="w-full h-48"></canvas>
+    </div>
+  </div>
+
+  <!-- Activité des praticiens -->
+  <div class="bg-white p-6 rounded-xl shadow-md mt-6">
+    <h3 class="text-lg font-semibold text-gray-700 mb-4">Activité des praticiens</h3>
+    <ul class="space-y-3">
+      <li class="flex items-center justify-between text-sm text-gray-700">
+        <span>Dr. Zahra</span>
+        <span class="font-bold text-blue-600">28 RDV</span>
+      </li>
+      <li class="flex items-center justify-between text-sm text-gray-700">
+        <span>Dr. Ali</span>
+        <span class="font-bold text-blue-600">14 RDV</span>
+      </li>
+      <li class="flex items-center justify-between text-sm text-gray-700">
+        <span>Dr. Sanae</span>
+        <span class="font-bold text-blue-600">6 RDV</span>
+      </li>
+    </ul>
+  </div>
+</section>

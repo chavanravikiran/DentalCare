@@ -1,0 +1,108 @@
+<div class="flex flex-col gap-8">
+
+  <!-- Barre de recherche, filtres et tri -->
+  <div class="flex flex-col md:flex-row md:items-end flex-wrap gap-4 bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+
+    <!-- Recherche -->
+    <div class="flex flex-col w-full md:w-1/3">
+      <label class="text-sm text-gray-600 mb-1">🔍 Rechercher</label>
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="applyFilters()"
+        placeholder="Par email ou type..."
+        class="p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+
+    <!-- Statut -->
+    <div class="flex flex-col w-full md:w-1/4">
+      <label class="text-sm text-gray-600 mb-1">🎯 Statut</label>
+      <select
+        [(ngModel)]="selectedStatus"
+        (change)="applyFilters()"
+        class="p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        <option value="">Tous statuts</option>
+        <option value="SUCCESS">Succès</option>
+        <option value="FAILURE">Échec</option>
+      </select>
+    </div>
+
+    <!-- Type -->
+    <div class="flex flex-col w-full md:w-1/4">
+      <label class="text-sm text-gray-600 mb-1">📦 Type</label>
+      <select
+        [(ngModel)]="selectedType"
+        (change)="applyFilters()"
+        class="p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        <option value="">Tous types</option>
+        <option value="NEW_APPOINTMENT">Nouveau rendez-vous</option>
+        <option value="REMINDER">Rappel</option>
+      </select>
+    </div>
+
+    <!-- Tri -->
+    <div class="flex flex-col w-full md:w-1/4">
+      <label class="text-sm text-gray-600 mb-1">⏱️ Tri</label>
+      <select
+        [(ngModel)]="sortOrder"
+        (change)="applyFilters()"
+        class="p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      >
+        <option value="desc">Plus récents d’abord</option>
+        <option value="asc">Plus anciens d’abord</option>
+      </select>
+    </div>
+
+    <!-- Réinitialiser -->
+    <button
+      (click)="resetFilters()"
+      class="h-10 px-4 text-sm bg-gray-100 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-200 transition self-start md:mt-6"
+    >
+      Réinitialiser
+    </button>
+  </div>
+
+  <!-- Nombre de résultats -->
+  <p class="text-sm text-gray-500 italic px-2">
+    📬 {{ filteredNotifications.length }} notification(s) trouvée(s)
+  </p>
+
+  <!-- Liste des notifications -->
+  <div *ngIf="!isLoading && paginatedNotifications.length > 0" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+    <app-notification-card-admin
+      *ngFor="let notification of paginatedNotifications"
+      [notification]="notification"
+      [ngClass]="{ 'highlighted': notification.justReceived }"
+    ></app-notification-card-admin>
+  </div>
+
+  <!-- Message vide -->
+  <div *ngIf="!isLoading && paginatedNotifications.length === 0" class="text-center text-gray-500 py-10">
+    💤 Aucune notification trouvée.
+  </div>
+
+  <!-- Pagination -->
+  <div *ngIf="!isLoading && totalPages > 1" class="flex justify-center items-center gap-4 mt-6">
+    <button
+      (click)="changePage(currentPage - 1)"
+      [disabled]="currentPage === 1"
+      class="px-4 py-1 rounded-lg bg-gray-200 hover:bg-gray-300 transition disabled:opacity-50"
+    >
+      ◀ Précédent
+    </button>
+
+    <span class="text-gray-600 font-medium">Page {{ currentPage }} / {{ totalPages }}</span>
+
+    <button
+      (click)="changePage(currentPage + 1)"
+      [disabled]="currentPage === totalPages"
+      class="px-4 py-1 rounded-lg bg-gray-200 hover:bg-gray-300 transition disabled:opacity-50"
+    >
+      Suivant ▶
+    </button>
+  </div>
+
+</div>

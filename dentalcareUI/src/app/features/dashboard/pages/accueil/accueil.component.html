@@ -1,0 +1,105 @@
+<section class="p-6 space-y-10">
+
+  <!-- 🔢 Statistiques -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+    <app-card-stats
+      title="Total Patients"
+      [value]="stats.totalPatients || 0"
+      icon="users"
+      color="bg-blue-100 text-blue-700"
+    />
+    <app-card-stats
+      title="RDV aujourd'hui"
+      [value]="stats.appointmentsToday || 0"
+      icon="calendar"
+      color="bg-yellow-100 text-yellow-700"
+    />
+    <app-card-stats
+      title="Revenus estimés"
+      [value]="(stats.totalRevenue || 0) + ' MAD'"
+      icon="credit-card"
+      color="bg-green-100 text-green-700"
+      variation="+12.4%"
+      variationType="up"
+    />
+  </div>
+
+  <!-- 📅 RDV & 🔔 Notifications -->
+  <div class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+
+    <!-- 📅 RDV du jour -->
+    <div class="col-span-1 xl:col-span-2 bg-white rounded-xl shadow-md p-6">
+      <h2 class="text-lg font-semibold text-gray-700 mb-4 flex items-center gap-2">
+        <lucide-icon name="calendar-days" class="w-5 h-5 text-blue-500" /> Today's appointment
+      </h2>
+      <ul *ngIf="appointmentsToday.length > 0" class="space-y-4">
+        <li *ngFor="let rdv of appointmentsToday" class="p-4 border rounded-lg hover:bg-gray-50 transition">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="text-sm font-semibold text-gray-800">{{ rdv.heureDebut }} - {{ rdv.heureFin }}</div>
+              <div class="text-sm text-gray-500">{{ rdv.motif }} ({{ rdv.type }})</div>
+            </div>
+            <span class="inline-block text-xs font-medium px-2 py-1 rounded-full"
+                  [ngClass]="{
+                'bg-green-100 text-green-700': rdv.status === 'CONFIRME',
+                'bg-yellow-100 text-yellow-700': rdv.status === 'EN_ATTENTE',
+                'bg-red-100 text-red-700': rdv.status === 'ANNULE'
+              }">
+              {{ rdv.status }}
+            </span>
+          </div>
+        </li>
+      </ul>
+      <div *ngIf="appointmentsToday.length === 0" class="text-center text-gray-400 italic py-6">
+        No appointments scheduled for today.
+      </div>
+    </div>
+
+    <!-- 🔔 Notifications -->
+    <div class="col-span-1 bg-white rounded-xl shadow-md p-6">
+      <h2 class="text-lg font-semibold text-gray-700 mb-4 flex items-center gap-2">
+        <lucide-icon name="bell" class="w-5 h-5 text-yellow-500" /> Recent alerts
+      </h2>
+      <div *ngIf="notifications.length === 0" class="text-gray-400 text-sm italic text-center py-6">
+        No recent notifications.
+      </div>
+      <ul class="divide-y divide-gray-200 max-h-[300px] overflow-auto">
+        <li *ngFor="let notif of notifications" class="py-3">
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex-1">
+              <p class="text-sm text-gray-800 font-medium">{{ notif.email }}</p>
+              <p class="text-xs text-gray-500 mt-1 line-clamp-2">{{ notif.message }}</p>
+              <p class="text-xs text-gray-400 mt-1">{{ formatDate(notif.attemptedAt) }}</p>
+            </div>
+            <lucide-icon
+              [name]="notif.status === 'SUCCESS' ? 'check-circle' : 'alert-circle'"
+              class="w-5 h-5 mt-1"
+              [ngClass]="notif.status === 'SUCCESS' ? 'text-green-500' : 'text-red-500'"
+            />
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- ⚡ Quick Actions -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <button
+      routerLink="/dashboard/patients/create"
+      class="flex items-center justify-center gap-2 bg-blue-100 text-blue-700 font-medium py-3 rounded-xl hover:bg-blue-200 transition">
+      <lucide-icon name="user-plus" class="w-5 h-5" /> New patient
+    </button>
+    <button
+      routerLink="/dashboard/rendezvous"
+      class="flex items-center justify-center gap-2 bg-yellow-100 text-yellow-700 font-medium py-3 rounded-xl hover:bg-yellow-200 transition">
+      <lucide-icon name="calendar-days" class="w-5 h-5" /> Add an appointment
+    </button>
+    <button
+      routerLink="/dashboard/statistiques"
+      class="flex items-center justify-center gap-2 bg-green-100 text-green-700 font-medium py-3 rounded-xl hover:bg-green-200 transition">
+      <lucide-icon name="bar-chart-2" class="w-5 h-5" /> View statistics
+    </button>
+  </div>
+
+</section>

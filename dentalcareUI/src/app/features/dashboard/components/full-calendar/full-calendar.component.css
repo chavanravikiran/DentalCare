@@ -1,0 +1,96 @@
+/* ✅ full-calendar.component.css */
+
+/* 🎬 Smooth appearance of the calendar container */
+@keyframes fadeInSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.calendar-appear {
+  animation: fadeInSlideUp 0.5s ease-out;
+}
+
+/* 🌟 Highlighting on hover of a time slot for the admin */
+.fc-event:hover {
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.4);
+  transform: scale(1.02);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+/* 🎯 Animation for modal (fade + zoom) */
+@keyframes zoomFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-zoom {
+  animation: zoomFadeIn 0.3s ease-out;
+}
+
+/* 🔵 Status badge (confirmed, pending, cancelled) */
+.status-badge {
+  padding: 0.2rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  display: inline-block;
+}
+.status-en-attente {
+  background-color: #facc15; /* YELLOW */
+  color: #92400e;
+}
+.status-confirme {
+  background-color: #4ade80; /* Green */
+  color: #166534;
+}
+.status-annule {
+  background-color: #f87171; /* red */
+  color: #7f1d1d;
+}
+
+/* 📆 Subtle shadow effect around the calendar */
+.fc .fc-scrollgrid {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* 🌀 Animation of events appearing in the calendar */
+.fc-event {
+  animation: fadeInSlideUp 0.3s ease-out;
+}
+
+/* 🧩 Professional button design in the modal */
+.btn-rounded {
+  border-radius: 0.75rem;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+.btn-primary {
+  background-color: #2563eb;
+  color: white;
+}
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+/* 💡 Lucid icons in the titles */
+lucide-icon {
+  vertical-align: middle;
+  margin-top: -2px;
+}

@@ -1,0 +1,280 @@
+<!-- Banner Section -->
+<section class="bg-cover bg-center py-20 text-white text-left px-6 md:px-16 relative overflow-hidden" style="background-image: url('assets/images/page-title1.jpg');">
+  <!-- Overlay for better text readability -->
+  <div class="absolute inset-0 bg-black/40"></div>
+
+  <div class="relative z-10">
+    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Contactez-nous</h2>
+    <ul class="flex text-sm gap-2 text-gray-200">
+      <li><a routerLink="/home" class="hover:underline transition">Accueil</a></li>
+      <li>›</li>
+      <li class="text-cyan-300">Contact</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Contact Info Cards -->
+<section class="py-16 px-6 md:px-16 bg-gradient-to-b from-cyan-50 to-white">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <p class="uppercase text-sm font-medium text-cyan-600 tracking-wide mb-2">Parlons ensemble</p>
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Plusieurs façons de nous joindre</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+      <!-- Phone -->
+      <div class="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-cyan-100">
+        <div class="w-16 h-16 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Téléphone</h3>
+        <p class="text-gray-600 mb-4">Appelez-nous pour un rendez-vous</p>
+        <a href="tel:+212600000000" class="text-cyan-600 font-semibold hover:text-cyan-800 transition">
+          +212 6 00 00 00 00
+        </a>
+      </div>
+
+      <!-- Email -->
+      <div class="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-cyan-100">
+        <div class="w-16 h-16 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Email</h3>
+        <p class="text-gray-600 mb-4">Écrivez-nous à tout moment</p>
+        <a href="mailto:anas&#64;dentalcare.ma" (click)="sendEmail()" class="text-cyan-600 font-semibold hover:text-cyan-800 transition">
+          anas&#64;dentalcare.ma
+        </a>
+      </div>
+
+      <!-- Address -->
+      <div class="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-cyan-100">
+        <div class="w-16 h-16 bg-cyan-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Adresse</h3>
+        <p class="text-gray-600 mb-4">Venez nous rendre visite</p>
+        <p class="text-cyan-600 font-semibold">
+          153 Marrakech Doha<br>
+          Marrakech, Maroc
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Form Section -->
+<section class="py-20 px-6 md:px-16 bg-white relative overflow-hidden">
+  <!-- Artistic background elements -->
+  <div class="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full bg-cyan-100 opacity-30 blur-3xl"></div>
+  <div class="absolute -bottom-32 -right-32 w-[400px] h-[400px] rounded-full bg-cyan-200 opacity-20 blur-2xl"></div>
+
+  <div class="max-w-6xl mx-auto relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Left side - Content -->
+      <div class="animate-fade-in-up">
+        <p class="uppercase text-sm font-medium text-cyan-600 tracking-wide mb-2">📬 Contactez-nous</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+          Envoyez-nous un message
+        </h2>
+        <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+          Vous avez une question sur nos services ? Besoin d'un rendez-vous urgent ?
+          Notre équipe est là pour vous aider. Remplissez le formulaire et nous vous répondrons dans les plus brefs délais.
+        </p>
+
+        <!-- Additional info -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-cyan-100 rounded-full flex items-center justify-center">
+              <svg class="w-4 h-4 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <span class="text-gray-700">Réponse sous 24h maximum</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-cyan-100 rounded-full flex items-center justify-center">
+              <svg class="w-4 h-4 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              </svg>
+            </div>
+            <span class="text-gray-700">Vos données sont sécurisées</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right side - Form -->
+      <div class="animate-fade-in-up bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-cyan-100">
+
+        <!-- Success Message -->
+        <div *ngIf="showSuccessMessage" class="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl">
+          <div class="flex items-center gap-3">
+            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <p class="text-green-800 font-medium">{{ successMessage }}</p>
+          </div>
+        </div>
+
+        <!-- Error Message -->
+        <div *ngIf="showErrorMessage" class="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
+          <div class="flex items-center gap-3">
+            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <p class="text-red-800 font-medium">{{ errorMessage }}</p>
+          </div>
+        </div>
+
+        <form (ngSubmit)="sendMessage()" class="space-y-6">
+          <!-- Name and Email row -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">Nom complet *</label>
+              <input
+                [(ngModel)]="formData.name"
+                name="name"
+                id="name"
+                type="text"
+                required
+                placeholder="Votre nom"
+                (focus)="onFieldFocus('name')"
+                class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition"
+              />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email *</label>
+              <input
+                [(ngModel)]="formData.email"
+                name="email"
+                id="email"
+                type="email"
+                required
+                placeholder="votre@email.com"
+                (focus)="onFieldFocus('email')"
+                class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition"
+              />
+            </div>
+          </div>
+
+          <!-- Phone and Subject row -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="phone" class="block text-sm font-semibold text-gray-700 mb-2">Téléphone</label>
+              <input
+                [(ngModel)]="formData.phone"
+                name="phone"
+                id="phone"
+                type="tel"
+                placeholder="+212 6 00 00 00 00"
+                (input)="formatPhoneNumber($event)"
+                (focus)="onFieldFocus('phone')"
+                class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition"
+              />
+            </div>
+            <div>
+              <label for="subject" class="block text-sm font-semibold text-gray-700 mb-2">Sujet *</label>
+              <select
+                [(ngModel)]="formData.subject"
+                name="subject"
+                id="subject"
+                required
+                (focus)="onFieldFocus('subject')"
+                class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition"
+              >
+                <option value="">Choisissez un sujet</option>
+                <option value="rendez-vous">Prise de rendez-vous</option>
+                <option value="urgence">Urgence dentaire</option>
+                <option value="information">Demande d'information</option>
+                <option value="devis">Demande de devis</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div>
+            <label for="message" class="block text-sm font-semibold text-gray-700 mb-2">Message *</label>
+            <textarea
+              [(ngModel)]="formData.message"
+              name="message"
+              id="message"
+              rows="5"
+              required
+              placeholder="Décrivez votre demande en détail..."
+              (focus)="onFieldFocus('message')"
+              class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition resize-none"
+            ></textarea>
+          </div>
+
+          <!-- Submit button -->
+          <button
+            type="submit"
+            [disabled]="isSubmitting"
+            class="w-full bg-gradient-to-r from-cyan-600 to-cyan-700 text-white font-semibold py-4 px-8 rounded-xl hover:from-cyan-700 hover:to-cyan-800 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+          >
+            <span class="flex items-center justify-center gap-2">
+              <!-- Loading spinner -->
+              <svg *ngIf="isSubmitting" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              <!-- Send icon -->
+              <svg *ngIf="!isSubmitting" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+              </svg>
+              {{ isSubmitting ? 'Envoi en cours...' : 'Envoyer le message' }}
+            </span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Opening Hours Section -->
+<section class="py-16 px-6 md:px-16 bg-gradient-to-r from-cyan-600 to-cyan-700 text-white">
+  <div class="max-w-6xl mx-auto text-center">
+    <h3 class="text-2xl md:text-3xl font-bold mb-8">Horaires d'ouverture</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+        <h4 class="font-semibold text-lg mb-2">Lundi - Vendredi</h4>
+        <p class="text-cyan-100">09:00 - 18:00</p>
+      </div>
+      <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+        <h4 class="font-semibold text-lg mb-2">Samedi</h4>
+        <p class="text-cyan-100">09:00 - 15:00</p>
+      </div>
+      <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+        <h4 class="font-semibold text-lg mb-2">Dimanche</h4>
+        <p class="text-cyan-100">Fermé</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Emergency Contact -->
+<section class="py-12 px-6 md:px-16 bg-red-50 border-l-4 border-red-500">
+  <div class="max-w-4xl mx-auto text-center">
+    <div class="flex items-center justify-center gap-3 mb-4">
+      <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.966-.833-2.737 0L3.732 16c-.77.833.192 2.5 1.732 2.5z"></path>
+      </svg>
+      <h3 class="text-xl font-bold text-red-800">Urgence Dentaire ?</h3>
+    </div>
+    <p class="text-red-700 mb-4">Pour toute urgence en dehors des heures d'ouverture</p>
+    <a href="tel:+212600000000" (click)="callEmergency()" class="inline-flex items-center gap-2 bg-red-600 text-white font-semibold py-3 px-6 rounded-xl hover:bg-red-700 transition">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+      </svg>
+      Appeler maintenant
+    </a>
+  </div>
+</section>

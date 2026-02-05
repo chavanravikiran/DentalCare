@@ -1,0 +1,72 @@
+<section [@fadeInUp] class="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f0fdfa] to-white px-4 py-12">
+  <div class="relative w-full max-w-md rounded-2xl shadow-2xl border border-[#d0f5e2] bg-white/70 backdrop-blur-xl p-8 overflow-hidden">
+
+    <!-- Artistic decoration in the background -->
+    <div class="absolute -top-10 -left-10 w-40 h-40 bg-cyan-100 opacity-20 rounded-full blur-2xl z-0"></div>
+    <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-cyan-200 opacity-20 rounded-full blur-2xl z-0"></div>
+
+    <!-- Main content -->
+    <div class="relative z-10">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-cyan-900 text-center mb-2 animate-fade-in-up">Welcome 🦷</h2>
+      <p class="text-center text-cyan-800 text-sm mb-6 animate-fade-in-up delay-300">Log in to your personal account</p>
+
+      <!-- Form -->
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate class="space-y-6 animate-fade-in-up delay-500">
+
+        <!-- Email -->
+        <div>
+          <label for="email" class="block mb-1 text-sm font-medium text-gray-700">Email</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="votre@email.com"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            [class.border-red-500]="emailControl?.touched && emailControl?.invalid"
+          />
+          <div *ngIf="emailControl?.touched && emailControl?.invalid" class="text-sm text-red-500 mt-1">
+            <span *ngIf="emailControl?.errors?.['required']">Email is required.</span>
+            <span *ngIf="emailControl?.errors?.['email']">Format invalide.</span>
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div>
+          <label for="password" class="block mb-1 text-sm font-medium text-gray-700">Password</label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            placeholder="••••••••"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400"
+            [class.border-red-500]="passwordControl?.touched && passwordControl?.invalid"
+          />
+          <div *ngIf="passwordControl?.touched && passwordControl?.invalid" class="text-sm text-red-500 mt-1">
+            <span *ngIf="passwordControl?.errors?.['required']">A password is required.</span>
+            <span *ngIf="passwordControl?.errors?.['minlength']">Minimum 6 characters.</span>
+          </div>
+        </div>
+
+        <!-- Server error message -->
+        <div *ngIf="serverError" class="text-center text-sm text-red-600 bg-red-100 px-4 py-2 rounded-lg">
+          {{ serverError }}
+        </div>
+
+        <!-- Login button -->
+        <button
+          type="submit"
+          [disabled]="loginForm.invalid"
+          class="w-full py-3 text-white font-semibold bg-cyan-600 hover:bg-cyan-700 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Log in
+        </button>
+      </form>
+
+      <!-- Link to account creation -->
+      <p class="text-center text-sm text-gray-700 mt-6">
+        Don't have an account yet?
+        <a routerLink="/register" class="text-cyan-700 font-medium hover:underline">Create an account</a>
+      </p>
+    </div>
+  </div>
+</section>

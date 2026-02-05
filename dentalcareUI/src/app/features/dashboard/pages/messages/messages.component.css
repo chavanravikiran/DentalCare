@@ -1,0 +1,7 @@
+:host {
+  display: block;
+}
+
+li.bg-gray-100 {
+  border-left: 4px solid #10b981; /* Emerald indicator for unread */
+}

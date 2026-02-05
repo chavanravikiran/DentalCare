@@ -1,0 +1,7 @@
+:host {
+  display: block;
+  position: relative;
+  z-index: 40;
+}
+
+/* No additional styling is needed as everything is handled with Tailwind. */
