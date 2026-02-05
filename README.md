@@ -9,8 +9,6 @@ Modern dental clinic management system with real-time appointment scheduling, pa
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![Microsoft Azure](https://img.shields.io/badge/Microsoft_Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)
 
-🌐 **Live Demo:** [https://dentalcarema.online](https://dentalcarema.online)
-
 ## 📋 Overview
 
 Dental Care Manager is a comprehensive web application designed to streamline dental clinic operations. Developed as part of the Software Development Project, this system provides a modern solution for appointment management, patient tracking, and real-time notifications.
@@ -310,8 +308,8 @@ This project was developed as part of the academic curriculum at ENSA Marrakech 
 ## 📬 Contact
 
 **Mouad RAZI**
-- GitHub: [@RAZIMOUAD](https://github.com/RAZIMOUAD)
-- LinkedIn: [mouad-razi](https://linkedin.com/in/mouad-razi-946679239)
+- GitHub: [@RAVIKIRAN](https://github.com/chavanravikiran)
+- LinkedIn: [Ravikiran_Chavan](https://www.linkedin.com/in/ravikiran-chavan-2846b1188/)
 
 ---
 
