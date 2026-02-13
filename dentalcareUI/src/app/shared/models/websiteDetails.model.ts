@@ -1,9 +1,13 @@
+import { WebsiteSocialLink } from "./WebsiteSocialLink.model";
+
 export interface WebsiteDetails {
-  key: number;
-  websiteName: string;
-  websiteNameMr: string;
-  websiteNameHi: string;
-  oldWebsiteLink: string;
-  websiteLogo: string;
-  status: string;
+    key: number;
+    websiteName: string;
+    websiteLogo: string;
+    address: string;
+    shortAddress: string;
+    email: string;
+    phone: string;
+    openingHours: string;
+    socialLinks: WebsiteSocialLink[];
 }
