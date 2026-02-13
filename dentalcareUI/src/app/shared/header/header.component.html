@@ -4,17 +4,21 @@
     <ul class="flex flex-wrap gap-6 mb-2 md:mb-0 items-center">
       <li class="flex items-center">
         <i class="bx bxs-map mr-2"></i>
-        <span>153 Marrakech Doha</span>
+        <!-- <span>153 Marrakech Doha</span> -->
+         <span>{{ websiteDetails?.shortAddress }}</span>
       </li>
       <li class="flex items-center">
         <i class="bx bx-envelope mr-2"></i>
-        <a href="mailto:anasl9ray&#64;gmail.com" class="hover:text-cyan-200 transition-all duration-300">
+        <!-- <a href="mailto:anasl9ray&#64;gmail.com" class="hover:text-cyan-200 transition-all duration-300">
           xyz&#64;gmail.com
+        </a> -->
+        <a class="hover:text-cyan-200 transition-all duration-300" [href]="'mailto:' + websiteDetails?.email">
+          {{ websiteDetails?.email }}
         </a>
       </li>
     </ul>
 
-    <div class="social-links flex items-center gap-3">
+    <!-- <div class="social-links flex items-center gap-3">
       <a href="https://www.facebook.com" class="hover:scale-110 transition-all duration-300" aria-label="Facebook">
         <i class='bx bxl-facebook text-lg'></i>
       </a>
@@ -26,6 +30,15 @@
       </a>
       <a href="https://www.instagram.com" class="hover:scale-110 transition-all duration-300" aria-label="Instagram">
         <i class='bx bxl-instagram text-lg'></i>
+      </a>
+    </div> -->
+    <div class="social-links flex items-center gap-3">
+      <a *ngFor="let social of websiteDetails?.socialLinks"
+        [href]="social.url"
+        target="_blank"
+        class="hover:scale-110 transition-all duration-300"
+        [attr.aria-label]="social.platform">
+        <i class="bx bxl-instagram text-lg" [ngClass]="social.icon"></i>
       </a>
     </div>
   </div>
@@ -46,8 +59,11 @@
         <i class="bx bx-phone-call"></i>
         <div>
           <div class="contact-info-text">Call us today</div>
-          <a href="tel:+212600000000" class="contact-info-value">
+          <!-- <a href="tel:+212600000000" class="contact-info-value">
             +212 6 00 00 00 00
+          </a> -->
+          <a [href]="'tel:' + websiteDetails?.phone" class="contact-info-value">
+            {{ websiteDetails?.phone }}
           </a>
         </div>
       </div>
@@ -56,7 +72,8 @@
         <i class="bx bx-time-five"></i>
         <div>
           <div class="contact-info-text">Opening Hours</div>
-          <div class="contact-info-value">09:00 - 18:00</div>
+          <!-- <div class="contact-info-value">09:00 - 18:00</div> -->
+           <div class="contact-info-value">{{ websiteDetails?.openingHours }}</div>
         </div>
       </div>
     </div>

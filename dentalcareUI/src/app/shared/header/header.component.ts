@@ -13,7 +13,7 @@ import { WebsiteService } from '@shared/services/websiteDetails.service';
 })
 export class HeaderComponent implements OnInit {
   currentYear = new Date().getFullYear();
-  webisteName ="DR ANAS";
+  // webisteName ="DR ANAS";
   websiteDetails?: WebsiteDetails;
 
   constructor(private websiteService: WebsiteService) {
@@ -65,12 +65,10 @@ export class HeaderComponent implements OnInit {
     console.log(`Contact interaction: ${type}`);
   }
   loadWebsite(): void {
-    this.websiteService
-      .getWebsiteDetails('Shree Dental Clinic')
+    this.websiteService.getWebsiteDetails('Shree Dental Clinic')
       .subscribe({
         next: (response) => {
           this.websiteDetails = response;
-          console.log('Website details:', response);
         },
         error: (err) => {
           console.error('Error fetching website details', err);
