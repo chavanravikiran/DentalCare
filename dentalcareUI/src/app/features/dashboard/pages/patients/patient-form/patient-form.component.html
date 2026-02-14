@@ -2,7 +2,8 @@
   <!-- 🔹 Titre dynamique -->
   <h2 class="text-2xl md:text-3xl font-bold text-blue-900 mb-6 flex items-center gap-2">
     <lucide-icon [name]="isEditMode ? 'edit' : 'user-plus'" class="w-6 h-6 text-blue-600"></lucide-icon>
-    {{ isEditMode ? 'Modifier le patient' : 'Ajouter un nouveau patient' }}
+    <!-- {{ isEditMode ? 'Modifier le patient' : 'Ajouter un nouveau patient' }} -->
+      {{ isEditMode ? 'Edit patient' : 'Add a new patient' }}
   </h2>
 
   <!-- ✅ Message de succès -->
@@ -17,21 +18,21 @@
 
   <!-- 📋 Formulaire -->
   <form [formGroup]="patientForm" (ngSubmit)="onSubmit()" class="space-y-5">
-    <!-- Prénom + Nom -->
+    <!-- First name + Nom -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div>
-        <label class="block mb-1 text-sm font-medium text-gray-700">Prénom *</label>
+        <label class="block mb-1 text-sm font-medium text-gray-700">First name *</label>
         <input type="text" formControlName="prenom" class="form-input w-full" />
         <div *ngIf="patientForm.get('prenom')?.touched && patientForm.get('prenom')?.invalid" class="text-red-500 text-xs mt-1">
-          Prénom requis
+          First name required
         </div>
       </div>
 
       <div>
-        <label class="block mb-1 text-sm font-medium text-gray-700">Nom *</label>
+        <label class="block mb-1 text-sm font-medium text-gray-700">Name *</label>
         <input type="text" formControlName="nom" class="form-input w-full" />
         <div *ngIf="patientForm.get('nom')?.touched && patientForm.get('nom')?.invalid" class="text-red-500 text-xs mt-1">
-          Nom requis
+          Name required
         </div>
       </div>
     </div>
@@ -42,7 +43,7 @@
         <label class="block mb-1 text-sm font-medium text-gray-700">Email *</label>
         <input type="email" formControlName="email" class="form-input w-full" />
         <div *ngIf="patientForm.get('email')?.touched && patientForm.get('email')?.invalid" class="text-red-500 text-xs mt-1">
-          Email invalide ou manquant
+          Invalid or missing email address
         </div>
       </div>
 
@@ -50,54 +51,55 @@
         <label class="block mb-1 text-sm font-medium text-gray-700">CIN *</label>
         <input type="text" formControlName="cin" class="form-input w-full" />
         <div *ngIf="patientForm.get('cin')?.touched && patientForm.get('cin')?.invalid" class="text-red-500 text-xs mt-1">
-          CIN requis
+          CIN required
         </div>
       </div>
     </div>
 
-    <!-- Genre + Date de naissance -->
+    <!-- Gender + Date of birth -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div>
-        <label class="block mb-1 text-sm font-medium text-gray-700">Genre</label>
+        <label class="block mb-1 text-sm font-medium text-gray-700">Gender</label>
         <select formControlName="genre" class="form-select w-full">
-          <option value="">-- Sélectionner --</option>
-          <option value="HOMME">Homme</option>
-          <option value="FEMME">Femme</option>
-          <option value="AUTRE">Enfant</option>
+          <option value="">-- Select --</option>
+          <option value="HOMME">Man</option>
+          <option value="FEMME">Women</option>
+          <option value="AUTRE">Child</option>
         </select>
       </div>
 
       <div>
-        <label class="block mb-1 text-sm font-medium text-gray-700">Date de naissance</label>
+        <label class="block mb-1 text-sm font-medium text-gray-700">Date of birth</label>
         <input type="date" formControlName="dateNaissance" class="form-input w-full" />
       </div>
     </div>
 
-    <!-- Adresse -->
+    <!-- Address -->
     <div>
-      <label class="block mb-1 text-sm font-medium text-gray-700">Adresse</label>
+      <label class="block mb-1 text-sm font-medium text-gray-700">Address</label>
       <textarea formControlName="adresse" rows="2" class="form-textarea w-full resize-none"></textarea>
     </div>
 
-    <!-- Statut (checkbox) -->
+    <!-- Status (checkbox) -->
     <div class="flex items-center gap-3">
       <input type="checkbox" formControlName="enabled" class="form-checkbox" />
-      <label class="text-sm text-gray-700">Activer ce patient dès maintenant</label>
+      <label class="text-sm text-gray-700">Activate this patient now</label>
     </div>
 
-    <!-- Bouton Soumettre -->
+    <!-- Button Submit -->
     <div class="pt-4">
       <button type="submit"
               class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-xl disabled:opacity-50"
               [disabled]="isSubmitting || patientForm.invalid">
-        {{ isEditMode ? 'Mettre à jour' : 'Enregistrer' }}
+        <!-- {{ isEditMode ? 'Mettre à jour' : 'Enregistrer' }} -->
+          {{ isEditMode ? 'To update' : 'Save' }}
       </button>
-      <!-- Bouton Retour -->
+      <!-- Button Back -->
       <div class="pt-4 flex justify-end">
         <button type="button"
                 class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold px-6 py-2 rounded-xl ml-2"
                 (click)="goBack()">
-          ← Retour
+          ← Back
         </button>
       </div>
 

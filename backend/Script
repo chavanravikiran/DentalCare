@@ -10,3 +10,9 @@ VALUES
 (nextval('website_social_link_seq'), 1, now(), 'Y', 0, 1, 'LinkedIn', 'https://www.linkedin.com/company/shreedental', 'bxl-linkedin'),
 (nextval('website_social_link_seq'), 1, now(), 'Y', 0, 1, 'Instagram', 'https://www.instagram.com/shreedental', 'bxl-instagram');
 
+
+
+//Dynamic Page Done
+1)Header Component
+2)Footer Component
+3)

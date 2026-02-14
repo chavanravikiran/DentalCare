@@ -57,14 +57,14 @@ export class PatientFormComponent implements OnInit {
     this.patientService.getPatientById(this.patientId!).subscribe({
       next: (patient) => this.initForm(patient),
       error: (err) => {
-        console.error('❌ Erreur chargement patient :', err);
-        this.errorMessage = 'Impossible de charger les données du patient.';
+        console.error('❌ Patient loading error :', err);
+        this.errorMessage = 'Unable to load patient data.';
       }
     });
   }
 
   /**
-   * 🔼 Soumet le formulaire si valide et envoie les données au backend
+   * 🔼 Submits the form if valid and sends the data to the backend
    */
   onSubmit(): void {
     if (this.patientForm.invalid) {
@@ -84,7 +84,7 @@ export class PatientFormComponent implements OnInit {
       next: (res) => {
         this.successMessage = this.isEditMode
           ? '✅ Patient mis à jour avec succès.'
-          : `✅ Patient ${res.prenom} ${res.nom} ajouté avec succès.`;
+          : `✅ Patient ${res.prenom} ${res.nom} added successfully.`;
         this.isSubmitting = false;
         this.created.emit();
 
@@ -102,14 +102,14 @@ export class PatientFormComponent implements OnInit {
         }
       },
       error: (error) => {
-        this.errorMessage = '❌ Une erreur est survenue lors de l\'enregistrement du patient.';
+        this.errorMessage = '❌ An error occurred while registering the patient.';
         console.error(error);
         this.isSubmitting = false;
       }
     });
   }
   goBack(): void {
-    history.back(); // ou bien this.router.navigate(['/dashboard/patients']);
+    history.back(); // or else this.router.navigate(['/dashboard/patients']);
   }
 
 }
