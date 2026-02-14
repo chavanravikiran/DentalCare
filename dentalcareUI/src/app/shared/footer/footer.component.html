@@ -48,8 +48,8 @@
         <i class="contact-icon bx bx-phone-call"></i>
         <div class="contact-details">
           <div class="contact-label">Call us</div>
-          <a href="tel:+212600000000" class="contact-value">
-            +212 6 00 00 00 00
+          <a [href]="'tel:' + websiteDetails?.phone" class="contact-info-value">
+            {{ websiteDetails?.phone }}
           </a>
         </div>
       </div>
@@ -58,9 +58,9 @@
         <i class="contact-icon bx bx-envelope"></i>
         <div class="contact-details">
           <div class="contact-label">Email</div>
-          <a href="mailto:anas&#64;dentalcare.ma" class="contact-value">
-            xyz&#64;dentalcare.com
-          </a>
+          <a class="contact-value" [href]="'mailto:' + websiteDetails?.email">
+          {{ websiteDetails?.email }}
+        </a>
         </div>
       </div>
 
@@ -68,10 +68,10 @@
         <i class="contact-icon bx bx-time-five"></i>
         <div class="contact-details">
           <div class="contact-label">Opening Hours</div>
-          <div class="contact-value">
-            Mon - Fri: 09:00 - 18:00<br>
-            Sat: 09:00 - 14:00
-          </div>
+          <div class="contact-value"
+            [innerHTML]="websiteDetails?.openingHours">
+        </div>
+
         </div>
       </div>
 
@@ -80,8 +80,7 @@
         <div class="contact-details">
           <div class="contact-label">Address</div>
           <div class="contact-value">
-            153 Avenue Mohammed V<br>
-            Marrakech, Maroc
+           <span>{{ websiteDetails?.address }}</span>
           </div>
         </div>
       </div>
@@ -91,7 +90,7 @@
   <!-- Copyright Section -->
   <div class="footer-bottom">
     <p>
-      © 2025 <span class="highlight">DentalCare</span> — All rights reserved.
+      © 2026 <span class="highlight">DentalCare</span> — All rights reserved.
       Designed with 💙 for your smile.
     </p>
   </div>

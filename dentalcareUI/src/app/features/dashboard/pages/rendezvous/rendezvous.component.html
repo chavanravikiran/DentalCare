@@ -2,20 +2,20 @@
 <div class="flex justify-between items-center mb-6">
   <h2 class="text-2xl font-bold text-blue-700 flex items-center gap-2">
     <lucide-icon name="Calendar" class="w-6 h-6 text-blue-500" />
-    Gestion des rendez-vous
+    Appointment management
   </h2>
 
   <div class="flex gap-3">
-    <!-- ✅ Bouton pour ouvrir la modale de recherche -->
+    <!-- ✅ Button to open the search modal -->
     <button
       class="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500 text-white rounded-lg shadow hover:bg-yellow-600 transition-all"
       (click)="onOpenSearchModal()"
     >
       <lucide-icon name="search" class="w-5 h-5" />
-      Rechercher RDV
+      Search appointment
     </button>
 
-    <!-- ✅ Modale de recherche -->
+    <!-- ✅ Search mode -->
     <app-calendar-search-modal
       *ngIf="showSearchModal"
       (closeModal)="onCloseSearchModal()"
@@ -28,14 +28,14 @@
       (click)="onOpenModal()"
     >
       <lucide-icon name="plus" class="w-5 h-5" />
-      Ajouter
+      Add
     </button>
     <button
       class="inline-flex items-center gap-2 px-4 py-2 bg-gray-200 text-gray-800 rounded-lg shadow hover:bg-gray-300 transition-all"
       (click)="onRefresh()"
     >
       <lucide-icon name="RefreshCw" class="w-5 h-5" />
-      Rafraîchir
+      Refresh
     </button>
   </div>
 </div>
@@ -43,7 +43,7 @@
 <!-- ✅ Filtres -->
 <app-filters-bar (monthChanged)="onMonthChanged($event)"></app-filters-bar>
 
-<!-- ✅ Calendrier -->
+<!-- ✅ Calendar -->
 <app-full-calendar
   #calendarRef
   [selectedMonth]="selectedMonth"
@@ -51,7 +51,7 @@
   (rdvClicked)="onRdvClicked($event)"
 ></app-full-calendar>
 
-<!-- ✅ Modale de création -->
+<!-- ✅ Creation mode -->
 <app-calendar-modal
   *ngIf="showModal"
   [patientName]="patientName"
@@ -70,8 +70,8 @@
   (updateAppointment)="onAppointmentUpdated($event)"
   (requestDelete)="onRequestDelete($event)"
 ></app-calendar-modal-edit>
-<!-- ✅ Modale de confirmation suppression -->
-<!-- HACK pour forcer Angular à reconnaître le composant -->
+<!-- ✅ Confirmation modal for deletion -->
+<!-- HACK to force Angular to recognize the component -->
 <ng-template>
   <app-confirmation-dialog></app-confirmation-dialog>
 </ng-template>

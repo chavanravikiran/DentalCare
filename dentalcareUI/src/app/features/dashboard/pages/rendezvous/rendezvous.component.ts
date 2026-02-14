@@ -132,7 +132,7 @@ export class RendezvousComponent {
         this.refreshTrigger++;
         this.showModal = false;
       },
-      error: err => console.error('Erreur création RDV', err)
+      error: err => console.error('Appointment creation error', err)
     });
   }
 
@@ -142,7 +142,7 @@ export class RendezvousComponent {
 
   onSearch(event: { mode: 'name' | 'date', term: string }): void {
     if (!event.term || event.term.trim() === '') {
-      alert("❌ Veuillez entrer une valeur de recherche.");
+      alert("❌ Please enter a search value.");
       return;
     }
 
@@ -153,60 +153,60 @@ export class RendezvousComponent {
 
     request$.subscribe({
       next: (results) => {
-        console.log("✅ Résultats reçus :", results);
+        console.log("✅ Results received :", results);
         if (!results || results.length === 0) {
-          alert("📭 Aucun rendez-vous trouvé.");
+          alert("📭 No appointments found.");
           return;
         }
-        // ✅ Cas recherche par date → rediriger le calendrier vers ce jour
+        // ✅ Search by date → redirect the calendar to this day
         if (event.mode === 'date') {
           const targetDate = results[0].date;
           const calendarApi = this.calendarRef?.calendarComponent?.getApi();
           if (calendarApi) {
-            calendarApi.gotoDate(targetDate);           // Aller à la date
-            calendarApi.changeView('timeGridDay');       // Vue jour
-            this.refreshTrigger++;                       // Rechargement
+            calendarApi.gotoDate(targetDate);           // Go to the date
+            calendarApi.changeView('timeGridDay');       // Day view
+            this.refreshTrigger++;                       // Reloading
             this.showSearchModal = false;
             return;
           }
         }
         if (results.length === 1) {
-          // ✅ Un seul résultat → ouvrir en modification
+          // ✅ Only one result → open in edit mode
           this.rdvToEdit = results[0];
           this.showEditModal = true;
           this.showSearchModal = false;
         } else {
-          // 🔍 Plusieurs résultats : afficher liste à choisir
-          this.searchResults = results; // Crée une propriété pour stocker les résultats
-          this.showSearchResults = true; // Active un bloc *ngIf dans ton HTML
+          // 🔍 Multiple results: display list to choose from
+          this.searchResults = results; // Create a property to store the results
+          this.showSearchResults = true; // Activate an *ngIf block in your HTML
           this.showSearchModal = false;
         }
       },
       error: (err) => {
-        console.error("Erreur lors de la recherche :", err);
-        alert("❌ Une erreur est survenue lors de la recherche. Vérifiez le terme ou réessayez plus tard.");
+        console.error("Error during search :", err);
+        alert("❌ An error occurred during the search. Please check the term or try again later.");
       }
     });
   }
-// Gérer la suppression après confirmation
+// Manage deletion after confirmation
   onRequestDelete(rdvId: number): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: {
-        title: 'Confirmation de suppression',
-        message: 'Voulez-vous vraiment supprimer ce rendez-vous ?',
-        confirmText: 'Oui, supprimer',
-        cancelText: 'Annuler'
+        title: 'Deletion confirmation',
+        message: 'Do you really want to cancel this appointment? ?',
+        confirmText: 'Yes, delete',
+        cancelText: 'Cancel'
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
-        this.deleteRendezVous(rdvId);
+        this.deleteAppointment(rdvId);
       }
     });
   }
 
-  private deleteRendezVous(rdvId: number): void {
+  private deleteAppointment(rdvId: number): void {
     this.rendezvousService.deleteById(rdvId).subscribe({
       next: () => {
         this.refreshTrigger++;
@@ -214,8 +214,8 @@ export class RendezvousComponent {
         this.rdvToEdit = null;
       },
       error: err => {
-        console.error('Erreur lors de la suppression :', err);
-        alert("❌ Une erreur est survenue pendant la suppression.");
+        console.error('Error during deletion :', err);
+        alert("❌ An error occurred during deletion.");
       }
     });
   }
