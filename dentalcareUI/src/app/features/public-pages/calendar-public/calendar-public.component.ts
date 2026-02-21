@@ -184,7 +184,7 @@ export class CalendarPublicComponent implements OnInit, AfterViewInit {
   private getEventColor(type: string): string {
     const colors: { [key: string]: string } = {
       'CONSULTATION': '#3b82f6',
-      'DETARTRAGE': '#10b981',
+      'DESCALING': '#10b981',
       'URGENCE': '#ef4444',
       'ESTHETIQUE': '#8b5cf6'
     };

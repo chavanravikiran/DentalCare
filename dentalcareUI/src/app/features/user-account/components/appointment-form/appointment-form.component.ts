@@ -21,7 +21,7 @@ export class AppointmentFormComponent {
   @Output() submit = new EventEmitter<RendezVousRequest>();
   @Output() cancel = new EventEmitter<void>();
 
-  typeOptions = ['CONSULTATION', 'DETARTRAGE', 'URGENCE'];
+  typeOptions = ['CONSULTATION', 'DESCALING', 'URGENCE'];
   selectedSlot: string = '';
   selectedType: string = '';
   motif: string = '';

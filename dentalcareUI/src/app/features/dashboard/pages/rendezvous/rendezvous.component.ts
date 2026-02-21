@@ -89,7 +89,7 @@ export class RendezvousComponent {
     heureDebut: string;
     heureFin: string;
     motif: string;
-    type: 'CONSULTATION' | 'SUIVI' | 'DETARTRAGE' | 'AUTRE';
+    type: 'CONSULTATION' | 'FOLLOW_UP' | 'DESCALING' | 'OTHER';
     status: 'EN_ATTENTE' | 'CONFIRME' | 'ANNULE';
   }): void {
     if (!this.rdvToEdit) return;
@@ -123,7 +123,7 @@ export class RendezvousComponent {
       date: startDateTime.toISOString().split('T')[0],                 // YYYY-MM-DD
       heureDebut: startDateTime.toTimeString().substring(0, 5),        // HH:mm
       heureFin: endDateTime.toTimeString().substring(0, 5),            // HH:mm
-      type: event.type as 'CONSULTATION' | 'SUIVI' | 'DETARTRAGE' | 'AUTRE',
+      type: event.type as 'CONSULTATION' | 'FOLLOW_UP' | 'DESCALING' | 'OTHER',
       motif: event.motif
     };
 
