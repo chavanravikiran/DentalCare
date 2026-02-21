@@ -52,7 +52,7 @@ export class BookingComponent implements OnInit {
 
     this.websocketService.connect();
 
-    // WebSocket déclenche juste onMonthChange via API calendrier
+    // WebSocket simply triggers onMonthChange via the Calendar API
     this.websocketService.confirmedRdv$.subscribe(() => this.triggerCalendarReload());
     this.websocketService.newRdv$.subscribe(() => this.triggerCalendarReload());
     this.websocketService.rejectedRdv$.subscribe(() => this.triggerCalendarReload());

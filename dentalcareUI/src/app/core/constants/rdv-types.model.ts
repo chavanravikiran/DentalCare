@@ -1,1 +1,1 @@
-export type TypeRdv = 'CONSULTATION' | 'DETARTRAGE' | 'SUIVI' | 'AUTRE';
+export type TypeRdv = 'CONSULTATION' | 'DESCALING' | 'FOLLOW_UP' | 'OTHER';

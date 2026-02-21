@@ -15,102 +15,102 @@ export class RendezvousService {
   constructor(private http: HttpClient,
               private snackBar: MatSnackBar) {}
 
-  /** GET tous les RDV (ADMIN) */
+  /** GET all appointments (ADMIN) */
   getAll(): Observable<RendezVousResponse[]> {
     return this.http.get<RendezVousResponse[]>(`${this.api}/rendezvous`);
   }
 
-  /** 🔍 GET RDV par date */
+  /** 🔍 GET appointments by date */
   getByDate(date: string): Observable<RendezVousResponse[]> {
     const params = new HttpParams().set('date', date);
     return this.http.get<RendezVousResponse[]>(`${this.api}/rendezvous/by-date`, { params });
   }
-  /** GET tous les RDV d’un mois spécifique (ADMIN ou USER) */
+  /** GET all appointments for a specific month (ADMIN or USER) */
   getByMonth(year: number, month: number): Observable<RendezVousResponse[]> {
     return this.http.get<RendezVousResponse[]>(`${this.api}/rendezvous/by-month`, {
       params: { year, month }
     });
   }
 
-  /** 🔍 Récupérer les RDV d’un mois donné à partir d’une date LocalDate (format 'YYYY-MM-DD') */
+  /** 🔍 Retrieve appointments for a given month from a LocalDate date (format 'YYYY-MM-DD') */
   getByMonthDate(date: string): Observable<RendezVousResponse[]> {
     return this.http.get<RendezVousResponse[]>(`${this.api}/rendezvous/by-month-date`, {
       params: { date }
     });
   }
 
-  /** GET mes RDV (USER connecté) */
+  /** GET my appointments (USER logged in) */
   getMyRendezVous(): Observable<RendezVousResponse[]> {
     return this.http.get<RendezVousResponse[]>(`${this.api}/rendezvous/by-user`);
   }
 
-  /** POST nouveau RDV */
+  /** New appointments posted */
   createRendezVous(data: RendezVousRequest): Observable<RendezVousResponse> {
     return this.http.post<RendezVousResponse>(`${this.api}/rendezvous`, data);
   }
-  /** ✅ Confirmer un RDV */
+  /** ✅ Confirm an appointment */
   confirmRendezVous(id: number): Observable<void> {
     return this.http.put<void>(`${this.api}/rendezvous/${id}/confirm`, {});
   }
 
-  /** ⚠️ Rejeter un RDV */
+  /** ⚠️ Reject an appointment */
   rejectRendezVous(id: number): Observable<void> {
     return this.http.put<void>(`${this.api}/rendezvous/${id}/reject`, {});
   }
 
 
-  /** DELETE RDV par ID (ADMIN) */
+  /** DELETE appointments by ID (ADMIN) */
   deleteById(id: number): Observable<void> {
     return this.http.delete<void>(`${this.api}/rendezvous/${id}`);
   }
-  /** ✏️ PUT modifier un RDV */
+  /** ✏️ PUT modify an appointment */
   updateRendezVous(id: number, data: RendezVousRequest): Observable<RendezVousResponse> {
     return this.http.put<RendezVousResponse>(`${this.api}/rendezvous/${id}`, data);
   }
 
-  /** 🌍 GET RDV publics confirmés (affichage calendrier public) */
+  /** 🌍 GET confirmed public appointments (public calendar display) */
   getPublicByMonth(year: number, month: number): Observable<RendezVousResponse[]> {
     return this.http.get<RendezVousResponse[]>(`${this.api}/rendezvous/public/by-month`, {
       params: { year, month }
     });
   }
 
-  /** 🧠 GET RDV enrichis (admin, avec infos patient/user) */
+  /** 🧠 Enhanced GET appointments (admin, with patient/user information) */
   getAllAdminByMonth(year: number, month: number): Observable<RendezVousAdminResponse[]> {
     return this.http.get<RendezVousAdminResponse[]>(`${this.api}/rendezvous/admin/by-month`, {
       params: { year, month }
     });
   }
 
-  /** 🔍 GET RDV par statut (EN_ATTENTE, CONFIRME, ANNULE...) */
+  /** 🔍 GET appointments by status (PENDING, CONFIRMED, CANCELLED...) */
   getByStatus(status: string): Observable<RendezVousResponse[]> {
     return this.http.get<RendezVousResponse[]>(`${this.api}/rendezvous/by-status`, {
       params: { status }
     });
   }
-  /** 📄 GET RDV par ID */
+  /** 📄 GET appointments by ID */
   getById(id: number): Observable<RendezVousResponse> {
     return this.http.get<RendezVousResponse>(`${this.api}/rendezvous/${id}`);
   }
   /**
-   * 🧠 Crée un RDV avec gestion d'erreur UX via toast
+   * 🧠 Create an appointment with UX error handling via Toast
    */
   createRendezVousSafe(data: RendezVousRequest): Observable<RendezVousResponse> {
     return this.http.post<RendezVousResponse>(`${this.api}/rendezvous`, data).pipe(
       tap(() => {
-        this.snackBar.open('✅ Rendez-vous confirmé avec succès.', 'Fermer', {
+        this.snackBar.open('✅ Appointment successfully confirmed.', 'Close', {
           duration: 3000,
           panelClass: ['snackbar-success']
         });
       }),
       catchError((error) => {
         if (error.status === 409) {
-          this.snackBar.open('⛔ Ce créneau est déjà réservé. Merci de choisir un autre.', 'Fermer', {
+          this.snackBar.open('⛔ This time slot is already booked. Please choose another one.', 'Close', {
             duration: 5000,
             panelClass: ['snackbar-error']
           });
         } else {
-          this.snackBar.open('❌ Une erreur est survenue lors de la création.', 'Fermer', {
+          this.snackBar.open('❌ An error occurred during creation.', 'Close', {
             duration: 5000,
             panelClass: ['snackbar-error']
           });

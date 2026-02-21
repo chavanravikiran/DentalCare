@@ -18,11 +18,16 @@ export class UserSidebarComponent {
 
   private authService = inject(AuthService);
   navItems = [
-    { label: 'Accueil', icon: 'Home', route: '/user-account/accueil' },
-    { label: 'Mes RDV', icon: 'Calendar', route: '/user-account/mes-rdv' },
-    { label: 'Prendre RDV', icon: 'CalendarDays', route: '/user-account/prendre-rdv' },
+    // { label: 'Accueil', icon: 'Home', route: '/user-account/accueil' },
+    // { label: 'Mes RDV', icon: 'Calendar', route: '/user-account/mes-rdv' },
+    // { label: 'Prendre RDV', icon: 'CalendarDays', route: '/user-account/prendre-rdv' },
+    // { label: 'Messages', icon: 'MessageSquare', route: '/user-account/messages' },
+    // { label: 'Mon Profil', icon: 'UserCog', route: '/user-account/profil' }
+    { label: 'Welcome', icon: 'Home', route: '/user-account/accueil' },
+    { label: 'My appointments', icon: 'Calendar', route: '/user-account/mes-rdv' },
+    { label: 'Make an appointment', icon: 'CalendarDays', route: '/user-account/prendre-rdv' },
     { label: 'Messages', icon: 'MessageSquare', route: '/user-account/messages' },
-    { label: 'Mon Profil', icon: 'UserCog', route: '/user-account/profil' }
+    { label: 'My Profile', icon: 'UserCog', route: '/user-account/profil' }
   ];
 
   onToggleSidebar(): void {
