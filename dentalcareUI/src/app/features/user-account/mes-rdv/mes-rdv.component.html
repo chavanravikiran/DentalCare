@@ -22,8 +22,8 @@
         <td class="px-4 py-2">
             <span [ngClass]="{
               'text-green-600': rdv.status === 'CONFIRME',
-              'text-yellow-600': rdv.status === 'EN_ATTENTE',
-              'text-red-600': rdv.status === 'ANNULE',
+              'text-yellow-600': rdv.status === 'ON_HOLD',
+              'text-red-600': rdv.status === 'CANCELED',
             }">
             <!-- 'text-yellow-600': rdv.status === 'CANCELED',
               'text-red-600': rdv.status === 'ON HOLD' -->

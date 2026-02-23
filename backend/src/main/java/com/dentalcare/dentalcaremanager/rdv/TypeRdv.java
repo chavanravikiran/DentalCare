@@ -2,8 +2,8 @@ package com.dentalcare.dentalcaremanager.rdv;
 
 public enum TypeRdv {
     CONSULTATION,
-    DETARTRAGE,//DESCALING
-    SUIVI, //FOLLOW UP
+    DESCALING,//DETARTRAGE
+    FOLLOW_UP, //SUIVI
     URGENCE,
-    AUTRE //OTHER
+    OTHER //AUTRE 
 }

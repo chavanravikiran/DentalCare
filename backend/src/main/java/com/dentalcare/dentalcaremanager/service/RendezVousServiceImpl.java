@@ -150,7 +150,7 @@ public class RendezVousServiceImpl implements RendezVousService {
 
     @Override
     public List<RendezVousResponse> getByUserId(Integer userId) {
-        log.info("🔍 Appointment request for userId = {}", userId); // Ajoute cette ligne
+        log.info("🔍 Appointment request for userId = {}", userId); // Add this line
         return rendezVousRepository.findByPatientId(userId).stream()
                 .map(RendezVousResponse::fromEntity)
                 .collect(Collectors.toList());
@@ -176,7 +176,7 @@ public void confirmRendezVous(Integer id) {
     RendezVous rdv = rendezVousRepository.findById(id)
             .orElseThrow(() -> new RendezVousNotFoundException(id));
 
-    if (rdv.getStatus() == StatusRdv.ANNULE) {
+    if (rdv.getStatus() == StatusRdv.CANCELED) {
         throw new InvalidRendezVousRequestException("This appointment has been cancelled and cannot be confirmed.");
     }
 
@@ -197,7 +197,7 @@ public void rejectRendezVous(Integer id) {
         throw new InvalidRendezVousRequestException("This appointment is already confirmed and cannot be cancelled.");
     }
 
-    rdv.setStatus(StatusRdv.ANNULE);
+    rdv.setStatus(StatusRdv.CANCELED);
     RendezVous saved = rendezVousRepository.save(rdv);
     RendezVousResponse response = RendezVousResponse.fromEntity(saved);
     log.info("❌ Appointment ID={} rejeté", id);

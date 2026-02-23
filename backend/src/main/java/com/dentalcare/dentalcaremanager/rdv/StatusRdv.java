@@ -1,7 +1,7 @@
 package com.dentalcare.dentalcaremanager.rdv;
 
 public enum StatusRdv {
-    EN_ATTENTE,//ON_HOLD
+	ON_HOLD,//EN_ATTENTE
     CONFIRME,
-    ANNULE //CANCELED
+    CANCELED //ANNULE
 }

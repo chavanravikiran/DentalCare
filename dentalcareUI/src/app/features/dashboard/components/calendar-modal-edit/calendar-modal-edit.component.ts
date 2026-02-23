@@ -19,7 +19,7 @@ export class CalendarModalEditComponent implements OnInit {
     heureFin: string;
     motif: string;
     type: 'CONSULTATION' | 'FOLLOW_UP' | 'DESCALING' | 'OTHER';
-    status: 'EN_ATTENTE' | 'CONFIRME' | 'ANNULE';
+    status: 'ON_HOLD' | 'CONFIRME' | 'CANCELED';
   }>();
 
 
@@ -31,7 +31,7 @@ export class CalendarModalEditComponent implements OnInit {
   heureFin = '';
   motif = '';
   type: 'CONSULTATION' | 'FOLLOW_UP' | 'DESCALING' | 'OTHER' = 'CONSULTATION';
-  status: 'EN_ATTENTE' | 'CONFIRME' | 'ANNULE' = 'EN_ATTENTE';
+  status: 'ON_HOLD' | 'CONFIRME' | 'CANCELED' = 'ON_HOLD';
 
   ngOnInit(): void {
     if (this.rendezVousToEdit) {

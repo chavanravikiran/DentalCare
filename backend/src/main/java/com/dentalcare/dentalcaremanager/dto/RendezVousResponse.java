@@ -34,7 +34,7 @@ import java.time.LocalTime;
 
     public static RendezVousResponse fromEntity(RendezVous rdv) {
         boolean isConfirmed = rdv.getStatus() == StatusRdv.CONFIRME;
-        boolean canBeCancelled = rdv.getStatus() == StatusRdv.EN_ATTENTE;
+        boolean canBeCancelled = rdv.getStatus() == StatusRdv.ON_HOLD;
 
         return RendezVousResponse.builder()
                 .id(rdv.getId())

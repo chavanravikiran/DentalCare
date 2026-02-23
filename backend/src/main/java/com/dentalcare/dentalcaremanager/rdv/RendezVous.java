@@ -29,7 +29,7 @@ public class RendezVous {//appointment
     private LocalTime heureFin;
 
     @Enumerated(EnumType.STRING)
-    private StatusRdv status; // EN_ATTENTE, CONFIRME, ANNULE
+    private StatusRdv status; // ON_HOLD, CONFIRME, CANCELED
 
     @ManyToOne
     @JoinColumn(name = "user_id")

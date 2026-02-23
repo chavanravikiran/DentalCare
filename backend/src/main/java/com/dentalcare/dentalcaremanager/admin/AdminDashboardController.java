@@ -21,7 +21,7 @@ public class AdminDashboardController {
     public ResponseEntity<?> getRdvStats() {
         Map<String, Object> stats = new HashMap<>();
         stats.put("totalRdv", rendezVousService.getAll().size());
-        stats.put("rdvEnAttente", rendezVousService.findByStatus(StatusRdv.EN_ATTENTE).size());
+        stats.put("rdvEnAttente", rendezVousService.findByStatus(StatusRdv.ON_HOLD).size());
         stats.put("rdvConfirme", rendezVousService.findByStatus(StatusRdv.CONFIRME).size());
         // Ajoute plus de stats ici
         return ResponseEntity.ok(stats);

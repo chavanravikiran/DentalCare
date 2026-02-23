@@ -106,8 +106,8 @@ export class FullCalendarComponent implements OnInit, OnChanges {
   private getColorByStatus(status: string): string {
     switch (status) {
       case 'CONFIRME': return '#4CAF50';     // green
-      case 'EN_ATTENTE': return '#FFC107';   // yellow
-      case 'ANNULE': return '#F44336';       // red
+      case 'ON_HOLD': return '#FFC107';   // yellow
+      case 'CANCELED': return '#F44336';       // red
       default: return '#2196F3';             // Blue
     }
   }

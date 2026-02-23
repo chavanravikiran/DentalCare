@@ -21,37 +21,37 @@ import java.util.List;
 public class RendezVousController {
 
     private final RendezVousService rendezVousService;
-//création sécurisée
+//secure creation
     @PostMapping
     @PreAuthorize("hasAnyAuthority(T(com.dentalcare.dentalcaremanager.security.RoleNames).ADMIN, T(com.dentalcare.dentalcaremanager.security.RoleNames).USER)")
     public ResponseEntity<RendezVousResponse> create(@RequestBody @Valid RendezVousRequest request) {
         return ResponseEntity.ok(rendezVousService.create(request));
     }
-//réservé admin
+//reserved admin
     @GetMapping
     @PreAuthorize("hasAuthority(T(com.dentalcare.dentalcaremanager.security.RoleNames).ADMIN)")
     public ResponseEntity<List<RendezVousResponse>> getAll() {
         return ResponseEntity.ok(rendezVousService.getAll());
     }
-//auto-résolution userId
+//auto-resolution userId
     @GetMapping("/by-user")
     @PreAuthorize("hasAnyAuthority(T(com.dentalcare.dentalcaremanager.security.RoleNames).ADMIN, T(com.dentalcare.dentalcaremanager.security.RoleNames).USER)")
     public ResponseEntity<List<RendezVousResponse>> getByUserId() {
-        // Récupérer un user connecté automatiquement
+        // Retrieve a logged-in user automatically
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         Integer userId = rendezVousService.getUserIdByEmail(email);
         System.out.println("📧 User connecté : " + email + " → userId = " + userId);
         return ResponseEntity.ok(rendezVousService.getByUserId(userId));
     }
 
-    //utile pour calendar ou filtrage
+    //useful for calendar or filtering
     @GetMapping("/by-date")
     @PreAuthorize("hasAnyAuthority(T(com.dentalcare.dentalcaremanager.security.RoleNames).ADMIN, T(com.dentalcare.dentalcaremanager.security.RoleNames).USER)")
     public ResponseEntity<List<RendezVousResponse>> getByDate(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         return ResponseEntity.ok(rendezVousService.getByDate(date));
     }
-    //appel classique pour avoir la vue du mois dans le calendrier complet
+    //Classic call to view the month in the full calendar
     @GetMapping("/by-month")
     @PreAuthorize("hasAnyAuthority(T(com.dentalcare.dentalcaremanager.security.RoleNames).ADMIN, T(com.dentalcare.dentalcaremanager.security.RoleNames).USER)")
     public ResponseEntity<List<RendezVousResponse>> getByMonth(
@@ -61,28 +61,28 @@ public class RendezVousController {
         return ResponseEntity.ok(rendezVousList);
     }
 
-    //permettant d’utiliser la méthode optimisée findAllByMonth(LocalDate) côté backend REST, afin de récupérer les rendez-vous d’un mois spécifique.
+    //allowing the use of the optimized findAllByMonth(LocalDate) method on the REST backend, in order to retrieve appointments for a specific month.
     @GetMapping("/by-month-date")
     @PreAuthorize("hasAnyAuthority(T(com.dentalcare.dentalcaremanager.security.RoleNames).ADMIN, T(com.dentalcare.dentalcaremanager.security.RoleNames).USER)")
     public ResponseEntity<List<RendezVousResponse>> findByMonthDate(
             @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateInMonth) {
         return ResponseEntity.ok(rendezVousService.findAllByMonth(dateInMonth));
     }
-//Confirmer un rendez-vous
+//Confirm an appointment
     @PutMapping("/{id}/confirm")
     @PreAuthorize("hasAuthority(T(com.dentalcare.dentalcaremanager.security.RoleNames).ADMIN)")
     public ResponseEntity<String> confirmRendezVous(@PathVariable Integer id) {
         rendezVousService.confirmRendezVous(id);
         return ResponseEntity.ok("Rendez-vous confirmé avec succès.");
     }
-//Rejeter un rendez-vous
+//Rejecting a date
     @PutMapping("/{id}/reject")
     @PreAuthorize("hasAuthority(T(com.dentalcare.dentalcaremanager.security.RoleNames).ADMIN)")
     public ResponseEntity<String> rejectRendezVous(@PathVariable Integer id) {
         rendezVousService.rejectRendezVous(id);
         return ResponseEntity.ok("Rendez-vous annulé.");
     }
-//Lister tous les rendez-vous par statut
+//List all appointments by status
     @GetMapping("/by-status")
     @PreAuthorize("hasAuthority(T(com.dentalcare.dentalcaremanager.security.RoleNames).ADMIN)")
     public ResponseEntity<List<RendezVousResponse>> findByStatus(
@@ -95,20 +95,20 @@ public class RendezVousController {
         }
     }
 
-    //Récupération d’un RDV par ID
+    //Retrieving an appointment by ID
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyAuthority(T(com.dentalcare.dentalcaremanager.security.RoleNames).ADMIN, T(com.dentalcare.dentalcaremanager.security.RoleNames).USER)")
     public ResponseEntity<RendezVousResponse> getById(@PathVariable Integer id) {
-        return ResponseEntity.ok(rendezVousService.getById(id)); // ✅ Méthode à créer
+        return ResponseEntity.ok(rendezVousService.getById(id)); // ✅ Method to create
     }
 
 
-//Suppression par l’admin
+//Deleted by admin
 @DeleteMapping("/{id}")
 @PreAuthorize("hasAuthority(T(com.dentalcare.dentalcaremanager.security.RoleNames).ADMIN)")
 public ResponseEntity<Void> deleteById(@PathVariable Integer id) {
     rendezVousService.deleteById(id);
-    return ResponseEntity.ok().build(); // ✅ pas de body = pas d'erreur Angular
+    return ResponseEntity.ok().build(); // ✅ No body = no Angular error
 }
 
     @GetMapping("/public/by-month")

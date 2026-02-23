@@ -13,7 +13,7 @@
       [(ngModel)]="selectedSlot"
       name="selectedSlot"
     >
-      <option disabled selected value="">-- Choose a niche --</option>
+      <option disabled selected value="">-- Choose a time --</option>
       <option *ngFor="let slot of availableSlots" [value]="slot">{{ slot }}</option>
     </select>
   </div>
@@ -47,7 +47,7 @@
       class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium px-5 py-2 rounded shadow"
       (click)="onCancel()"
     >
-      ❌ Annuler
+      ❌ Cancel
     </button>
   </div>
 </div>
