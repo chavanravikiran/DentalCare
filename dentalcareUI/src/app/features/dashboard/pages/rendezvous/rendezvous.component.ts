@@ -90,7 +90,7 @@ export class RendezvousComponent {
     heureFin: string;
     motif: string;
     type: 'CONSULTATION' | 'FOLLOW_UP' | 'DESCALING' | 'OTHER';
-    status: 'EN_ATTENTE' | 'CONFIRME' | 'ANNULE';
+    status: 'ON_HOLD' | 'CONFIRME' | 'CANCELED';
   }): void {
     if (!this.rdvToEdit) return;
 

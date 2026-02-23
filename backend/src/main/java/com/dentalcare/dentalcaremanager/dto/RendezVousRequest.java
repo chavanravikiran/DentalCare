@@ -37,7 +37,7 @@ public class RendezVousRequest {
 
     @Enumerated(EnumType.STRING)
     @NotNull(message = "The type of appointment is required")
-    private TypeRdv type; // ex: "CONSULTATION" "SUIVI", etc.
+    private TypeRdv type;
 
     private String motif; //pattern       // ex: "Urgence", "Contrôle", etc.
 
@@ -50,7 +50,7 @@ public class RendezVousRequest {
                 .date(this.date)
                 .heureDebut(this.heureDebut)//startTime
                 .heureFin(this.heureFin)//timeEnd
-                .status(this.status != null ? this.status : StatusRdv.EN_ATTENTE)
+                .status(this.status != null ? this.status : StatusRdv.ON_HOLD)
                 .archive(false)
                 .motif(this.motif)//pattern
                 .type(this.type != null ? this.type : TypeRdv.CONSULTATION)

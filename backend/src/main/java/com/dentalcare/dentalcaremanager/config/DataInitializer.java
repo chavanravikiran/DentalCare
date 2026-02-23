@@ -52,9 +52,9 @@ public class DataInitializer implements CommandLineRunner {
         Role userRole = createRoleIfNotFound("ROLE_USER");
 
         createAdminIfMissing(adminRole);
-
-        generateFakeUsersAndPatients(userRole);
-        generateFakeRendezVous();
+//
+//        generateFakeUsersAndPatients(userRole);
+//        generateFakeRendezVous();
 
 
     }
@@ -160,7 +160,7 @@ public class DataInitializer implements CommandLineRunner {
         List<Patient> patients = patientRepository.findAll();
         if (patients.isEmpty()) return;
 
-        List<StatusRdv> statusChoices = List.of(StatusRdv.EN_ATTENTE, StatusRdv.CONFIRME, StatusRdv.ANNULE);
+        List<StatusRdv> statusChoices = List.of(StatusRdv.ON_HOLD, StatusRdv.CONFIRME, StatusRdv.CANCELED);
 
         for (int i = 0; i < 10; i++) {
             Patient patient = patients.get(random.nextInt(patients.size()));

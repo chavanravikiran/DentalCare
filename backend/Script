@@ -1,3 +1,6 @@
+Admin -admin@dentalcare.com AdminPass123
+user - louis.olivier@yahoo.fr AdminPass123
+
 insert into website_details(key,created_by,created_on,is_Active,version,old_website_link,website_logo,website_name,website_name_mr,website_name_hi,short_address,address,email,opening_hours,phone)
 values(nextval('website_details_seq'),1,now(),'Y',0,'www.dental.com','DentalHospital.png','Shree Dental Clinic','श्री दंत चिकित्सालय','श्री दंत चिकित्सालय','Pune','48/2 Shree Dental Clinic And Implant Centre, Chatrapati Shivaji Maharaj Putala, New Bhaji Market, Kharadi Rd, near Om Navgraha Pratishthan, Chandan Nagar, Pune, Maharashtra','xyz@gmail.com','09:00 - 18:00','+91 1234567890');
 

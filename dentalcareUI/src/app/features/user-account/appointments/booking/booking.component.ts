@@ -5,17 +5,14 @@ import { FullCalendarModule, FullCalendarComponent } from '@fullcalendar/angular
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import frLocale from '@fullcalendar/core/locales/fr';
-
+// import frLocale from '@fullcalendar/core/locales/fr';
 import { RendezvousService } from '../../../../core/services/rendezvous.service';
 import { ToastService } from '../../../../core/services/toast.service';
 import { WebSocketService } from '../../../../core/services/websocket.service';
-
 import { RendezVousResponse } from '../../../dashboard/models/rendezvous-response.model';
 import { RendezVousRequest } from '../../../dashboard/models/rendezvous-request.model';
 import { AppointmentFormComponent } from '../../components/appointment-form/appointment-form.component';
 import { AppointmentsTableComponent } from '../../components/appointments-table/appointments-table.component';
-// import { AppointmentsTableComponent } from '../../components/appointments-table/appointments-table.component';
 
 @Component({
   selector: 'app-booking',
@@ -64,7 +61,7 @@ export class BookingComponent implements OnInit {
       initialView: 'dayGridMonth',
       selectable: true,
       editable: false,
-      locale: frLocale,
+      locale: 'en',
       headerToolbar: {
         left: 'prev,next today',
         center: 'title',

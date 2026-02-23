@@ -7,8 +7,8 @@ import {CommonModule, NgClass} from '@angular/common';
 @Component({
   selector: 'app-mes-rdv',
   standalone: true,
-
-  templateUrl: './mes-rdv.component.html',  imports: [CommonModule, LucideAngularModule, NgClass],
+  templateUrl: './mes-rdv.component.html',  
+  imports: [CommonModule, LucideAngularModule, NgClass],
 
   styleUrls: ['./mes-rdv.component.css']
 })
