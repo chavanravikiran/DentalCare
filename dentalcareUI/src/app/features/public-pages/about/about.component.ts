@@ -15,7 +15,7 @@ export class AboutComponent implements OnInit, AfterViewInit {
     { value: '150+', label: 'Satisfied patients', icon: 'bx-heart' },
     { value: '5+', label: 'Years d\'experience', icon: 'bx-time' },
     { value: '98%', label: 'Satisfaction rate', icon: 'bx-like' },
-    { value: '24/7', label: 'Support available', icon: 'bx-support' }
+    { value: '24/7', label: 'Support available', icon: 'bx-support' },
   ];
 
   features = [
@@ -116,6 +116,10 @@ export class AboutComponent implements OnInit, AfterViewInit {
     if (!numberElement) return;
 
     const finalText = numberElement.textContent || '0';
+    if (finalText.includes('/')) {
+      numberElement.textContent = finalText;
+      return;
+    }
     const finalNumber = parseInt(finalText.replace(/\D/g, '')) || 0;
     const suffix = finalText.replace(/[\d,]/g, '');
 
@@ -130,6 +134,6 @@ export class AboutComponent implements OnInit, AfterViewInit {
       } else {
         numberElement.textContent = Math.floor(currentNumber) + suffix;
       }
-    }, 16); // ~60fps
+    }, 16);
   }
 }

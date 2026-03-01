@@ -6,7 +6,7 @@ import { FullCalendarModule, FullCalendarComponent } from '@fullcalendar/angular
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import frLocale from '@fullcalendar/core/locales/fr';
+// import frLocale from '@fullcalendar/core/locales/fr';
 
 import { RendezvousService } from '../../../core/services/rendezvous.service';
 import { AuthService } from '../../../core/services/auth.service';
@@ -35,7 +35,7 @@ export class CalendarPublicComponent implements OnInit, AfterViewInit {
   @ViewChild('calendarRef') calendarComponent!: FullCalendarComponent;
 
   isAuthenticated = false;
-  appointmentType = 'Tout afficher';
+  appointmentType = 'Show all';
   selectedMonth = '';
   selectedPractitioner = '';
 
@@ -47,7 +47,7 @@ export class CalendarPublicComponent implements OnInit, AfterViewInit {
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin, interactionPlugin],
     initialView: 'dayGridMonth',
-    locale: frLocale,
+    // locale: frLocale,
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
@@ -155,7 +155,7 @@ export class CalendarPublicComponent implements OnInit, AfterViewInit {
   private filterAppointmentsByType(rdvs: RendezVousResponse[]): RendezVousResponse[] {
     let filtered = rdvs.filter(rdv => rdv.status === 'CONFIRME');
 
-    if (this.appointmentType !== 'Tout afficher') {
+    if (this.appointmentType !== 'Show all') {
       filtered = filtered.filter(rdv => rdv.type === this.appointmentType);
     }
 

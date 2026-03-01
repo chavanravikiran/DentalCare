@@ -18,13 +18,13 @@ export class SidebarComponent {
   constructor(private authService: AuthService) {}
 
   navItems = [
-    { label: 'Accueil', icon: 'Home', route: '/dashboard/accueil' },
+    { label: 'Welcome', icon: 'Home', route: '/dashboard/accueil' },//Accueil
     { label: 'Patients', icon: 'Users', route: '/dashboard/patients' },
-    { label: 'Rendez-vous', icon: 'CalendarDays', route: '/dashboard/rendezvous' },
+    { label: 'Appointment', icon: 'CalendarDays', route: '/dashboard/rendezvous' },//Rendez-vous
     { label: 'Messages', icon: 'MessageSquare', route: '/dashboard/messages' },
     { label: 'Notifications', icon: 'Bell', route: '/dashboard/notifications' },
-    { label: 'Statistiques', icon: 'BarChart2', route: '/dashboard/statistiques' },
-    { label: 'Paramètres', icon: 'Settings', route: '/dashboard/parametres' },
+    { label: 'Statistics', icon: 'BarChart2', route: '/dashboard/statistiques' },//Statistiques
+    { label: 'Settings', icon: 'Settings', route: '/dashboard/parametres' },//Paramètres
   ];
 
   onToggleSidebar(): void {
