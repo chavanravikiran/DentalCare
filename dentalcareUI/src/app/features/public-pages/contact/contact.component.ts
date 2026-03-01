@@ -66,7 +66,7 @@ export class ContactComponent implements AfterViewInit {
         // For now, we'll simulate a successful response
 
         this.showSuccessMessage = true;
-        this.successMessage = 'Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.';
+        this.successMessage = 'Your message has been sent successfully! We will reply as soon as possible.';
 
         // Reset form after successful submission
         this.resetForm();
@@ -78,7 +78,7 @@ export class ContactComponent implements AfterViewInit {
 
       } catch (error) {
         this.showErrorMessage = true;
-        this.errorMessage = 'Une erreur est survenue lors de l\'envoi de votre message. Veuillez réessayer.';
+        this.errorMessage = 'An error occurred while sending your message. Please try again.';
 
         // Hide error message after 5 seconds
         setTimeout(() => {
@@ -96,32 +96,32 @@ export class ContactComponent implements AfterViewInit {
 
     // Check required fields
     if (!this.formData.name.trim()) {
-      this.showError('Le nom est requis.');
+      this.showError('Name is required.');
       return false;
     }
 
     if (!this.formData.email.trim()) {
-      this.showError('L\'email est requis.');
+      this.showError('L\'email is required.');
       return false;
     }
 
     if (!this.isValidEmail(this.formData.email)) {
-      this.showError('Veuillez entrer un email valide.');
+      this.showError('Please enter a valid email address.');
       return false;
     }
 
     if (!this.formData.subject.trim()) {
-      this.showError('Le sujet est requis.');
+      this.showError('The subject is required.');
       return false;
     }
 
     if (!this.formData.message.trim()) {
-      this.showError('Le message est requis.');
+      this.showError('The message is required.');
       return false;
     }
 
     if (this.formData.message.trim().length < 10) {
-      this.showError('Le message doit contenir au moins 10 caractères.');
+      this.showError('The message must contain at least 10 characters.');
       return false;
     }
 
@@ -157,12 +157,12 @@ export class ContactComponent implements AfterViewInit {
   formatPhoneNumber(event: any): void {
     let value = event.target.value.replace(/\D/g, '');
 
-    if (value.startsWith('212')) {
+    if (value.startsWith('91')) {
       value = '+' + value;
     } else if (value.startsWith('0')) {
-      value = '+212' + value.substring(1);
+      value = '+91' + value.substring(1);
     } else if (value.length > 0 && !value.startsWith('+')) {
-      value = '+212' + value;
+      value = '+91' + value;
     }
 
     this.formData.phone = value;
@@ -181,6 +181,6 @@ export class ContactComponent implements AfterViewInit {
 
   // Method to open email client
   sendEmail(): void {
-    window.location.href = 'mailto:anas&#64;dentalcare.ma?subject=Contact depuis le site web';
+    window.location.href = 'mailto:ravi&#64;dentalcare.ma?subject=Contact via the website';
   }
 }

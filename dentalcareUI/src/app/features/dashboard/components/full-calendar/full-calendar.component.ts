@@ -16,7 +16,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import frLocale from '@fullcalendar/core/locales/fr';
+// import frLocale from '@fullcalendar/core/locales/fr';
 
 import { RendezvousService } from '../../../../core/services/rendezvous.service';
 import { RendezVousAdminResponse } from '../../models/rendezvous-admin-response.model';
@@ -43,7 +43,7 @@ export class FullCalendarComponent implements OnInit, OnChanges {
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
-    locale: frLocale,
+    // locale: frLocale,
     events: [],
     editable: false,
     selectable: false,

@@ -106,7 +106,7 @@ export class RendezvousComponent {
         this.refreshTrigger++;
         this.showEditModal = false;
       },
-      error: err => console.error('Erreur modification RDV', err)
+      error: err => console.error('Appointment modification error', err)
     });
   }
   onAppointmentCreated(event: {
