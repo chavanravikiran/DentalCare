@@ -30,30 +30,30 @@ export class PatientDetailsComponent implements OnInit {
   }
 
   /**
-   * Récupère les détails du patient
+   * Retrieve the patient's details
    */
   loadPatient(): void {
     this.isLoading = true;
     this.hasError = false;
 
-    console.log('📡 ID du patient à charger :', this.patientId);
+    console.log('📡 Patient ID to load :', this.patientId);
 
     this.patientService.getPatientById(this.patientId)
       .pipe(
         catchError(err => {
-          console.error('❌ Erreur chargement patient depuis le backend :', err);
+          console.error('❌ Error loading patient from the backend :', err);
           this.hasError = true;
           return of(undefined);
         })
       )
       .subscribe((patient: PatientResponse | undefined) => {
         if (!patient) {
-          console.warn('⚠️ Aucun patient reçu pour l\'ID', this.patientId);
+          console.warn('⚠️ No patients received for ID', this.patientId);
           this.hasError = true;
           this.isLoading = false;
           return;
         }
-        console.log('✅ Patient reçu :', patient);
+        console.log('✅ Patient received :', patient);
         this.patient = patient;
         this.isLoading = false;
       });
@@ -67,13 +67,13 @@ export class PatientDetailsComponent implements OnInit {
     this.router.navigate([`/dashboard/patients/edit`, id])
       .then(success => {
         if (success) {
-          console.log(`✅ Navigation réussie vers /dashboard/patients/edit/${id}`);
+          console.log(`✅ Successfully navigated to /dashboard/patients/edit/${id}`);
         } else {
-          console.warn('❌ Navigation échouée');
+          console.warn('❌ Navigation failed');
         }
       })
       .catch(error => {
-        console.error('❌ Erreur lors de la navigation :', error);
+        console.error('❌ Error during navigation :', error);
       });
   }
 

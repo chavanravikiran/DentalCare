@@ -17,7 +17,7 @@ export class NotificationCardAdminComponent {
   constructor(private snackBar: MatSnackBar) {}
 
   showFullMessage(): void {
-    this.snackBar.open(this.notification.message, 'Fermer', {
+    this.snackBar.open(this.notification.message, 'Close', {
       duration: 7000,
       panelClass: 'snackbar-custom',
       verticalPosition: 'bottom',
@@ -67,7 +67,7 @@ export class NotificationCardAdminComponent {
 
   formatDateTime(datetime: string): string {
     const date = new Date(datetime);
-    return date.toLocaleDateString('fr-FR') + ' à ' + date.toLocaleTimeString('fr-FR', {
+    return date.toLocaleDateString('fr-FR') + ' has ' + date.toLocaleTimeString('fr-FR', {
       hour: '2-digit',
       minute: '2-digit'
     });

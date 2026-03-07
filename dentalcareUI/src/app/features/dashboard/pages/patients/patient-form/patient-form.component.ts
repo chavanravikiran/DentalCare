@@ -83,7 +83,7 @@ export class PatientFormComponent implements OnInit {
     request$.subscribe({
       next: (res) => {
         this.successMessage = this.isEditMode
-          ? '✅ Patient mis à jour avec succès.'
+          ? '✅ Patient successfully updated.'
           : `✅ Patient ${res.prenom} ${res.nom} added successfully.`;
         this.isSubmitting = false;
         this.created.emit();

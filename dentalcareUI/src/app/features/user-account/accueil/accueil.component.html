@@ -20,7 +20,7 @@
   <div *ngIf="!isLoading && confirmedRDVs.length > 0" class="space-y-4">
     <div *ngFor="let rdv of confirmedRDVs" class="bg-white shadow p-4 rounded-lg border border-gray-200">
       <div class="text-blue-600 font-semibold mb-1">
-        📅 {{ rdv.date }} à {{ rdv.heureDebut }}
+        📅 {{ rdv.date }} has {{ rdv.heureDebut }}
       </div>
       <div><strong>Pattern :</strong> {{ rdv.motif }}</div>
       <div class="text-sm text-gray-500"><strong>Type :</strong> {{ rdv.type }}</div>
