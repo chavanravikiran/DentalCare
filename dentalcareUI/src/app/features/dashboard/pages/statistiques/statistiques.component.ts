@@ -29,7 +29,7 @@ export class StatistiquesComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadStats();
-    setTimeout(() => this.loadFakeCharts(), 300); // ⏱️ Laisse le DOM se rendre avant de dessiner les chartes
+    setTimeout(() => this.loadFakeCharts(), 300); // ⏱️ Let the DOM surrender before drawing up the charters.
   }
 
   private loadStats(): void {
@@ -60,9 +60,9 @@ export class StatistiquesComponent implements OnInit {
       new Chart(lineCtx, {
         type: 'line',
         data: {
-          labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin'],
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June'],
           datasets: [{
-            label: 'RDV Confirmés',
+            label: 'Confirmed Appointments',
             data: [12, 19, 15, 23, 20, 17],
             borderColor: '#3b82f6',
             backgroundColor: 'rgba(59, 130, 246, 0.2)',
@@ -77,7 +77,7 @@ export class StatistiquesComponent implements OnInit {
       new Chart(pieCtx, {
         type: 'doughnut',
         data: {
-          labels: ['Consultation', 'Détartrage', 'Urgence'],
+          labels: ['Consultation', 'Descaling', 'Emergency'],
           datasets: [{
             data: [50, 30, 20],
             backgroundColor: ['#3b82f6', '#facc15', '#f87171'],

@@ -4,7 +4,7 @@ import { inject } from '@angular/core';
 import {map, Observable} from 'rxjs';
 import { environment } from '../../../environments/environment';
 
-/** 🎯 Représente un patient côté frontend */
+/** 🎯 Represents a patient on the frontend */
 export interface PatientResponse {
   id: number;
   nom: string;
@@ -12,7 +12,7 @@ export interface PatientResponse {
   email: string;
   cin: string;
   genre?: string;
-  dateNaissance?: string; // LocalDate est automatiquement serialisé en string (format ISO)
+  dateNaissance?: string; // LocalDate is automatically serialized as a string (ISO format).
   adresse?: string;
   enabled: boolean;
   createdByAdmin: boolean;
@@ -21,7 +21,7 @@ export interface PatientResponse {
 }
 
 
-/** 📦 Structure de réponse paginée depuis le backend */
+/** 📦 Paginated response structure from the backend */
 export interface PagedModel<T> {
   _embedded: {
     patientResponseList: T[];
@@ -45,7 +45,7 @@ export class PatientService {
   constructor() {}
 
   /**
-   * ✅ Crée un nouveau patient (admin uniquement)
+   * ✅ Create a new patient (admin only)
    */
   createPatient(payload: {
     nom: string;
@@ -56,13 +56,13 @@ export class PatientService {
     dateNaissance?: string;
     adresse?: string;
     enabled?: boolean;
-    userId?: number; // optionnel
+    userId?: number; // optional
   }): Observable<PatientResponse> {
     return this.http.post<PatientResponse>(this.baseUrl, payload);
   }
 
   /**
-   * 🔄 Récupère tous les patients (non paginée - legacy)
+   * 🔄 Retrieves all patients (unpaginated - legacy)
    */
   getAllPatients(): Observable<PatientResponse[]> {
     return this.http.get<PatientResponse[]>(this.baseUrl);
@@ -73,7 +73,7 @@ export class PatientService {
 
 
   /**
-   * 🔁 Récupère les patients de manière paginée + filtrée
+   * 🔁 Retrieves patients in a paginated and filtered format.
    */
   getPaginatedPatients(
     page = 0,
@@ -103,7 +103,7 @@ export class PatientService {
 
 
 
-  /* Update des patients depuis backend */
+  /* Update patients from backend */
   updatePatient(id: number, payload: any): Observable<PatientResponse> {
     return this.http.put<PatientResponse>(`${this.baseUrl}/${id}`, payload);
   }
@@ -115,7 +115,7 @@ export class PatientService {
     return this.http.get<PatientResponse>(`${this.baseUrl}/email`, { params: { email } });
   }
 
-  /** 🔐 Récupère les informations du patient connecté */
+  /** 🔐 Retrieves information from the connected patient */
   getCurrentPatient(): Observable<PatientResponse> {
     return this.http.get<PatientResponse>(`${this.baseUrl}/me`);
   }

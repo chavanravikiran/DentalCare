@@ -72,7 +72,7 @@ export class AccueilComponent implements OnInit {
 
   formatDate(datetime: string): string {
     const date = new Date(datetime);
-    return date.toLocaleDateString('fr-FR') + ' à ' + date.toLocaleTimeString('fr-FR', {
+    return date.toLocaleDateString('fr-FR') + ' has ' + date.toLocaleTimeString('fr-FR', {
       hour: '2-digit',
       minute: '2-digit'
     });

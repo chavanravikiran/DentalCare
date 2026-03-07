@@ -58,9 +58,9 @@ export class NotificationService {
   }
 
   /**
-   * Affiche une notification d'information
-   * @param message Le message à afficher
-   * @param config Configuration optionnelle
+   * Displays an information notification
+   * @param message The message to display
+   * @param config Optional configuration
    */
   showInfo(message: string, config?: MatSnackBarConfig): void {
     this.snackBar.open(message, 'Close', {//Fermer

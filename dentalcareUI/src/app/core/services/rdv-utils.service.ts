@@ -52,21 +52,21 @@ export class RdvUtilsService {
     if (!date || !heureDebut || !heureFin) {
       return {
         valid: false,
-        message: '🕐 Veuillez sélectionner une date et un créneau horaire pour votre rendez-vous.'
+        message: '🕐 Please select a date and time slot for your appointment.'
       };
     }
 
     if (this.isWeekend(date)) {
       return {
         valid: false,
-        message: '📅 Bonjour, notre cabinet est fermé le week-end. Merci de choisir un jour ouvrable.'
+        message: '📅 Hello, our office is closed on weekends. Please choose a weekday.'
       };
     }
 
     if (this.isSlotReserved(date, heureDebut, heureFin, reservedSlots)) {
       return {
         valid: false,
-        message: '⛔ Ce créneau est malheureusement déjà réservé. Merci de choisir un autre horaire disponible.'
+        message: '⛔ This time slot is unfortunately already booked. Please choose another available time.'
       };
     }
 

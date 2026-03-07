@@ -8,14 +8,14 @@ export const RedirectIfAuthenticatedGuard: CanActivateFn = () => {
   const token = localStorage.getItem(AUTH_TOKEN_KEY);
 
   if (!token) {
-    return true; // Pas connecté → peut accéder à login/register
+    return true; // Not logged in → can access login/register
   }
 
   try {
     const decoded: any = jwtDecode(token);
     const roles: string[] = decoded?.roles || [];
 
-    // Redirection en fonction du rôle
+    // Role-based redirection
     if (roles.includes('ROLE_ADMIN')) {
       return router.navigate(['/dashboard']).then(() => false);
     } else if (roles.includes('ROLE_USER')) {
@@ -25,8 +25,8 @@ export const RedirectIfAuthenticatedGuard: CanActivateFn = () => {
     }
 
   } catch (err) {
-    console.warn('❌ Token invalide ou corrompu', err);
+    console.warn('❌ Invalid or corrupted token', err);
     localStorage.removeItem('authToken');
-    return true; // Accès autorisé
+    return true; // Authorized access
   }
 };
