@@ -36,7 +36,7 @@
         (change)="applyFilters()"
         class="p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
-        <option value="">Tous types</option>
+        <option value="">All types</option>
         <option value="NEW_APPOINTMENT">New appointment</option>
         <option value="REMINDER">Reminder</option>
       </select>
@@ -66,10 +66,10 @@
 
   <!-- Number of results -->
   <p class="text-sm text-gray-500 italic px-2">
-    📬 {{ filteredNotifications.length }} notification(s) trouvée(s)
+    📬 {{ filteredNotifications.length }} notification(s) found(s)
   </p>
 
-  <!-- Liste des notifications -->
+  <!-- List of notifications -->
   <div *ngIf="!isLoading && paginatedNotifications.length > 0" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
     <app-notification-card-admin
       *ngFor="let notification of paginatedNotifications"
