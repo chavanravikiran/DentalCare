@@ -36,5 +36,8 @@ public interface RendezVousService {
 
    List<RendezVousResponse> getAppointmentsForDay(LocalDate date) ;
 
-
+   RendezVousResponse cancelAppointment(Integer id);
+   RendezVousResponse rescheduleAppointment(Integer id, RendezVousRequest request);
+   
+   
 }

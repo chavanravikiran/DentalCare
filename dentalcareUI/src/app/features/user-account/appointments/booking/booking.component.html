@@ -1,13 +1,35 @@
-<section class="px-6 py-10 max-w-6xl mx-auto text-gray-800">
+<!-- <section class="px-6 py-10 max-w-6xl mx-auto text-gray-800"> -->
   <!-- ✅ Dynamic calendar -->
+  <!-- <div class="bg-white border border-blue-200 shadow-xl rounded-2xl p-6 mb-8">
+    <full-calendar #calendarRef [options]="calendarOptions" class="rounded-md"></full-calendar>
+  </div> -->
+
+  <!-- ✅ Visible title -->
+  <!-- <h2 class="text-2xl font-semibold text-blue-700 mb-4">📅 Appointment Booking</h2> -->
+
+  <!-- ✅ Form displayed only after clicking on a date -->
+  <!-- <app-appointment-form
+    *ngIf="showForm"
+    [selectedDate]="selectedDate"
+    [reservedSlots]="reservedSlots"
+    (cancel)="annulerRDV()"
+    (submit)="validerRDV($event)">
+  </app-appointment-form>
+</section> -->
+
+
+<section class="px-6 py-10 max-w-6xl mx-auto text-gray-800">
+
+  <!-- Calendar -->
   <div class="bg-white border border-blue-200 shadow-xl rounded-2xl p-6 mb-8">
     <full-calendar #calendarRef [options]="calendarOptions" class="rounded-md"></full-calendar>
   </div>
 
-  <!-- ✅ Visible title -->
-  <h2 class="text-2xl font-semibold text-blue-700 mb-4">📅 Appointment Booking</h2>
+  <h2 class="text-2xl font-semibold text-blue-700 mb-4">
+    📅 Appointment Booking
+  </h2>
 
-  <!-- ✅ Form displayed only after clicking on a date -->
+  <!-- Appointment form -->
   <app-appointment-form
     *ngIf="showForm"
     [selectedDate]="selectedDate"
@@ -15,4 +37,20 @@
     (cancel)="annulerRDV()"
     (submit)="validerRDV($event)">
   </app-appointment-form>
+
+  <!-- My appointments table -->
+  <div class="mt-10">
+
+    <h3 class="text-xl font-semibold text-blue-700 mb-4">
+      My Appointments
+    </h3>
+
+    <app-appointments-table
+      [appointments]="myAppointments"
+      (cancel)="cancelAppointment($event)"
+      (reschedule)="rescheduleAppointment($event)">
+    </app-appointments-table>
+
+  </div>
+
 </section>

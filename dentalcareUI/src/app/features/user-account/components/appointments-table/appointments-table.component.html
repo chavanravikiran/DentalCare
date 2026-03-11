@@ -5,6 +5,8 @@
     <th class="px-4 py-3 text-left">Hour</th>
     <th class="px-4 py-3 text-left">Type</th>
     <th class="px-4 py-3 text-left">Pattern</th>
+     <th class="px-4 py-3 text-left">Status</th>
+    <th class="px-4 py-3 text-left">Actions</th>
   </tr>
   </thead>
   <tbody>
@@ -13,6 +15,44 @@
     <td class="px-4 py-2">{{ rdv.heureDebut }} - {{ rdv.heureFin }}</td>
     <td class="px-4 py-2">{{ rdv.type }}</td>
     <td class="px-4 py-2">{{ rdv?.motif || '-' }}</td>
+
+    <!-- Status -->
+    <td class="px-4 py-2">
+      <span
+        class="px-2 py-1 rounded text-xs font-semibold"
+        [ngClass]="{
+          'bg-green-100 text-green-700': rdv.status === 'CONFIRME',
+          'bg-yellow-100 text-yellow-700': rdv.status === 'ON_HOLD',
+          'bg-red-100 text-red-700': rdv.status === 'CANCELED'
+        }"
+      >
+        {{ rdv.status }}
+      </span>
+    </td>
+
+    <!-- Actions -->
+    <td class="px-4 py-2 flex gap-2">
+
+      <!-- Cancel -->
+      <button
+        class="bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1 rounded"
+        *ngIf="rdv.status !== 'CANCELED'"
+        (click)="cancelAppointment(rdv.id)"
+      >
+        Cancel
+      </button>
+
+      <!-- Reschedule -->
+      <button
+        class="bg-yellow-500 hover:bg-yellow-600 text-white text-xs px-3 py-1 rounded"
+        *ngIf="rdv.status !== 'CANCELED'"
+        (click)="rescheduleAppointment(rdv)"
+      >
+        Reschedule
+      </button>
+
+    </td>
+
   </tr>
   </tbody>
 </table>

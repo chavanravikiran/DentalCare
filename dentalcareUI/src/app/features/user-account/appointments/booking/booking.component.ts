@@ -36,6 +36,7 @@ export class BookingComponent implements OnInit {
 
   calendarOptions!: CalendarOptions;
   reservedSlots: RendezVousResponse[] = [];
+  myAppointments: RendezVousResponse[] = [];
 
   showForm = false;
   showTable = true;
@@ -44,7 +45,10 @@ export class BookingComponent implements OnInit {
   heureFin = '';
   selectedType = '';
 
+  reschedulingId: number | null = null;
+
   ngOnInit(): void {
+    this.loadMyAppointments();
     this.initializeCalendar();
 
     this.websocketService.connect();
@@ -125,28 +129,103 @@ export class BookingComponent implements OnInit {
     this.toast.info(`⛔ This time slot is already booked.\nDate : ${info.event.startStr}`);
   }
 
-  validerRDV(request: RendezVousRequest): void {
+ validerRDV(request: RendezVousRequest): void {
+
+  // 🔁 If rescheduling
+  if (this.reschedulingId) {
+
+    this.rendezvousService
+      .rescheduleAppointment(this.reschedulingId, request)
+      .subscribe({
+        next: () => {
+          this.toast.success('✅ Appointment rescheduled successfully');
+          this.reschedulingId = null;
+          this.showForm = false;
+
+          this.triggerCalendarReload();
+          this.loadMyAppointments();
+        },
+        error: () => {
+          this.toast.error('❌ Failed to reschedule appointment');
+        }
+      });
+
+  }
+
+  // ➕ Normal booking
+  else {
+
     this.rendezvousService.createRendezVous(request).subscribe({
       next: () => {
         this.toast.success('✅ Appointment pending confirmation.');
         this.showForm = false;
+
+        this.triggerCalendarReload();
+        this.loadMyAppointments();
       },
       error: (err) => {
-        const msg = err?.error?.message || '❌ An error has occurred.';
+        const msg =
+          err?.error?.errors?.[0]?.defaultMessage ||
+          err?.error?.message ||
+          '❌ An error has occurred.';
+
         this.toast.error(msg);
       }
     });
+
   }
+}
 
   annulerRDV(): void {
-    this.showForm = false;
-    this.selectedDate = '';
-    this.heureDebut = '';
-    this.heureFin = '';
-    this.selectedType = '';
-  }
+  this.reschedulingId = null;
+
+  this.showForm = false;
+  this.selectedDate = '';
+  this.heureDebut = '';
+  this.heureFin = '';
+  this.selectedType = '';
+}
 
   toggleTable(): void {
     this.showTable = !this.showTable;
   }
+
+  cancelAppointment(id: number): void {
+
+  if (confirm('Are you sure you want to cancel this appointment?')) {
+
+    this.rendezvousService.cancelAppointment(id).subscribe({
+      next: () => {
+        this.toast.success('Appointment cancelled successfully');
+        this.triggerCalendarReload();
+        this.loadMyAppointments();   
+      },
+      error: () => {
+        this.toast.error('Failed to cancel appointment');
+      }
+    });
+  }
+}
+
+rescheduleAppointment(rdv: RendezVousResponse): void {
+
+  this.reschedulingId = rdv.id;   // store appointment id
+
+  this.selectedDate = rdv.date;
+  this.heureDebut = rdv.heureDebut;
+  this.heureFin = rdv.heureFin;
+
+  this.showForm = true;
+}
+
+loadMyAppointments(): void {
+  this.rendezvousService.getMyRendezVous().subscribe({
+    next: (data) => {
+      this.myAppointments = data;
+    },
+    error: () => {
+      this.toast.error('❌ Failed to load your appointments');
+    }
+  });
+}
 }
