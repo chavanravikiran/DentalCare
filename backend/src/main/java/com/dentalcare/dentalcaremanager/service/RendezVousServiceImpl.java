@@ -279,4 +279,71 @@ public void rejectRendezVous(Integer id) {
         return rendezVousRepository.findByDate(date);
     }
 
+    //cancel appointment by User
+    @Override
+    @Transactional
+    public RendezVousResponse cancelAppointment(Integer id) {
+
+        RendezVous rdv = rendezVousRepository.findById(id)
+                .orElseThrow(() -> new RendezVousNotFoundException(id));
+
+        if (rdv.getStatus() == StatusRdv.CANCELED) {
+            throw new InvalidRendezVousRequestException("This appointment is already cancelled.");
+        }
+
+        rdv.setStatus(StatusRdv.CANCELED);
+
+        RendezVous saved = rendezVousRepository.save(rdv);
+
+        RendezVousResponse response = RendezVousResponse.fromEntity(saved);
+
+        log.info("❌ Appointment ID={} cancelled by user", id);
+
+        rendezVousSocketController.broadcastRdvRejected(response);
+
+        return response;   // IMPORTANT
+    }
+    
+    //reschedule by User
+    @Override
+    @Transactional
+    public RendezVousResponse rescheduleAppointment(Integer id, RendezVousRequest request) {
+
+        RendezVous rdv = rendezVousRepository.findById(id)
+                .orElseThrow(() -> new RendezVousNotFoundException(id));
+
+        // Validate request
+        validateRdvRequest(request);
+
+        // Check slot conflict
+        boolean conflict = rendezVousRepository.existsConflictExcludingId(
+                id,
+                request.getDate(),
+                request.getHeureDebut(),
+                request.getHeureFin(),
+                StatusRdv.CONFIRME
+        );
+
+        if (conflict) {
+            throw new SlotConflictException("This time slot is already reserved.");
+        }
+
+        rdv.setDate(request.getDate());
+        rdv.setHeureDebut(request.getHeureDebut());
+        rdv.setHeureFin(request.getHeureFin());
+
+        // When rescheduled → needs admin confirmation again
+        rdv.setStatus(StatusRdv.ON_HOLD);
+
+        RendezVous saved = rendezVousRepository.save(rdv);
+
+        RendezVousResponse response = RendezVousResponse.fromEntity(saved);
+
+        log.info("🔄 Appointment ID={} rescheduled by user", id);
+
+        // WebSocket update
+        rendezVousSocketController.broadcastRdvCreated(response);
+
+        return response;
+    }
 }
