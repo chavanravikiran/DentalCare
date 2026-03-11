@@ -4,11 +4,15 @@ import com.dentalcare.dentalcaremanager.notifications.NotificationSendException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.support.MethodArgumentNotValidException;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -69,5 +73,21 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body("Ce rendez-vous a été modifié par un autre utilisateur. Veuillez recharger la page.");
     }
+    
 
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public ResponseEntity<ApiError> handleValidationException(
+	        MethodArgumentNotValidException ex,
+	        HttpServletRequest request
+	) {
+	
+	    String errorMessage = ex.getBindingResult()
+	            .getFieldErrors()
+	            .stream()
+	            .map(FieldError::getDefaultMessage)
+	            .findFirst()
+	            .orElse("Validation error");
+	
+	    return buildErrorResponse(errorMessage, HttpStatus.BAD_REQUEST, request.getRequestURI());
+	}
 }

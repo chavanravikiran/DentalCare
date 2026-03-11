@@ -307,7 +307,7 @@ This project was developed as part of the academic curriculum at ENSA Marrakech 
 
 ## 📬 Contact
 
-**Mouad RAZI**
+**Ravikiran Chavan**
 - GitHub: [@RAVIKIRAN](https://github.com/chavanravikiran)
 - LinkedIn: [Ravikiran_Chavan](https://www.linkedin.com/in/ravikiran-chavan-2846b1188/)
 

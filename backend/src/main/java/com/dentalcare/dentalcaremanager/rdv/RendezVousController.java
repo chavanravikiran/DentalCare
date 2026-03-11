@@ -179,4 +179,22 @@ public ResponseEntity<Void> deleteById(@PathVariable Integer id) {
         return ResponseEntity.ok(dtos);
     }
 
+    //cancel appoint from User
+    @PutMapping("/{id}/cancel")
+    @PreAuthorize("hasAuthority(T(com.dentalcare.dentalcaremanager.security.RoleNames).USER)")
+    public ResponseEntity<RendezVousResponse> cancelAppointment(@PathVariable Integer id) {
+        RendezVousResponse response = rendezVousService.cancelAppointment(id);
+        return ResponseEntity.ok(response);
+    }
+    
+    
+    //reschedule appointment from User
+    @PutMapping("/{id}/reschedule")
+    @PreAuthorize("hasAuthority(T(com.dentalcare.dentalcaremanager.security.RoleNames).USER)")
+    public ResponseEntity<RendezVousResponse> rescheduleAppointment(
+            @PathVariable Integer id,
+            @RequestBody @Valid RendezVousRequest request) {
+
+        return ResponseEntity.ok(rendezVousService.rescheduleAppointment(id, request));
+    }
 }

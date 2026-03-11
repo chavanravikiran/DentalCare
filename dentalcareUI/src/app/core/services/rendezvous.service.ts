@@ -11,6 +11,7 @@ import {catchError} from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class RendezvousService {
   private api = environment.apiUrl;
+  private apiUrl = 'http://localhost:8088/api/v1/rendezvous';
 
   constructor(private http: HttpClient,
               private snackBar: MatSnackBar) {}
@@ -142,4 +143,11 @@ export class RendezvousService {
     });
   }
 
+cancelAppointment(id: number) {
+  return this.http.put(`${this.apiUrl}/${id}/cancel`, {});
+}
+
+rescheduleAppointment(id: number, data: any) {
+  return this.http.put(`${this.apiUrl}/${id}/reschedule`, data);
+}
 }
