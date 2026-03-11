@@ -14,8 +14,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 /**
- * Scheduler qui envoie automatiquement des rappels
- * 24h avant les rendez-vous confirmés.
+ * A scheduler that automatically sends reminders
+ * 24 hours before confirmed appointments.
  */
 @Slf4j
 @Service
@@ -26,35 +26,35 @@ public class AppointmentReminderScheduler {
     private final NotificationService notificationService;
 
     /**
-     * Tâche planifiée pour envoyer des rappels toutes les heures.
+     * Scheduled task to send reminders every hour.
      */
-    @Scheduled(cron = "0 0 * * * *") // Toutes les heures pile (HH:00)
+    @Scheduled(cron = "0 0 * * * *") // Every hour on the hour (HH:00)
     public void scheduleReminderNotifications() {
-        log.info("Démarrage du scheduler de rappel de rendez-vous...");
+        log.info("Starting the appointment reminder scheduler...");
 
         try {
             LocalDate tomorrow = LocalDate.now().plusDays(1);
             List<RendezVous> rendezVousList = rendezVousRepository.findByDateAndStatus(tomorrow, StatusRdv.CONFIRME);
 
-            log.info("Nombre de rendez-vous confirmés pour demain : {}", rendezVousList.size());
+            log.info("Number of appointments confirmed for tomorrow : {}", rendezVousList.size());
 
             for (RendezVous rdv : rendezVousList) {
                 try {
                     if (rdv.getPatient() != null) {
                         notificationService.sendReminderNotification(rdv.getPatient(), rdv);
                     } else {
-                        log.warn("Patient nul pour RDV id={}, skipping notification", rdv.getId());
+                        log.warn("Patient missed appointment id={}, skipping notification", rdv.getId());
                     }
                 } catch (Exception e) {
-                    log.error("Erreur lors de l'envoi du rappel pour RDV id={}", rdv.getId(), e);
+                    log.error("Error sending appointment reminder id={}", rdv.getId(), e);
                 }
             }
 
         } catch (Exception e) {
-            log.error("Erreur globale du scheduler de rappel de rendez-vous", e);
+            log.error("Global error in the appointment reminder scheduler", e);
         }
 
-        log.info("Fin du scheduler de rappel de rendez-vous.");
+        log.info("End of appointment reminder scheduler.");
     }
 }
 

@@ -1,7 +1,7 @@
 package com.dentalcare.dentalcaremanager.exception;
 
 /**
- * Exception levée lorsqu'un créneau horaire est déjà réservé
+ * An exception is lifted when a time slot is already reserved.
  */
 public class SlotConflictException extends RuntimeException {
     public SlotConflictException(String message) {

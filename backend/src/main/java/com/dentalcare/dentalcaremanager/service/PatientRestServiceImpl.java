@@ -118,7 +118,7 @@ public class PatientRestServiceImpl implements PatientRestService {
     public List<PatientResponse> getPatientsWithUserAccount() {
         return patientService.getPatientsWithUserAccount()
                 .stream()
-                .map(this::mapToResponse) // ✅ conversion propre
+                .map(this::mapToResponse) // ✅ clean conversion
                 .toList();
     }
     @Override

@@ -8,40 +8,40 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
-//Accès direct à la base de données via JPA + Interagit avec PatientServiceImpl
+//Direct access to the database via JPA + Interacts with PatientServiceImpl
 public interface PatientRepository extends JpaRepository<Patient, Integer>, JpaSpecificationExecutor<Patient> {
 
-    // 🔎 Recherche par identifiant utilisateur (si lié à un compte)
+    // 🔎 Search by user ID (if linked to an account)
     Optional<Patient> findByUser(User user);
 
     @Query("SELECT p FROM Patient p WHERE p.user.id = :userId")
     Optional<Patient> findByUserId(@Param("userId") Integer userId);
 
-    // 🔎 Recherche par email
+    // 🔎 Search by email
     Optional<Patient> findByEmail(String email);
 
-    // 🔍 Recherche rapide pour autocomplétion (nom/prénom/combinaison)
+    // 🔍 Quick search for autocomplete (name/surname/combination)
     List<Patient> findByNomContainingIgnoreCaseOrPrenomContainingIgnoreCase(String nom, String prenom);
 
-    // 📌 Patients créés par l’admin sans compte lié
+    // 📌 Patients created by the admin without a linked account
     List<Patient> findByUserIsNull();
 
-    // 📌 Patients liés à un compte utilisateur
+    // 📌 Patients linked to a user account
     List<Patient> findByUserIsNotNull();
 
-    // ✅ Patients activés / désactivés
+    // ✅ Patients activated / deactivated
     List<Patient> findByEnabled(boolean enabled);
 
-    // 📅 Patients triés par date de naissance
+    // 📅 Patients sorted by date of birth
     List<Patient> findAllByOrderByDateNaissanceAsc();
 
-    // 🔒 Optionnel : doublon CIN
+    // 🔒 Optional: duplicate ID card
     boolean existsByCin(String cin);
 
-    // 🔍 Patient exact selon nom + prénom (utile si pas de compte lié)
+    // 🔍 Exact patient information based on first and last name (useful if no linked account)
     Optional<Patient> findByNomAndPrenom(String nom, String prenom);
 
     List<Patient> findByCreatedByAdminTrue();
-    List<Patient> findByCreatedByAdminFalse(); // Patients liés à des comptes créés via /register
+    List<Patient> findByCreatedByAdminFalse(); // Patients linked to accounts created via /register
 
 }
