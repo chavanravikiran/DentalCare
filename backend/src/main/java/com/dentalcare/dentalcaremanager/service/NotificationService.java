@@ -92,7 +92,7 @@ public class NotificationService {
                 : "You have booked a new appointment.";
 
         return String.format(
-                "Good morning %s,\n\n%s\n\nAppointment details :\n- Date : %s\n- Heure : %s\n- Motif : %s\n\nSee you soon at DentalCare !",
+                "Good morning %s,\n\n%s\n\nAppointment details :\n- Date : %s\n- Hour : %s\n- Motif : %s\n\nSee you soon at DentalCare !",
                 patient.getFirstname(),
                 intro,
                 rendezVous.getDate(),
@@ -103,7 +103,7 @@ public class NotificationService {
 
     private String buildReminderMessage(User patient, RendezVous rendezVous) {
         return String.format(
-                "Good morning %s,\n\nThis is a reminder for your appointment tomorrow. :\n- Date : %s\n- Heure : %s\n- Motif : %s\n\nThank you and see you soon at DentalCare !",
+                "Good morning %s,\n\nThis is a reminder for your appointment tomorrow. :\n- Date : %s\n- Hour : %s\n- Motif : %s\n\nThank you and see you soon at DentalCare !",
                 patient.getFirstname(),
                 rendezVous.getDate(),
                 rendezVous.getHeureDebut(),
@@ -112,7 +112,7 @@ public class NotificationService {
     }
 
     private void sendEmail(String to, String subject, String message) {
-        // Simulation d'envoi d'email
+        // Email sending simulation
         log.info("=== Send Email ===\n HAS: {}\nSujet: {}\nMessage:\n{}\n", to, subject, message);
     }
 }
