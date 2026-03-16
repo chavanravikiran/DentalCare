@@ -11,6 +11,13 @@ export interface ResevationValidationResult {
   message?: string;
 }
 
+export interface AppointmentSlot{
+ id:number
+ startTime:string
+ endTime:string
+ booked:boolean
+}
+
 @Injectable({ providedIn: 'root' })
 export class RdvUtilsService {
 
