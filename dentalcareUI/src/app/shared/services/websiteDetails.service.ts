@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { WebsiteDetails } from '@shared/models/websiteDetails.model';
+import { DoctorSlot } from 'app/core/services/rdv-utils.service';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -20,5 +21,12 @@ export class WebsiteService {
       { params }
     );
   }
+
+  getDoctorSlots(doctorId:number,date:string){
+      return this.http.get<DoctorSlot[]>(
+        `${this.baseUrl}/slots/available`,
+        {params:{doctorId:doctorId,date:date}}
+      );
+    }
 
 }

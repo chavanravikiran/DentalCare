@@ -11,7 +11,7 @@ import { PatientsListComponent } from '../patients-list/patients-list.component'
     CommonModule,
     RouterModule,
     LucideIconsModule,
-    PatientsListComponent
+    // PatientsListComponent
   ],
   templateUrl: './patients-page.component.html',
   styleUrls: ['./patients-page.component.css']

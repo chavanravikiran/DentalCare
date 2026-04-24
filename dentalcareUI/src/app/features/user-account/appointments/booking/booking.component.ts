@@ -13,6 +13,8 @@ import { RendezVousResponse } from '../../../dashboard/models/rendezvous-respons
 import { RendezVousRequest } from '../../../dashboard/models/rendezvous-request.model';
 import { AppointmentFormComponent } from '../../components/appointment-form/appointment-form.component';
 import { AppointmentsTableComponent } from '../../components/appointments-table/appointments-table.component';
+import { DoctorSlot, RdvUtilsService } from 'app/core/services/rdv-utils.service';
+import { WebsiteService } from '@shared/services/websiteDetails.service';
 
 @Component({
   selector: 'app-booking',
@@ -31,6 +33,7 @@ export class BookingComponent implements OnInit {
   private rendezvousService = inject(RendezvousService);
   private toast = inject(ToastService);
   private websocketService = inject(WebSocketService);
+  private websiteService = inject(WebsiteService);
 
   @ViewChild('calendarRef') calendarComponent!: FullCalendarComponent;
 
@@ -47,7 +50,12 @@ export class BookingComponent implements OnInit {
 
   reschedulingId: number | null = null;
 
+  doctorId = 1; // selected doctor
+  availableSlots: DoctorSlot[] = [];
+
   ngOnInit(): void {
+    console.log("booking component ngOnInit()-->");
+    
     this.loadMyAppointments();
     this.initializeCalendar();
 
@@ -120,9 +128,32 @@ export class BookingComponent implements OnInit {
   }
 
 
-  onDateClick(info: any): void {
+  // onDateClick(info: any): void {
+  //   this.selectedDate = info.dateStr;
+  //   this.showForm = true;
+  // }
+
+  onDateClick(info:any){
+    console.log("Date clicked:", info.dateStr); // debug
     this.selectedDate = info.dateStr;
     this.showForm = true;
+    this.loadDoctorSlots();
+  }
+
+
+  loadDoctorSlots(){
+    console.log("Calling API with:", this.doctorId, this.selectedDate);
+    this.websiteService
+    .getDoctorSlots(this.doctorId,this.selectedDate)
+    .subscribe({
+      next:(slots)=>{
+        console.log("API RESPONSE:", slots); 
+        this.availableSlots = slots;
+      },
+      error:(err)=>{
+        console.error("API ERROR:", err); 
+      }
+    });
   }
 
   onEventClick(info: any): void {

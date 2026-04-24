@@ -15,11 +15,12 @@
     >
       <option disabled selected value="">-- Choose a time --</option>
       <!-- <option *ngFor="let slot of availableSlots" [value]="slot">{{ slot }}</option> -->
-       <option *ngFor="let slot of availableSlots"
-        [disabled]="slot.booked"
-        [value]="slot.startTime + ' - ' + slot.endTime">
-          {{slot.startTime}} - {{slot.endTime}}
+      <option *ngFor="let slot of availableSlots"
+        [value]="slot.id"
+        [disabled]="slot.booked">
+          {{ slot.startTime }} - {{ slot.endTime }}
         </option>
+        
     </select>
   </div>
 

@@ -20,3 +20,24 @@ VALUES
 1)Header Component
 2)Footer Component
 3)
+
+
+
+INSERT INTO doctor (key,created_by,created_on,is_active,version, name, specialization, email, phone)
+VALUES 
+(nextval('doctor_seq'),1,now(),'Y',0,'Dr. Zahra Khan', 'Dentist', 'zahra@gmail.com', '9876543210'),
+(nextval('doctor_seq'),1,now(),'Y',0,'Dr. Amit Sharma', 'Orthodontist', 'amit@gmail.com', '9876543211'),
+(nextval('doctor_seq'),1,now(),'Y',0,'Dr. Neha Patil', 'Dental Surgeon', 'neha@gmail.com', '9876543212');
+
+
+INSERT INTO appointment_slot (key,created_by,created_on,is_active,version, slot_date, start_time, end_time, booked,doctor_id)
+VALUES
+(nextval('appointment_slot_seq'),1,now(),'Y',0, '2026-03-20', '09:00:00', '09:30:00', false,1),
+(nextval('appointment_slot_seq'),1,now(),'Y',0, '2026-03-20', '09:30:00', '10:00:00', false,1),
+(nextval('appointment_slot_seq'),1,now(),'Y',0, '2026-03-20', '10:00:00', '10:30:00', false,1),
+(nextval('appointment_slot_seq'),1,now(),'Y',0, '2026-03-20', '10:30:00', '11:00:00', false,1),
+(nextval('appointment_slot_seq'),1,now(),'Y',0, '2026-03-20', '11:00:00', '11:30:00', false,1),
+(nextval('appointment_slot_seq'),1,now(),'Y',0, '2026-03-20', '09:00:00', '09:30:00', false,2),
+(nextval('appointment_slot_seq'),1,now(),'Y',0, '2026-03-20', '09:30:00', '10:00:00', false,2),
+(nextval('appointment_slot_seq'),1,now(),'Y',0, '2026-03-20', '10:00:00', '10:30:00', false,2);
+
