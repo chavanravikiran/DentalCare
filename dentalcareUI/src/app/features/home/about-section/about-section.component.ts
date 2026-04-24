@@ -3,7 +3,7 @@ import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-about-section',
-  imports: [NgOptimizedImage],
+  imports: [],//NgOptimizedImage
   standalone:true,
   templateUrl: './about-section.component.html',
   styleUrl: './about-section.component.css'

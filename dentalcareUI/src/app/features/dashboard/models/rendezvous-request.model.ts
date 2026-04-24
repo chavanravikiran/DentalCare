@@ -5,4 +5,6 @@ export interface RendezVousRequest {
   type: 'CONSULTATION' | 'FOLLOW_UP' | 'DESCALING' | 'OTHER';
   motif?: string;
   status?: 'ON_HOLD' | 'CONFIRME' | 'CANCELED';
+  slotId?: number;
+  doctorId?: number;
 }

@@ -9,18 +9,18 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEvent;
 
 /**
- * Événement émis lorsqu'un nouveau rendez-vous est créé.
- * Sert de message pour déclencher les notifications.
+ * Event emitted when a new appointment is created.
+ * Serves as a message to trigger notifications.
  */
 @Getter
 public class AppointmentCreatedEvent extends ApplicationEvent {
 
     private final User patient;
     private final RendezVous rendezVous;
-    private final String createdBy; // optionnel : qui a créé la réservation
+    private final String createdBy; // Optional: Who created the reservation?
 
     /**
-     * Constructeur principal sans champ createdBy
+     * Main constructor without a field createdBy
      */
     public AppointmentCreatedEvent(Object source, User patient, RendezVous rendezVous) {
         super(source);
@@ -30,7 +30,7 @@ public class AppointmentCreatedEvent extends ApplicationEvent {
     }
 
     /**
-     * Constructeur secondaire avec createdBy renseigné
+     * Secondary constructor with createdBy specified
      */
     public AppointmentCreatedEvent(Object source, User patient, RendezVous rendezVous, String createdBy) {
         super(source);

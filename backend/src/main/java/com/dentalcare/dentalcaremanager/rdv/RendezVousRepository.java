@@ -94,5 +94,13 @@ WHERE r.status = :status
     List<RendezVous> findByDateOrderByHeureDebutAsc(LocalDate date);
     @Query("SELECT COUNT(r) FROM RendezVous r WHERE r.date = :date")
     long countByDate(@Param("date") LocalDate date);
+    
+    @Query("""
+	SELECT CASE WHEN COUNT(r) > 0 THEN true ELSE false END
+	FROM RendezVous r
+	WHERE r.slot.id = :slotId
+	AND r.status = com.dentalcare.dentalcaremanager.rdv.StatusRdv.CONFIRME
+	""")
+	boolean existsConfirmedSlot(@Param("slotId") Long slotId);
 
 }

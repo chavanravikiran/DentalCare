@@ -30,10 +30,17 @@
   </h2>
 
   <!-- Appointment form -->
-  <app-appointment-form
+  <!-- <app-appointment-form
     *ngIf="showForm"
     [selectedDate]="selectedDate"
     [reservedSlots]="reservedSlots"
+    (cancel)="annulerRDV()"
+    (submit)="validerRDV($event)">
+  </app-appointment-form> -->
+  <app-appointment-form
+    *ngIf="showForm"
+    [selectedDate]="selectedDate"
+    [availableSlots]="availableSlots"
     (cancel)="annulerRDV()"
     (submit)="validerRDV($event)">
   </app-appointment-form>

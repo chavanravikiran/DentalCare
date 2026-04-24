@@ -33,7 +33,6 @@ public class AppointmentSlot extends AbstractEntity{
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "appointment_slot_seq")
     private Long id;
 
-
     private LocalDate slotDate;
 
     private LocalTime startTime;

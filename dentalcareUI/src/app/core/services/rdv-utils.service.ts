@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 export interface ReservedSlot {
@@ -6,9 +7,16 @@ export interface ReservedSlot {
   heureFin: string;
 }
 
+
 export interface ResevationValidationResult {
   valid: boolean;
   message?: string;
+}
+
+export interface DoctorSlot {
+  id: number;
+  startTime: string;
+  endTime: string;
 }
 
 export interface AppointmentSlot{
@@ -20,6 +28,12 @@ export interface AppointmentSlot{
 
 @Injectable({ providedIn: 'root' })
 export class RdvUtilsService {
+
+  private baseUrl = 'http://localhost:8088/website';
+
+  constructor(private http: HttpClient) {}
+
+  
 
   getAvailableSlots(
     selectedDate: string,

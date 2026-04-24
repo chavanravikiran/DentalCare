@@ -3,12 +3,16 @@ package com.dentalcare.dentalcaremanager.service;
 import com.dentalcare.dentalcaremanager.admin.RendezVousAdminResponse;
 import com.dentalcare.dentalcaremanager.dto.RendezVousRequest;
 import com.dentalcare.dentalcaremanager.dto.RendezVousResponse;
+import com.dentalcare.dentalcaremanager.entity.AppointmentSlot;
+import com.dentalcare.dentalcaremanager.entity.Doctor;
 import com.dentalcare.dentalcaremanager.events.AppointmentCreatedEvent;
 import com.dentalcare.dentalcaremanager.exception.InvalidRendezVousRequestException;
 import com.dentalcare.dentalcaremanager.exception.RendezVousNotFoundException;
 import com.dentalcare.dentalcaremanager.exception.SlotConflictException;
 import com.dentalcare.dentalcaremanager.rdv.RendezVous;
 import com.dentalcare.dentalcaremanager.rdv.StatusRdv;
+import com.dentalcare.dentalcaremanager.repository.AppointmentSlotRepository;
+import com.dentalcare.dentalcaremanager.repository.DoctorRepository;
 import com.dentalcare.dentalcaremanager.user.User;
 import com.dentalcare.dentalcaremanager.rdv.RendezVousRepository;
 import com.dentalcare.dentalcaremanager.user.UserRepository;
@@ -36,54 +40,55 @@ public class RendezVousServiceImpl implements RendezVousService {
     private final RendezVousRepository rendezVousRepository;
     private final UserRepository userRepository;
     private final RendezVousSocketController rendezVousSocketController;
+    private final AppointmentSlotRepository slotRepository;
+    private final DoctorRepository doctorRepository;
 
-
-    @Override
-    @Transactional
-    public RendezVousResponse create(RendezVousRequest request) {
-
-        // 🔐 Step 1: Secure Authentication
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null || !authentication.isAuthenticated()) {
-            throw new SecurityException("Unauthenticated user");
-        }
-
-        // Retrieve the logged-in user
-        String email = authentication.getName();
-        Integer userId = getUserIdByEmail(email);
-
-        // 🔍 Step 2: Validation
-        validateRdvRequest(request);
-
-        // ⚠️ Step 3: Conflict Checking
-        boolean conflict = rendezVousRepository.existsSlotConflict(
-                request.getDate(), request.getHeureDebut(), request.getHeureFin());
-
-        if (conflict) {
-            throw new SlotConflictException("This time slot is already reserved for this time period.");
-        }
-
-        // 👤 Step 4: Loading the patient
-        User patient = userRepository.findById(userId)
-                .orElseThrow(() -> new UsernameNotFoundException("Utilisateur introuvable"));
-
-        // 🧠 Step 5: Building the RendezVous object
-        RendezVous rdv = request.toEntity(patient);
-
-        // 💾 Step 6: Backup
-        RendezVous saved = rendezVousRepository.save(rdv);
-        RendezVousResponse response = RendezVousResponse.fromEntity(saved);
-
-        // 📢 Step 7 : WebSocket
-        rendezVousSocketController.broadcastRdvCreated(response);
-
-        // 📣 Step 8 : Publish the Spring event to trigger the notification
-        eventPublisher.publishEvent(new AppointmentCreatedEvent(this, patient, saved, email));
-
-        log.info("📅 New appointment for the user {}", email);
-        return response;
-    }
-
+//    @Override
+//    @Transactional
+//    public RendezVousResponse create(RendezVousRequest request) {
+//
+//        // 🔐 Step 1: Secure Authentication
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if (authentication == null || !authentication.isAuthenticated()) {
+//            throw new SecurityException("Unauthenticated user");
+//        }
+//
+//        // Retrieve the logged-in user
+//        String email = authentication.getName();
+//        Integer userId = getUserIdByEmail(email);
+//
+//        // 🔍 Step 2: Validation
+//        validateRdvRequest(request);
+//
+//        // ⚠️ Step 3: Conflict Checking
+//        boolean conflict = rendezVousRepository.existsSlotConflict(
+//                request.getDate(), request.getHeureDebut(), request.getHeureFin());
+//
+//        if (conflict) {
+//            throw new SlotConflictException("This time slot is already reserved for this time period.");
+//        }
+//
+//        // 👤 Step 4: Loading the patient
+//        User patient = userRepository.findById(userId)
+//                .orElseThrow(() -> new UsernameNotFoundException("Utilisateur introuvable"));
+//
+//        // 🧠 Step 5: Building the RendezVous object
+//        RendezVous rdv = request.toEntity(patient);
+//
+//        // 💾 Step 6: Backup
+//        RendezVous saved = rendezVousRepository.save(rdv);
+//        RendezVousResponse response = RendezVousResponse.fromEntity(saved);
+//
+//        // 📢 Step 7 : WebSocket
+//        rendezVousSocketController.broadcastRdvCreated(response);
+//
+//        // 📣 Step 8 : Publish the Spring event to trigger the notification
+//        eventPublisher.publishEvent(new AppointmentCreatedEvent(this, patient, saved, email));
+//
+//        log.info("📅 New appointment for the user {}", email);
+//        return response;
+//    }
+//
     //Method used in the create method: centralize validation
     private void validateRdvRequest(RendezVousRequest request) {
         if (request.getDate() == null || request.getHeureDebut() == null || request.getHeureFin() == null) {
@@ -99,6 +104,46 @@ public class RendezVousServiceImpl implements RendezVousService {
         }
     }
 
+    @Override
+    @Transactional
+    public RendezVousResponse create(RendezVousRequest request) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        Integer userId = getUserIdByEmail(email);
+
+        validateRdvRequest(request);
+
+        // 🔥 STEP 1: Fetch slot
+        AppointmentSlot slot = slotRepository.findById(request.getSlotId())
+                .orElseThrow(() -> new RuntimeException("Slot not found"));
+
+        // 🔥 STEP 2: Check if slot already CONFIRMED
+        boolean isAlreadyBooked = rendezVousRepository.existsConfirmedSlot(request.getSlotId());
+
+        if (isAlreadyBooked) {
+            throw new SlotConflictException("⛔ Slot already booked");
+        }
+
+        // 🔥 STEP 3: Fetch doctor
+        Doctor doctor = doctorRepository.findById(request.getDoctorId())
+                .orElseThrow(() -> new RuntimeException("Doctor not found"));
+
+        // 👤 Step: patient
+        User patient = userRepository.findById(userId)
+                .orElseThrow();
+
+        // 🧠 Build entity
+        RendezVous rdv = request.toEntity(patient);
+
+        rdv.setDoctor(doctor);
+        rdv.setSlot(slot);
+
+        // 💾 Save
+        RendezVous saved = rendezVousRepository.save(rdv);
+
+        return RendezVousResponse.fromEntity(saved);
+    }
     @Override
     public Integer getUserIdByEmail(String email) {
         return userRepository.findByEmail(email)

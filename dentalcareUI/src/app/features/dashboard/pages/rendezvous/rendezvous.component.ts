@@ -91,6 +91,8 @@ export class RendezvousComponent {
     motif: string;
     type: 'CONSULTATION' | 'FOLLOW_UP' | 'DESCALING' | 'OTHER';
     status: 'ON_HOLD' | 'CONFIRME' | 'CANCELED';
+    // slotId: number;
+    // doctorId: number;
   }): void {
     if (!this.rdvToEdit) return;
 
@@ -100,7 +102,9 @@ export class RendezvousComponent {
       heureFin: data.heureFin,
       motif: data.motif,
       type: data.type as TypeRdv,
-      status: data.status
+      status: data.status,
+      // slotId: data.slotId,
+      // doctorId: data.doctorId
     }).subscribe({
       next: () => {
         this.refreshTrigger++;
@@ -124,7 +128,8 @@ export class RendezvousComponent {
       heureDebut: startDateTime.toTimeString().substring(0, 5),        // HH:mm
       heureFin: endDateTime.toTimeString().substring(0, 5),            // HH:mm
       type: event.type as 'CONSULTATION' | 'FOLLOW_UP' | 'DESCALING' | 'OTHER',
-      motif: event.motif
+      motif: event.motif,
+      
     };
 
     this.rendezvousService.createRendezVous(request).subscribe({

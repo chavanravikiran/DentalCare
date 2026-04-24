@@ -15,22 +15,24 @@ import { TypeRdv} from '../../../../core/constants/rdv-types.model';
 })
 export class AppointmentFormComponent {
   @Input() selectedDate!: string;
-  @Input() reservedSlots: ReservedSlot[] = [];
+  @Input() doctorId!: number;
+  // @Input() reservedSlots: ReservedSlot[] = [];
   @Input() type: TypeRdv = 'CONSULTATION';
+  @Input() availableSlots: any[] = [];
 
   @Output() submit = new EventEmitter<RendezVousRequest>();
   @Output() cancel = new EventEmitter<void>();
 
   typeOptions = ['CONSULTATION', 'DESCALING', 'URGENCE'];
-  selectedSlot: string = '';
+  // selectedSlot: string = '';
   selectedType: string = '';
   motif: string = '';
-
+  selectedSlot: any = null;
   constructor(private rdvUtils: RdvUtilsService) {}
 
-  get availableSlots(): string[] {
-    return this.rdvUtils.getAvailableSlots(this.selectedDate, this.reservedSlots);
-  }
+  // get availableSlots(): string[] {
+  //   return this.rdvUtils.getAvailableSlots(this.selectedDate, this.reservedSlots);
+  // }
 
   onSubmit(): void {
     if (!this.selectedSlot || !this.selectedType) {
@@ -40,11 +42,18 @@ export class AppointmentFormComponent {
 
     const [heureDebut, heureFin] = this.selectedSlot.split(' - ');
     const request: RendezVousRequest = {
+      // date: this.selectedDate,
+      // heureDebut,
+      // heureFin,
+      // type: this.selectedType as TypeRdv,
+      // motif: this.motif
       date: this.selectedDate,
       heureDebut,
       heureFin,
-      type: this.selectedType as TypeRdv,
-      motif: this.motif
+      type: this.selectedType  as TypeRdv,
+      motif: this.motif,
+      slotId: this.selectedSlot.id,
+      doctorId: this.doctorId
     };
 
 

@@ -44,6 +44,8 @@ public class RendezVousRequest {
     @Enumerated(EnumType.STRING)
     private StatusRdv status; // Optional, but used in modification
 
+    private Long slotId;
+    private Long doctorId;
 
     public RendezVous toEntity(User patient) {
         return RendezVous.builder()
