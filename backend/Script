@@ -41,3 +41,14 @@ VALUES
 (nextval('appointment_slot_seq'),1,now(),'Y',0, '2026-03-20', '09:30:00', '10:00:00', false,2),
 (nextval('appointment_slot_seq'),1,now(),'Y',0, '2026-03-20', '10:00:00', '10:30:00', false,2);
 
+
+
+#Free Database Hosting on -Neon
+https://console.neon.tech/app/projects/wispy-moon-52346011/branches/br-withered-forest-a4x7jojj/sql-editor?database=dentalcare_db
+Username :-Ravikiranchavan9450@gmail.com
+Password :- Ravikiran@1997
+
+
+#AWS Account
+Username :-Ravikiranchavan9450@gmail.com
+Password :- Ravikiran@1997
