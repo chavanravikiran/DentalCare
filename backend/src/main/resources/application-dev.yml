@@ -10,8 +10,8 @@ spring:
     show-sql: false
     properties:
       hibernate:
-        default_schema: public
         format_sql: true
+        default_schema: public
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   mail:
