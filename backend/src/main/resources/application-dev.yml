@@ -1,8 +1,5 @@
 spring:
   datasource:
-#    url: jdbc:postgresql://dentalcare-db-anasrami1845-3ed8.b.aivencloud.com:22819/defaultdb?sslmode=require
-#    username: avnadmin
-#    password: AVNS_GQisG85VHveH1f2bb6j
     url: jdbc:postgresql://localhost:5432/dentalcare_db
     username: postgres
     password: root
@@ -13,6 +10,7 @@ spring:
     show-sql: false
     properties:
       hibernate:
+        default_schema: public
         format_sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
