@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/dentalcare_db
-    username: postgres
-    password: root
+    url: jdbc:postgresql://ep-withered-union-a46iv4pu-pooler.us-east-1.aws.neon.tech:5432/dentalcare_db?sslmode=require
+    username: neondb_owner
+    password: npg_AJMI2oUWP0YF
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -16,9 +16,9 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   mail:
       host: smtp.gmail.com
-      port: 587  # Port pour TLS
+      port: 587
       username: ravikiranchavan9450@gmail.com
-      password: "xhzl nvei mmda lkyi"
+      password: xhzl nvei mmda lkyi
       properties:
         mail:
           smtp:
@@ -26,13 +26,13 @@ spring:
             starttls:
               enable: true
             ssl:
-              trust: "smtp.gmail.com"
-
+              trust: smtp.gmail.com
+              
 application:
   security:
     jwt:
       secret-key: 7k2wF71Dj3oOW01VnTb06HH8cI88Ls3JEDd9A9ivKYc=
-      expiration: 86400000 # 1 jour
+      expiration: 86400000
   mailing:
     frontend:
       activation-url: http://localhost:4200/activate-account
