@@ -1,0 +1,41 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://ep-withered-union-a46iv4pu-pooler.us-east-1.aws.neon.tech:5432/dentalcare_db?sslmode=require
+    username: neondb_owner
+    password: npg_AJMI2oUWP0YF
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        default_schema: public
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  mail:
+      host: smtp.gmail.com
+      port: 587
+      username: ravikiranchavan9450@gmail.com
+      password: xhzl nvei mmda lkyi
+      properties:
+        mail:
+          smtp:
+            auth: true
+            starttls:
+              enable: true
+            ssl:
+              trust: smtp.gmail.com
+              
+application:
+  security:
+    jwt:
+      secret-key: 7k2wF71Dj3oOW01VnTb06HH8cI88Ls3JEDd9A9ivKYc=
+      expiration: 86400000
+  mailing:
+    frontend:
+      activation-url: http://localhost:4200/activate-account
+    from: ravikiranchavan9450@gmail.com
+server:
+  port: 8088
