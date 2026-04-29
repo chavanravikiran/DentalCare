@@ -34,3 +34,4 @@ export class AboutSectionComponent implements AfterViewInit {
     elements.forEach((el: Element) => observer.observe(el));
   }
 }
+
