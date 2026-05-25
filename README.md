@@ -90,7 +90,7 @@ Dental Care Manager is a comprehensive web application designed to streamline de
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/RAZIMOUAD/DentalCare.git
+git clone ***********
 cd DentalCare
 ```
 
