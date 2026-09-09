@@ -4,6 +4,7 @@ import SockJS from 'sockjs-client/dist/sockjs.min.js'; // ✅ usable as construc
 import { Subject } from 'rxjs';
 import { RendezVousResponse } from '../../features/dashboard/models/rendezvous-response.model';
 import { NotificationResponse } from '../../features/dashboard/models/notification-response.model';
+import { environment } from 'environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class WebSocketService {
@@ -16,7 +17,7 @@ export class WebSocketService {
 
   constructor() {
     this.stompClient = new Client({
-      webSocketFactory: () => new SockJS('http://localhost:8088/api/v1/ws'), // ✅ good /ws
+      webSocketFactory: () => new SockJS(`${environment.apiUrl}/ws`), // ✅ good /ws
       debug: (str) => console.log('[WS DEBUG] ' + str),
       reconnectDelay: 5000
     });
