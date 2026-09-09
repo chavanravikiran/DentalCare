@@ -1,4 +1,4 @@
-import { WebsiteSocialLink } from "./WebsiteSocialLink.model";
+import { WebsiteSocialLink } from "./websiteSocialLink.model";
 
 export interface WebsiteDetails {
     key: number;
