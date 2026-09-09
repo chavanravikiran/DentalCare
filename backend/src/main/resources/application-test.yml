@@ -1,6 +1,4 @@
 spring:
-  profiles:
-    active: test
   datasource:
     url: jdbc:postgresql://ep-withered-union-a46iv4pu-pooler.us-east-1.aws.neon.tech:5432/dentalcare_db?sslmode=require
     username: neondb_owner
