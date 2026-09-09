@@ -38,4 +38,4 @@ application:
       activation-url: http://localhost:4200/activate-account
     from: ravikiranchavan9450@gmail.com
 server:
-  port: 8088
+  port: 8089
