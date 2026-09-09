@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class WebsiteService {
-   private baseUrl = 'http://localhost:8088/api/v1/website';
+   private baseUrl = `${environment.apiUrl}/website`;
 
   constructor(private http: HttpClient) {}
 

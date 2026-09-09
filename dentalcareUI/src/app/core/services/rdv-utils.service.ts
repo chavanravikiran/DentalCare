@@ -29,8 +29,8 @@ export interface AppointmentSlot{
 @Injectable({ providedIn: 'root' })
 export class RdvUtilsService {
 
-  private baseUrl = 'http://localhost:8088/website';
-
+  private baseUrl = environment.websiteUrl;
+  
   constructor(private http: HttpClient) {}
 
   

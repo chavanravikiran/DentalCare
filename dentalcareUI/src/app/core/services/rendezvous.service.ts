@@ -11,7 +11,7 @@ import {catchError} from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class RendezvousService {
   private api = environment.apiUrl;
-  private apiUrl = 'http://localhost:8088/api/v1/rendezvous';
+  private apiUrl = `${environment.apiUrl}/rendezvous`;
 
   constructor(private http: HttpClient,
               private snackBar: MatSnackBar) {}
