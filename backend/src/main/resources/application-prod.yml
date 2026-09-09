@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://ep-withered-union-a46iv4pu-pooler.us-east-1.aws.neon.tech:5432/dentalcare_db?sslmode=require
+    url: jdbc:postgresql://ep-restless-feather-aykuexvq-pooler.c-5.us-east-2.aws.neon.tech:5432/dentalcare_db?sslmode=require
     username: neondb_owner
-    password: npg_AJMI2oUWP0YF
+    password: npg_LVn0qrzGSgW5
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:

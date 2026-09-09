@@ -1,3 +1,7 @@
+restore Database in Neon Database
+psql "postgresql://neondb_owner:npg_LVn0qrzGSgW5@ep-restless-feather-aykuexvq-pooler.c-5.us-east-2.aws.neon.tech/dentalcare_db?sslmode=require" < dentalcare_db.sql
+
+
 Admin -admin@dentalcare.com AdminPass123
 user - louis.olivier@yahoo.fr AdminPass123
 user -	dev@gmail.com AdminPass123
